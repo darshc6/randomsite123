@@ -4,37 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Products — NEXTEON</title>
+
+  <!-- shared styles -->
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <nav> …same as above… </nav>
+  <!-- ───────────────────────────── NAV ───────────────────────────── -->
+  <nav>
+    <div class="logo">NEXTEON</div>
+    <ul class="nav-links">
+      <li><a href="/about/">About</a></li>
+      <li><a href="/products/">Our Products</a></li>
+      <li><a href="/partners/">Partners</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+  </nav>
 
+  <!-- ──────────────────────────── HERO ───────────────────────────── -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>OUR&nbsp;PRODUCTS</h1>
-      <p>From concept to launch, every line of code is shaped for impact.</p>
+    <div class="container">
+      <div class="hero-content">
+        <h1>OUR&nbsp;PRODUCTS</h1>
+        <p>From concept to launch, every line of code is shaped for impact.</p>
+      </div>
     </div>
   </section>
 
-  <section class="cards">
-    <!-- product card -->
-    <article class="card">
-      <h3>Pulse&nbsp;AI&nbsp;SDK</h3>
-      <p>Plug-and-play computer-vision SDK that brings real-time insight to any
-         mobile app in under 5 minutes.</p>
-    </article>
+  <!-- ────────────────────────── PRODUCT GRID ─────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="cards">
+        <!-- Pulse AI SDK -->
+        <article class="card">
+          <h3>Pulse&nbsp;AI&nbsp;SDK</h3>
+          <p>Plug-and-play computer-vision SDK that brings real-time insight to any
+             mobile app in under 5 minutes.</p>
+        </article>
 
-    <article class="card">
-      <h3>Flux&nbsp;Cloud</h3>
-      <p>A globally distributed, carbon-aware edge platform that lets you
-         deploy serverless functions closer to your users.</p>
-    </article>
+        <!-- Flux Cloud -->
+        <article class="card">
+          <h3>Flux&nbsp;Cloud</h3>
+          <p>A globally distributed, carbon-aware edge platform that lets you
+             deploy serverless functions closer to your users.</p>
+        </article>
 
-    <article class="card">
-      <h3>Nova&nbsp;OS</h3>
-      <p>Lightweight OS for IoT devices that pairs security-first firmware with
-         a zero-trust update pipeline.</p>
-    </article>
+        <!-- Nova OS -->
+        <article class="card">
+          <h3>Nova&nbsp;OS</h3>
+          <p>Lightweight OS for IoT devices that pairs security-first firmware
+             with a zero-trust update pipeline.</p>
+        </article>
+      </div>
+    </div>
   </section>
 </body>
 </html>
