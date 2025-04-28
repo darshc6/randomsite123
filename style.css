@@ -3,6 +3,9 @@ body {
   font-family: 'Helvetica Neue', sans-serif;
   background-color: #fff;
   color: #000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {
@@ -33,24 +36,32 @@ nav {
 }
 
 .hero {
-  padding: 5rem 4rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  min-height: 70vh;
 }
 
 .hero-content {
-  max-width: 600px;
+  max-width: 900px;
 }
 
+/* 🔥 Hero main text big and modern */
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 6rem;
   font-weight: 900;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.1;
 }
 
 .hero p {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 300;
-  line-height: 1.5;
   margin-bottom: 2rem;
+  line-height: 1.5;
 }
 
 .cta {
@@ -62,11 +73,28 @@ nav {
   font-weight: bold;
   text-decoration: none;
   transition: background 0.3s ease;
+  font-size: 1.2rem;
 }
 
 .cta:hover {
   background-color: #2200e6;
 }
+
+/* ✨ Subtle fade-in animation for hero content */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- BELOW IS YOUR ORIGINAL CONTENT, untouched --- */
 
 /* generic section wrapper */
 .section {
@@ -126,4 +154,3 @@ nav {
 .container { max-width: 1200px; margin-inline: auto; padding-inline: 4rem; }
 .hero       { display: flex; align-items: center; min-height: 70vh; padding-block: 0; }
 .section    { padding-block: 4rem; }
-
