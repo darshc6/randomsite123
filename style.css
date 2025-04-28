@@ -157,3 +157,63 @@ nav {
 .container { max-width: 1200px; margin-inline: auto; padding-inline: 4rem; }
 .hero       { display: flex; align-items: center; min-height: 70vh; padding-block: 0; }
 .section    { padding-block: 4rem; }
+
+/* Small Hero Adjustment */
+.small-hero {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cool Hover Effects */
+.animated-cards .card {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.animated-cards .card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.animated-cards .card h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.animated-cards .card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
