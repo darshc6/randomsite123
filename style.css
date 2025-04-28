@@ -39,11 +39,14 @@ nav {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* instead of center */
   text-align: center;
-  padding: 2rem;
+  padding: 4rem 2rem;
   min-height: 70vh;
+  position: relative;
+  top: 4rem; /* push it down a little nicely */
 }
+
 
 .hero-content {
   max-width: 900px;
