@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEXTEON LABS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Cursor effect -->
+  <div class="cursor-dot"></div>
+
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">NEXTEON LABS</div>
     <ul class="nav-links">
@@ -17,6 +21,7 @@
     </ul>
   </nav>
 
+  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
       <h1>Building a Brighter Future</h1>
@@ -25,19 +30,29 @@
     </div>
   </section>
 
-  <section id="about" class="about-section">
+  <!-- Content Sections -->
+  <section id="about" class="section">
     <h2>About NEXTEON LABS</h2>
     <p>Founded by dreamers, built for doers. We believe tech should empower, not divide.</p>
   </section>
 
-  <section id="mission" class="mission-section">
+  <section id="mission" class="section">
     <h2>Our Mission</h2>
     <p>Innovate for good. Create for humanity. Grow for the planet.</p>
   </section>
 
-  <section id="contact" class="contact-section">
+  <section id="contact" class="section">
     <h2>Get In Touch</h2>
     <p>Email us at: <a href="mailto:contact@nexteonlabs.com">contact@nexteonlabs.com</a></p>
   </section>
+
+  <!-- Cursor Script -->
+  <script>
+    const dot = document.querySelector(".cursor-dot");
+    document.addEventListener("mousemove", (e) => {
+      dot.style.left = e.pageX + "px";
+      dot.style.top = e.pageY + "px";
+    });
+  </script>
 </body>
 </html>
