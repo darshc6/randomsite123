@@ -5,10 +5,9 @@
   box-sizing: border-box;
 }
 
-/* Fonts & Base */
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background: radial-gradient(ellipse at bottom, #0a0a0a, #111111);
+  background: radial-gradient(ellipse at bottom, #0a0a0a, #111);
   color: #f0f0f0;
   overflow-x: hidden;
   cursor: none;
@@ -51,19 +50,19 @@ body {
   color: #00ffff;
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 2rem;
   text-align: center;
+  padding: 0 2rem;
   margin-top: 60px;
 }
 
 .hero-content {
-  transform: translateY(-60px); /* fix vertical misalignment */
+  transform: translateY(-60px);
 }
 
 .hero-content h1 {
@@ -85,11 +84,18 @@ body {
   animation: bounce 2s infinite;
 }
 
-/* Sections */
-.section {
-  padding: 8rem 2rem;
+/* Section Card Style */
+.section.card {
+  max-width: 800px;
+  margin: 6rem auto;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
   text-align: center;
-  background-color: #111;
+  transition: all 0.3s ease;
 }
 
 .section h2 {
@@ -99,29 +105,48 @@ body {
 }
 
 .section p {
+  font-size: 1.1rem;
+  color: #ccc;
   max-width: 600px;
   margin: 0 auto;
-  color: #ccc;
-  font-size: 1.1rem;
 }
 
-/* Cursor Effect */
+/* Cursor Style */
 .cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
-  width: 15px;
-  height: 15px;
-  background: #00ffff;
+  width: 8px;
+  height: 8px;
+  background: white;
   border-radius: 50%;
+  z-index: 10000;
   pointer-events: none;
   mix-blend-mode: difference;
-  transition: transform 0.15s ease-out;
-  transform: translate(-50%, -50%);
-  z-index: 10000;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.05s ease-out;
+  will-change: transform;
 }
 
-/* Animations */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(5px);
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Bounce Animation */
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
@@ -137,7 +162,7 @@ body {
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .hero-content p {
@@ -146,5 +171,9 @@ body {
 
   .nav-links {
     display: none;
+  }
+
+  .section.card {
+    margin: 4rem 1rem;
   }
 }
