@@ -1,17 +1,17 @@
-/* Base Reset */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
 }
 
-/* Body */ 
+/* Fonts & Base */
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  background: radial-gradient(ellipse at bottom, #0a0a0a, #111111);
   color: #f0f0f0;
   overflow-x: hidden;
+  cursor: none;
 }
 
 /* Navbar */
@@ -19,34 +19,31 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 3rem;
-  background: rgba(20, 20, 20, 0.7);
+  padding: 1.5rem 3rem;
   position: fixed;
   width: 100%;
   top: 0;
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
-  z-index: 1000;
+  z-index: 999;
 }
 
 .logo {
-  font-size: 1.8rem;
   font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 1.8rem;
   color: #00ffff;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .nav-links a {
-  color: #cccccc;
   text-decoration: none;
-  font-size: 1rem;
+  color: #ccc;
   font-weight: 500;
-  position: relative;
   transition: color 0.3s ease;
 }
 
@@ -54,91 +51,100 @@ body {
   color: #00ffff;
 }
 
-/* Hero */
+/* Hero Section */
 .hero {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  flex-direction: column;
   padding: 0 2rem;
-  margin-top: 80px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.hero-content {
+  transform: translateY(-60px); /* fix vertical misalignment */
 }
 
 .hero-content h1 {
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #ffffff;
 }
 
 .hero-content p {
   font-size: 1.2rem;
-  color: #bbbbbb;
-  max-width: 600px;
+  color: #bbb;
   margin-bottom: 2rem;
 }
 
 .scroll-down {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #00ffff;
   text-decoration: none;
   animation: bounce 2s infinite;
 }
 
 /* Sections */
-.about-section,
-.mission-section,
-.contact-section {
+.section {
   padding: 8rem 2rem;
   text-align: center;
-  background: #111111;
+  background-color: #111;
 }
 
-.about-section h2,
-.mission-section h2,
-.contact-section h2 {
-  font-size: 2.5rem;
+.section h2 {
+  font-size: 2rem;
   margin-bottom: 1rem;
   color: #00ffff;
 }
 
-.about-section p,
-.mission-section p,
-.contact-section p {
+.section p {
   max-width: 600px;
   margin: 0 auto;
+  color: #ccc;
   font-size: 1.1rem;
-  color: #cccccc;
 }
 
-a {
-  color: #00ffff;
+/* Cursor Effect */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: #00ffff;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease-out;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
 }
 
 /* Animations */
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0); 
+    transform: translateY(0);
   }
   40% {
-    transform: translateY(-10px); 
+    transform: translateY(-10px);
   }
   60% {
     transform: translateY(-5px);
   }
 }
 
-/* Media Queries for responsiveness */
+/* Mobile Responsive */
 @media (max-width: 768px) {
-  .nav-links {
-    display: none; /* hide nav links for simplicity */
-  }
   .hero-content h1 {
     font-size: 2.5rem;
   }
+
   .hero-content p {
     font-size: 1rem;
+  }
+
+  .nav-links {
+    display: none;
   }
 }
