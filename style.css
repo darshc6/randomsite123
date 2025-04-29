@@ -1,9 +1,16 @@
-/* Base Styles */
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Body */
 body {
-  margin: 0; 
-  font-family: 'Courier New', Courier, monospace;
-  background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-  color: #f1f1f1;
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+  color: #f0f0f0;
   overflow-x: hidden;
 }
 
@@ -12,49 +19,42 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 3rem;
-  background: rgba(0, 0, 0, 0.6);
+  padding: 1.2rem 3rem;
+  background: rgba(20, 20, 20, 0.7);
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 100;
   backdrop-filter: blur(10px);
+  z-index: 1000;
 }
 
 .logo {
-  font-weight: bold;
   font-size: 1.8rem;
-  letter-spacing: 2px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #00ffff;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-links a {
-  color: #f1f1f1;
+  color: #cccccc;
   text-decoration: none;
+  font-size: 1rem;
   font-weight: 500;
   position: relative;
+  transition: color 0.3s ease;
 }
 
-.nav-links a::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 2px;
-  background: #00ffff;
-  transition: width 0.3s;
-  margin-top: 5px;
+.nav-links a:hover {
+  color: #00ffff;
 }
 
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* Hero Section */
+/* Hero */
 .hero {
   height: 100vh;
   display: flex;
@@ -63,20 +63,21 @@ body {
   text-align: center;
   flex-direction: column;
   padding: 0 2rem;
+  margin-top: 80px;
 }
 
 .hero-content h1 {
-  font-size: 3rem;
-  max-width: 800px;
-  line-height: 1.2;
+  font-size: 3.5rem;
+  font-weight: 700;
   margin-bottom: 1rem;
+  color: #ffffff;
 }
 
 .hero-content p {
   font-size: 1.2rem;
+  color: #bbbbbb;
   max-width: 600px;
   margin-bottom: 2rem;
-  color: #cccccc;
 }
 
 .scroll-down {
@@ -86,7 +87,7 @@ body {
   animation: bounce 2s infinite;
 }
 
-/* About, Mission, Contact Sections */
+/* Sections */
 .about-section,
 .mission-section,
 .contact-section {
@@ -98,7 +99,7 @@ body {
 .about-section h2,
 .mission-section h2,
 .contact-section h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #00ffff;
 }
@@ -117,23 +118,6 @@ a {
 }
 
 /* Animations */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s forwards;
-}
-
-.fade-in.delay-1 {
-  animation-delay: 0.5s;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0); 
@@ -143,5 +127,18 @@ a {
   }
   60% {
     transform: translateY(-5px);
+  }
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* hide nav links for simplicity */
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
   }
 }
