@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Cursor effect -->
+  <!-- Cursor Effect -->
   <div class="cursor-dot"></div>
+  <div class="cursor-glow"></div>
 
   <!-- Navbar -->
   <nav class="navbar">
@@ -21,7 +22,7 @@
     </ul>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
       <h1>Building a Brighter Future</h1>
@@ -30,28 +31,32 @@
     </div>
   </section>
 
-  <!-- Content Sections -->
-  <section id="about" class="section">
+  <!-- Retro Sections -->
+  <section id="about" class="section card">
     <h2>About NEXTEON LABS</h2>
     <p>Founded by dreamers, built for doers. We believe tech should empower, not divide.</p>
   </section>
 
-  <section id="mission" class="section">
+  <section id="mission" class="section card">
     <h2>Our Mission</h2>
     <p>Innovate for good. Create for humanity. Grow for the planet.</p>
   </section>
 
-  <section id="contact" class="section">
+  <section id="contact" class="section card">
     <h2>Get In Touch</h2>
     <p>Email us at: <a href="mailto:contact@nexteonlabs.com">contact@nexteonlabs.com</a></p>
   </section>
 
-  <!-- Cursor Script -->
+  <!-- Script for cursor -->
   <script>
     const dot = document.querySelector(".cursor-dot");
+    const glow = document.querySelector(".cursor-glow");
+
     document.addEventListener("mousemove", (e) => {
-      dot.style.left = e.pageX + "px";
-      dot.style.top = e.pageY + "px";
+      const { pageX, pageY } = e;
+
+      dot.style.transform = `translate3d(${pageX}px, ${pageY}px, 0)`;
+      glow.style.transform = `translate3d(${pageX}px, ${pageY}px, 0)`;
     });
   </script>
 </body>
