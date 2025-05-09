@@ -1,1 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preneur - Terms and Conditions</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --primary-light: #333333;
+            --accent: #555555;
+            --dark: #000000;
+            --light: #ffffff;
+            --gray: #e5e5e5;
+            --light-gray: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            padding: 0;
+            margin: 0;
+        }
+        
+        header {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: 0;
+        }
 
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .effective-date {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: -50px;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+            border: 1px solid var(--gray);
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            border-bottom: 2px solid var(--gray);
+            padding-bottom: 0.75rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        h2::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 25px;
+            background-color: var(--dark);
+            margin-right: 12px;
+            border-radius: 0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .section {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray);
+        }
+        
+        .section a {
+            color: var(--dark);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .highlight {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--dark);
+        }
+        
+        .highlight h3 {
+            margin-top: 0;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
+        
+        .bold {
+            font-weight: 600;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            line-height: 1.8;
+        }
+        
+        .toc {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 0;
+            margin-bottom: 2rem;
+            border: 1px solid var(--gray);
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .toc a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .toc a:hover {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+        
+        .toc a::before {
+            content: "•";
+            margin-right: 8px;
+            color: var(--dark);
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+                margin-top: -30px;
+            }
+            
+            header {
+                padding: 1.5rem 0;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.25rem;
+            }
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--dark);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0.8;
+        }
+        
+        .back-to-top:hover {
+            opacity: 1;
+            background-color: var(--primary-light);
+        }
+        
+        .back-to-top svg {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">Preneur</div>
+            <p>Terms and Conditions</p>
+            <p class="effective-date">Effective Date: May 10, 2025</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <p>Welcome to <span class="bold">Preneur</span>, a mobile application developed and operated by <span class="bold">Nexteon LLC</span> ("we," "us," or "our"), a company incorporated in the State of New Jersey, USA. By accessing or using the Preneur app ("App"), you agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
+        </div>
+        
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#license">1. License to Use</a></li>
+                <li><a href="#accounts">2. User Accounts</a></li>
+                <li><a href="#privacy">3. Privacy and Data Protection</a></li>
+                <li><a href="#acceptable-use">4. Acceptable Use</a></li>
+                <li><a href="#content">5. User-Generated Content</a></li>
+                <li><a href="#ip">6. Intellectual Property</a></li>
+                <li><a href="#termination">7. Termination</a></li>
+                <li><a href="#disclaimers">8. Disclaimers</a></li>
+                <li><a href="#liability">9. Limitation of Liability</a></li>
+                <li><a href="#law">10. Governing Law</a></li>
+                <li><a href="#changes">11. Changes to Terms</a></li>
+                <li><a href="#contact">12. Contact Us</a></li>
+            </ul>
+        </div>
+        
+        <div id="license" class="section">
+            <h2>1. License to Use</h2>
+            <p>We grant you a limited, non-exclusive, non-transferable, and revocable license to use the App for personal and non-commercial purposes, subject to these Terms.</p>
+        </div>
+        
+        <div id="accounts" class="section">
+            <h2>2. User Accounts</h2>
+            <p>To access certain features of the App, you may be required to create an account. You agree to:</p>
+            <ul>
+                <li>Provide accurate and complete information during registration.</li>
+                <li>Maintain the confidentiality of your account credentials.</li>
+                <li>Notify us immediately of any unauthorized use of your account.</li>
+            </ul>
+        </div>
+        
+        <div id="privacy" class="section">
+            <h2>3. Privacy and Data Protection</h2>
+            <p>Your privacy is paramount to us. Preneur is designed with a privacy-first approach:</p>
+            
+            <div class="highlight">
+                <h3>Our Privacy Principles</h3>
+                <ul>
+                    <li><span class="bold">Data Minimization:</span> We collect only the data necessary to provide and improve our services.</li>
+                    <li><span class="bold">On-Device Processing:</span> Wherever possible, data processing occurs on your device to enhance privacy.</li>
+                    <li><span class="bold">No Unnecessary Sharing:</span> We do not sell or share your personal data with third parties without your explicit consent.</li>
+                </ul>
+            </div>
+            
+            <p>For detailed information, please refer to our Privacy Policy.</p>
+        </div>
+        
+        <div id="acceptable-use" class="section">
+            <h2>4. Acceptable Use</h2>
+            <p>You agree not to use the App to:</p>
+            <ul>
+                <li>Violate any applicable laws or regulations.</li>
+                <li>Infringe upon the rights of others.</li>
+                <li>Transmit harmful or malicious content.</li>
+                <li>Engage in unauthorized data collection or scraping.</li>
+            </ul>
+        </div>
+        
+        <div id="content" class="section">
+            <h2>5. User-Generated Content</h2>
+            <p>If you post or upload content to the App:</p>
+            <ul>
+                <li>You retain ownership of your content.</li>
+                <li>You grant us a non-exclusive, royalty-free license to use, display, and distribute your content within the App.</li>
+                <li>You are responsible for ensuring your content complies with these Terms and applicable laws.</li>
+            </ul>
+        </div>
+        
+        <div id="ip" class="section">
+            <h2>6. Intellectual Property</h2>
+            <p>All intellectual property rights in the App, including but not limited to text, graphics, logos, and software, are owned by Nexteon LLC or its licensors. Unauthorized use of any intellectual property is prohibited.</p>
+        </div>
+        
+        <div id="termination" class="section">
+            <h2>7. Termination</h2>
+            <p>We reserve the right to suspend or terminate your access to the App at our discretion, without notice, if you violate these Terms or engage in conduct that we deem harmful to the App or its users.</p>
+        </div>
+        
+        <div id="disclaimers" class="section">
+            <h2>8. Disclaimers</h2>
+            <p>The App is provided "as is" without warranties of any kind. We do not guarantee that the App will be error-free or uninterrupted.</p>
+        </div>
+        
+        <div id="liability" class="section">
+            <h2>9. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, Nexteon LLC shall not be liable for any indirect, incidental, or consequential damages arising from your use of the App.</p>
+        </div>
+        
+        <div id="law" class="section">
+            <h2>10. Governing Law</h2>
+            <p>These Terms are governed by the laws of the State of New Jersey, without regard to its conflict of law principles.</p>
+        </div>
+        
+        <div id="changes" class="section">
+            <h2>11. Changes to Terms</h2>
+            <p>We may update these Terms from time to time. We will notify you of any significant changes by posting the new Terms on the App and updating the effective date. Your continued use of the App after such changes constitutes your acceptance of the new Terms.</p>
+        </div>
+        
+        <div id="contact" class="section">
+            <h2>12. Contact Us</h2>
+            <p>If you have any questions or concerns about these Terms, please contact us at:</p>
+            <div class="highlight">
+                <h3>Nexteon LLC</h3>
+                <p>123 Innovation Drive<br>
+                Princeton, NJ 08540<br>
+                Email: legal@preneurapp.com<br>
+                Phone: (609) 555-0123</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Preneur</h3>
+            <p>© 2025 Nexteon LLC. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </a>
+</body>
+</html>
