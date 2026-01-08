@@ -1,1 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================
+           YOUR PROVIDED STYLES
+           ============================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary: #ffffff;
+            --secondary: #000000;
+            --accent: #0015ff;
+            --accent-hover: #0012d6;
+            --gray-light: #f5f5f5;
+            --gray: #666666;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--primary);
+            color: var(--secondary);
+            line-height: 1.6;
+            min-height: 100vh;
+            font-weight: 400;
+        }
+
+        /* ===== NAVBAR STYLES ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background-color: var(--primary); /* Added background to prevent transparent overlap on scroll */
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 400;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .bar {
+            width: 25px;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        /* ===== FOOTER STYLES ===== */
+        .footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: auto; /* Pushes footer to bottom */
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+        }
+
+        .footer-column p {
+            margin-bottom: 0.8rem;
+            font-weight: 300;
+        }
+
+        /* ===== SPECIFIC CONTACT PAGE STYLES ===== */
+        .contact-wrapper {
+            padding-top: 120px; /* Clear the absolute navbar */
+            padding-bottom: 80px;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .contact-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+
+        /* Responsive Iframe Container */
+        .form-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background-color: var(--gray-light);
+        }
+
+        iframe {
+            width: 100%;
+            min-height: 1100px; /* Height to accommodate the form */
+            border: none;
+            display: block;
+        }
+
+        /* ===== MEDIA QUERIES ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--primary);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .contact-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+            .footer-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">NEXTEON</div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/work">Work</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <section class="contact-wrapper">
+        <div class="contact-header">
+            <h1>Get in Touch</h1>
+            <p>Fill out the form below and we'll get back to you shortly.</p>
+        </div>
+
+        <div class="form-container">
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSf9rmvW5kJf4BPKei1SCQ3wwOqEYlJnJlwfPOcbgbZi8JYA5w/viewform?embedded=true" 
+                marginheight="0" 
+                marginwidth="0">
+                Loading…
+            </iframe>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="logo" style="margin-bottom: 1rem;">NEXTEON</div>
+                <p>&copy; 2026 Nexteon.</p>
+                <p>All rights reserved.</p>
+            </div>
+            <div class="footer-column">
+                <p>Socials</p>
+                <p><a href="#" style="text-decoration: none; color: inherit;">Twitter</a></p>
+                <p><a href="#" style="text-decoration: none; color: inherit;">Instagram</a></p>
+                <p><a href="#" style="text-decoration: none; color: inherit;">LinkedIn</a></p>
+            </div>
+            <div class="footer-column">
+                <p>Contact</p>
+                <p>hello@nexteon.com</p>
+                <p>Los Angeles, CA</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Mobile Menu Toggle Script
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
