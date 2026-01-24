@@ -3,102 +3,774 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEXTEON</title>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <title>NEXTEON | Retro Future</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ===== VARIABLES & RESET ===== */
+    :root {
+      --bg-light: #ffffff;
+      --bg-grid: #f0f0f0;
+      --glass-surface: rgba(255, 255, 255, 0.65);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --glass-highlight: rgba(255, 255, 255, 0.8);
+      --text-main: #111111;
+      --text-muted: #666666;
+      --accent-primary: #0047FF; /* International Klein Blue */
+      --accent-secondary: #FF4D00; /* Safety Orange */
+      --accent-lab: #FFE600; /* Lab Yellow */
+      --transition: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      /* removed global cursor: none to prevent invisible cursor on error */
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      overflow-x: hidden;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    /* Only hide default cursor when custom cursor is successfully active */
+    body.custom-cursor-active,
+    body.custom-cursor-active * {
+        cursor: none !important;
+    }
+
+    /* ===== BACKGROUND FX ===== */
+    .grid-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: 
+        linear-gradient(var(--bg-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: center top;
+      opacity: 0.8;
+    }
+
+    .liquid-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      animation: float 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .blob-1 {
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, #e0f2fe 0%, transparent 70%); /* Light Cyan */
+      top: -200px;
+      left: -200px;
+    }
+
+    .blob-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #fce7f3 0%, transparent 70%); /* Light Pink */
+      bottom: -100px;
+      right: -100px;
+      animation-delay: -5s;
+    }
+
+    .blob-3 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #eef2ff 0%, transparent 70%); /* Indigp tint */
+      top: 40%;
+      left: 60%;
+      animation: pulse 10s infinite alternate;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(50px, 30px) rotate(10deg); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.4; }
+      100% { transform: scale(1.1); opacity: 0.6; }
+    }
+
+    /* ===== CUSTOM CURSOR ===== */
+    .cursor-dot,
+    .cursor-outline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      pointer-events: none;
+      mix-blend-mode: exclusion;
+      opacity: 0; /* Hidden by default until JS activates */
+      transition: opacity 0.3s;
+    }
+
+    body.custom-cursor-active .cursor-dot,
+    body.custom-cursor-active .cursor-outline {
+        opacity: 1;
+    }
+
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      background-color: white;
+      border-radius: 0; /* Square Dot */
+    }
+
+    /* New Bracket Style Cursor */
+    .cursor-outline {
+      width: 40px;
+      height: 40px;
+      /* Removed circular border */
+      border-radius: 0; 
+      transition: opacity 0.3s, width 0.2s, height 0.2s; /* Transitions for hover scaling */
+    }
+
+    /* Create the brackets using pseudo-elements */
+    .cursor-outline::before,
+    .cursor-outline::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 30%; /* Creates the gap in the middle */
+        height: 100%;
+        border: 1px solid white;
+        box-sizing: border-box;
+    }
+
+    .cursor-outline::before {
+        left: 0;
+        border-right: none; /* Left bracket [ */
+    }
+
+    .cursor-outline::after {
+        right: 0;
+        border-left: none; /* Right bracket ] */
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      transition: all 0.5s var(--transition); /* Smoother transition */
+      border: 1px solid transparent; /* Prepare for border change */
+    }
+
+    /* Scrolling State: Rounded Glass Effect */
+    .navbar.scrolled {
+      top: 1.5rem; /* Detach from top */
+      width: 90%; /* Detach from sides */
+      max-width: 1400px;
+      
+      /* Glass Effect */
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      
+      /* Borders & Shadows */
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+      
+      /* Rounding */
+      border-radius: 24px;
+      padding: 1rem 2.5rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start; /* Aligns superscript properly */
+      gap: 0.1rem;
+    }
+
+    .logo sup {
+      font-size: 0.4em;
+      font-weight: 600;
+      margin-top: 0.3em;
+      letter-spacing: 0;
+      color: var(--accent-primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: -0.02em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      color: var(--text-main);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s var(--transition) forwards 0.1s;
+    }
+
+    .hero h1 {
+      font-size: clamp(4rem, 11vw, 8.5rem);
+      line-height: 0.9;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s var(--transition) forwards 0.2s;
+    }
+    
+    .hero h1 span {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--text-main);
+      opacity: 0.8;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--text-muted);
+      max-width: 550px;
+      margin-bottom: 3rem;
+      font-weight: 400;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s var(--transition) forwards 0.4s;
+    }
+
+    /* Pill Button */
+    .cta-container {
+      opacity: 0;
+      animation: fadeInUp 1s var(--transition) forwards 0.6s;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+      background: var(--text-main);
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .cta-button:hover {
+      background: var(--accent-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.25);
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 8rem 2rem;
+      position: relative;
+      z-index: 5;
+    }
+
+    .retro-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: 3.5rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+    
+    .about-text h3 {
+      font-family: 'Space Mono', monospace;
+      color: var(--accent-primary);
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    
+    .highlight-blue {
+        color: var(--accent-primary);
+        font-weight: 600;
+    }
+
+    /* === INTERACTIVE LABS CARD === */
+    .about-visual {
+      height: 400px;
+      background: #111; /* Dark Gray */
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 600px; /* Reduced for stronger 3D effect */
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .about-visual:hover {
+       box-shadow: 0 20px 80px rgba(255, 230, 0, 0.25); /* Stronger glow on hover */
+    }
+
+    .labs-content {
+      text-align: center;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out; /* Smooth follow */
+      pointer-events: none; /* Let mouse pass through to container */
+      padding: 2rem;
+      border: 1px solid rgba(255, 230, 0, 0.2);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .labs-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 3.5rem;
+      color: var(--accent-lab);
+      line-height: 0.9;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 30px rgba(255, 230, 0, 0.4);
+      transform: translateZ(80px); /* Pushed out further */
+    }
+
+    .labs-sub {
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      letter-spacing: 0.6em;
+      color: var(--accent-lab);
+      opacity: 0.8;
+      transform: translateZ(50px); /* Pushed out further */
+    }
+    
+    /* ===== MARQUEE ===== */
+    .innovation-section {
+      padding: 6rem 0;
+      background: var(--text-main);
+      color: white;
+      transform: skewY(-2deg);
+      margin: 5rem 0;
+    }
+    
+    .innovation-inner {
+        transform: skewY(2deg); /* Counter skew content */
+    }
+
+    .marquee {
+      display: flex;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .marquee-text {
+      font-size: 5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding-right: 4rem;
+      animation: slide 15s linear infinite;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .marquee-text svg {
+        color: var(--accent-secondary);
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 6rem 2rem 2rem;
+      border-top: 1px solid var(--glass-border);
+      background: linear-gradient(to bottom, #fff, #f5f5f5);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .footer-logo {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+
+    .footer-col h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .footer-col p {
+      margin-bottom: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--text-main);
+      text-decoration: none;
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--accent-primary);
+    }
+    
+    .footer-bottom {
+        max-width: 1200px;
+        margin: 4rem auto 0;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Space Mono', monospace;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+
+    /* ===== UTILITIES ===== */
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s var(--transition);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .retro-panel, .footer-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .hero h1 { font-size: 4rem; }
+      
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Backgrounds -->
+  <div class="grid-background"></div>
+  <div class="liquid-background">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="cursor-dot" data-cursor-dot></div>
+  <div class="cursor-outline" data-cursor-outline></div>
+
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo">NEXTEON</div>
+    <div class="logo">
+      NEXTEON<sup>TM</sup>
+    </div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
-      <li><a href="products">Our Products</a></li>
-      <li><a href="contact">Contact</a></li>
+      <li><a href="#products">Our Products</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="menu-toggle">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
+      <i data-lucide="menu"></i>
     </div>
   </nav>
-  
+
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>BUILDING THE FUTURE</h1>
-      <p>creating innovative products that shape a better tomorrow</p>
-      <a href="#about" class="cta-button">More about us</a>
+    <div class="hero-label">[ EST. 2022 ]</div>
+    <h1>BUILDING THE<br><span>FUTURE</span></h1>
+    <p>creating innovative products that shape a better tomorrow</p>
+    <div class="cta-container">
+      <a href="#about" class="cta-button">
+        More about us <i data-lucide="arrow-right" size="16"></i>
+      </a>
     </div>
   </section>
-  
-  <!-- Image Grid -->
-  <section class="image-grid">
-    <div class="grid-image purple"></div>
-    <div class="grid-image blue"></div>
-    <div class="grid-image code"></div>
-  </section>
-  
-  <!-- About Section -->
-  <section id="about" class="about-section">
-    <div class="section-container">
-      <div class="about-content">
-        <h2>About NEXTEON</h2>
+
+  <!-- About -->
+  <section id="about" class="section-container">
+    <div class="retro-panel reveal">
+      <div class="about-text">
+        <h2>About</h2>
         <h3>Who we are.</h3>
         <p>We build products that address problems and gaps that exist in society. Be it in communication, social, or even AI. We utilize artificial intelligence, among various technologies, to streamline and accelerate the ideation and creation process. Bringing <span class="highlight-blue">positive</span> innovations to the largest audience as <span class="highlight-blue">quickly</span> as possible.</p>
-        <a href="products" class="cta-button">View our products</a>
+        
+        <a href="products" class="cta-button">
+          View our products <i data-lucide="arrow-up-right" size="16"></i>
+        </a>
       </div>
-      <div class="about-image">
-        <div class="logo-box">
-          <span>NEXTEON</span>
+      
+      <!-- Interactive Labs Card -->
+      <div class="about-visual interactive-card" id="tiltCard">
+        <div class="labs-content">
+          <div class="labs-logo">NEXTEON</div>
+          <div class="labs-sub">LABS</div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="innovation-section">
+    <div class="innovation-inner">
+      <div class="marquee">
+        <div class="marquee-text">
+            THERE'S NEVER ENOUGH INNOVATION <i data-lucide="zap" fill="currentColor"></i>
+            THERE'S NEVER ENOUGH INNOVATION <i data-lucide="zap" fill="currentColor"></i>
+        </div>
+        <div class="marquee-text">
+            THERE'S NEVER ENOUGH INNOVATION <i data-lucide="zap" fill="currentColor"></i>
+            THERE'S NEVER ENOUGH INNOVATION <i data-lucide="zap" fill="currentColor"></i>
         </div>
       </div>
     </div>
   </section>
-  
-  <!-- Innovation Section -->
-  <section id="innovation" class="innovation-section">
-    <div class="section-container">
-      <h2>there's never enough innovation</h2>
-      <a href="#contact" class="cta-button">Contact Us</a>
-    </div>
-  </section>
-  
+
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
-      <div class="footer-column">
+      <div class="footer-col">
+        <div class="footer-logo">NEXTEON</div>
         <p>nxteon@gmail.com</p>
       </div>
-      <div class="footer-column">
+      <div class="footer-col">
+        <h4>LOCATIONS</h4>
         <p>New York, NY</p>
         <p>Los Angeles, CA</p>
       </div>
-      <div class="footer-column">
-        <p>Accessibility Statement</p>
-        <p>Privacy Policy</p>
-        <p>© 2025 by NEXTEON LLC.</p>
+      <div class="footer-col">
+        <h4>LEGAL</h4>
+        <a href="#">Accessibility Statement</a>
+        <a href="#">Privacy Policy</a>
       </div>
     </div>
+    <div class="footer-bottom">
+        <span>© 2025 by NEXTEON LLC.</span>
+    </div>
   </footer>
-  
-  <!-- Script for mobile menu -->
+
   <script>
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      menuToggle.classList.toggle('active');
-    });
-    
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-      });
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Initialize Scroll Reveal FIRST
+        const revealElements = document.querySelectorAll('.reveal');
+        const navbar = document.querySelector('.navbar');
+        const tiltCard = document.getElementById('tiltCard');
+        const labsContent = document.querySelector('.labs-content');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+            const scrollY = window.scrollY;
+
+            // Existing Reveal Logic
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+
+            // Navbar Logic
+            if (scrollY > 50) {
+                if(navbar) navbar.classList.add('scrolled');
+            } else {
+                if(navbar) navbar.classList.remove('scrolled');
+            }
+
+            // --- Scroll Parallax for Tilt Card ---
+            if(tiltCard && labsContent) {
+                // If the user is NOT hovering (mouse logic takes precedence)
+                if(!tiltCard.matches(':hover')) {
+                    const rect = tiltCard.getBoundingClientRect();
+                    const cardCenterY = rect.top + (rect.height / 2);
+                    const screenCenterY = window.innerHeight / 2;
+                    
+                    // Difference from center of screen
+                    const distFromCenter = cardCenterY - screenCenterY;
+                    
+                    // Stronger rotation mapping: limit to +/- 70 degrees (was 30)
+                    if(rect.top < window.innerHeight && rect.bottom > 0) {
+                        const rotX = (distFromCenter / window.innerHeight) * 70; 
+                        labsContent.style.transform = `rotateX(${rotX}deg)`;
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // 2. Initialize Icons
+        try {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        } catch (e) { console.warn('Icons failed', e); }
+
+        // 3. 3D Tilt Effect Logic (Mouse)
+        if (tiltCard && labsContent) {
+            tiltCard.addEventListener('mousemove', (e) => {
+                const rect = tiltCard.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x position within the element.
+                const y = e.clientY - rect.top;  // y position within the element.
+                
+                // Calculate center
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                // Rotation (Increased to Max 50deg)
+                const rotateX = ((y - centerY) / centerY) * -50;
+                const rotateY = ((x - centerX) / centerX) * 50;
+
+                labsContent.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            tiltCard.addEventListener('mouseleave', () => {
+                // Reset when leaving so it doesn't get stuck
+                labsContent.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+        }
+
+        // 4. Custom Cursor
+        try {
+            const cursorDot = document.querySelector('[data-cursor-dot]');
+            const cursorOutline = document.querySelector('[data-cursor-outline]');
+            
+            if (cursorDot && cursorOutline && !('ontouchstart' in window)) {
+                document.body.classList.add('custom-cursor-active');
+                
+                window.addEventListener('mousemove', function(e) {
+                    const posX = e.clientX;
+                    const posY = e.clientY;
+                    cursorDot.style.left = `${posX}px`;
+                    cursorDot.style.top = `${posY}px`;
+                    
+                    cursorOutline.animate({
+                        left: `${posX}px`,
+                        top: `${posY}px`
+                    }, { duration: 500, fill: "forwards" });
+                });
+
+                document.querySelectorAll('a, button, .interactive-card').forEach(link => {
+                    link.addEventListener('mouseenter', () => {
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    });
+                    link.addEventListener('mouseleave', () => {
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                    });
+                });
+            }
+        } catch (e) {}
     });
   </script>
 </body>
