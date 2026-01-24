@@ -1,264 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXTEON | Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ===== VARIABLES & RESET ===== */
+    :root {
+      --bg-light: #ffffff;
+      --bg-grid: #f0f0f0;
+      --glass-surface: rgba(255, 255, 255, 0.65);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --glass-highlight: rgba(255, 255, 255, 0.8);
+      --text-main: #111111;
+      --text-muted: #666666;
+      --accent-primary: #0047FF; /* International Klein Blue */
+      --accent-secondary: #FF4D00; /* Safety Orange */
+      --accent-lab: #FFE600; /* Lab Yellow */
+      --transition: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-main);
+      overflow-x: hidden;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
     
-    <style>
-        /* ============================
-           YOUR PROVIDED STYLES
-           ============================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* Custom Cursor Hiding */
+    body.custom-cursor-active,
+    body.custom-cursor-active * {
+        cursor: none !important;
+    }
 
-        :root {
-            --primary: #ffffff;
-            --secondary: #000000;
-            --accent: #0015ff;
-            --accent-hover: #0012d6;
-            --gray-light: #f5f5f5;
-            --gray: #666666;
-            --transition: all 0.3s ease;
-        }
+    /* ===== BACKGROUND FX ===== */
+    .grid-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image: 
+        linear-gradient(var(--bg-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-position: center top;
+      opacity: 0.8;
+    }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    .liquid-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+      background: #fff;
+    }
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--primary);
-            color: var(--secondary);
-            line-height: 1.6;
-            min-height: 100vh;
-            font-weight: 400;
-        }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      animation: float 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        /* ===== NAVBAR STYLES ===== */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            background-color: var(--primary); /* Added background to prevent transparent overlap on scroll */
-        }
+    .blob-1 { width: 800px; height: 800px; background: radial-gradient(circle, #e0f2fe 0%, transparent 70%); top: -200px; left: -200px; }
+    .blob-2 { width: 600px; height: 600px; background: radial-gradient(circle, #fce7f3 0%, transparent 70%); bottom: -100px; right: -100px; animation-delay: -5s; }
+    .blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #eef2ff 0%, transparent 70%); top: 40%; left: 60%; animation: pulse 10s infinite alternate; }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
+    @keyframes float { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(50px, 30px) rotate(10deg); } }
+    @keyframes pulse { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.1); opacity: 0.6; } }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
+    /* ===== CUSTOM CURSOR ===== */
+    .cursor-dot, .cursor-outline {
+      position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); z-index: 9999; pointer-events: none; mix-blend-mode: exclusion;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    body.custom-cursor-active .cursor-dot, body.custom-cursor-active .cursor-outline { opacity: 1; }
+    .cursor-dot { width: 8px; height: 8px; background-color: white; border-radius: 0; }
+    .cursor-outline { width: 40px; height: 40px; border-radius: 0; transition: opacity 0.3s, width 0.2s, height 0.2s; }
+    .cursor-outline::before, .cursor-outline::after { content: ''; position: absolute; top: 0; width: 30%; height: 100%; border: 1px solid white; box-sizing: border-box; }
+    .cursor-outline::before { left: 0; border-right: none; }
+    .cursor-outline::after { right: 0; border-left: none; }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: 400;
-            transition: var(--transition);
-        }
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      transition: all 0.5s var(--transition);
+      border: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      top: 1.5rem; width: 90%; max-width: 1400px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+      border-radius: 24px; padding: 1rem 2.5rem;
+    }
+    .logo {
+      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text-main);
+      display: flex; align-items: flex-start; gap: 0.1rem;
+    }
+    .logo sup { font-size: 0.4em; font-weight: 600; margin-top: 0.3em; letter-spacing: 0; color: var(--accent-primary); }
+    .nav-links { display: flex; gap: 3rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-main); font-size: 0.9rem; font-weight: 500;
+      text-transform: uppercase; font-family: 'Space Mono', monospace; letter-spacing: -0.02em; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent-primary); }
+    .menu-toggle { display: none; color: var(--text-main); }
 
-        .nav-links a:hover {
-            opacity: 0.7;
-        }
+    /* ===== HEADER & FORM ===== */
+    .contact-wrapper {
+      padding: 10rem 2rem 8rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 5;
+    }
 
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1000;
-        }
+    .contact-header {
+      margin-bottom: 4rem;
+    }
 
-        .bar {
-            width: 25px;
-            height: 2px;
-            background-color: var(--secondary);
-            transition: var(--transition);
-        }
+    .contact-header h1 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+      background: linear-gradient(to bottom, #111, #444);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0; animation: fadeInUp 1s var(--transition) forwards 0.2s;
+    }
 
-        /* ===== FOOTER STYLES ===== */
-        .footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            margin-top: auto; /* Pushes footer to bottom */
-        }
+    .contact-header p {
+      font-family: 'Space Mono', monospace;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0; animation: fadeInUp 1s var(--transition) forwards 0.4s;
+    }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-        }
+    .form-container {
+      width: 100%;
+      background: var(--glass-surface);
+      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+      border: 1px solid white;
+      border-radius: 20px;
+      padding: 1rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+      opacity: 0;
+      animation: fadeInUp 1s var(--transition) forwards 0.6s;
+    }
 
-        .footer-column {
-            flex: 1;
-        }
+    iframe {
+      width: 100%;
+      min-height: 1100px;
+      border: none;
+      display: block;
+      border-radius: 12px;
+      /* Optional: Ensure iframe blends if google form has background */
+    }
 
-        .footer-column p {
-            margin-bottom: 0.8rem;
-            font-weight: 300;
-        }
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 6rem 2rem 2rem;
+      border-top: 1px solid var(--glass-border);
+      background: linear-gradient(to bottom, #fff, #f5f5f5);
+    }
 
-        /* ===== SPECIFIC CONTACT PAGE STYLES ===== */
-        .contact-wrapper {
-            padding-top: 120px; /* Clear the absolute navbar */
-            padding-bottom: 80px;
-            padding-left: 2rem;
-            padding-right: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+    }
 
-        .contact-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+    .footer-col h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
 
-        .contact-header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
+    .footer-col p, .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
 
-        .contact-header p {
-            font-size: 1.2rem;
-            color: var(--gray);
-        }
+    .footer-col a:hover {
+      color: var(--accent-primary);
+    }
 
-        /* Responsive Iframe Container */
-        .form-container {
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            background-color: var(--gray-light);
-        }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 4rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
 
-        iframe {
-            width: 100%;
-            min-height: 1100px; /* Height to accommodate the form */
-            border: none;
-            display: block;
-        }
+    /* ===== UTILITIES ===== */
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* ===== MEDIA QUERIES ===== */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem 1.5rem;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
-                background: var(--primary);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: var(--transition);
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            }
-            
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .menu-toggle {
-                display: flex;
-            }
-            
-            .contact-header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
-            .menu-toggle.active .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-            .footer-container {
-                flex-direction: column;
-                gap: 2rem;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .navbar { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .footer-container { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-wrapper { padding-top: 8rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">NEXTEON</div>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/work">Work</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-        <div class="menu-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-    </nav>
+  <!-- Backgrounds -->
+  <div class="grid-background"></div>
+  <div class="liquid-background">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
 
-    <section class="contact-wrapper">
-        <div class="contact-header">
-            <h1>Get in Touch</h1>
-            <p>Fill out the form below and we'll get back to you shortly.</p>
-        </div>
+  <!-- Cursor -->
+  <div class="cursor-dot" data-cursor-dot></div>
+  <div class="cursor-outline" data-cursor-outline></div>
 
-        <div class="form-container">
-            <iframe 
-                src="https://docs.google.com/forms/d/e/1FAIpQLSf9rmvW5kJf4BPKei1SCQ3wwOqEYlJnJlwfPOcbgbZi8JYA5w/viewform?embedded=true" 
-                marginheight="0" 
-                marginwidth="0">
-                Loading…
-            </iframe>
-        </div>
-    </section>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">NEXTEON<sup>TM</sup></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products">Our Products</a></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+    <div class="menu-toggle">
+      <i data-lucide="menu"></i>
+    </div>
+  </nav>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-column">
-                <div class="logo" style="margin-bottom: 1rem;">NEXTEON</div>
-                <p>&copy; 2026 Nexteon.</p>
-                <p>All rights reserved.</p>
-            </div>
-           
-            <div class="footer-column">
-                <p>Contact</p>
-                <p>nxteon@gmail.com</p>
-                <p>Los Angeles, CA</p>
-            </div>
-        </div>
-    </footer>
+  <!-- Contact Section -->
+  <section class="contact-wrapper">
+    <div class="contact-header">
+      <h1>Get in Touch</h1>
+      <p>Fill out the form below and we'll get back to you shortly.</p>
+    </div>
 
-    <script>
-        // Simple Mobile Menu Toggle Script
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
+    <div class="form-container">
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSf9rmvW5kJf4BPKei1SCQ3wwOqEYlJnJlwfPOcbgbZi8JYA5w/viewform?embedded=true" 
+        marginheight="0" 
+        marginwidth="0">
+        Loading…
+      </iframe>
+    </div>
+  </section>
 
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-    </script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="logo" style="margin-bottom:1rem">NEXTEON<sup>TM</sup></div>
+        <p>team@oneblvd.co</p>
+      </div>
+      <div class="footer-col">
+        <h4>Locations</h4>
+        <p>New York, NY</p>
+        <p>Los Angeles, CA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Accessibility Statement</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© 2025 by NEXTEON LLC.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. Reveal Navbar
+        const navbar = document.querySelector('.navbar');
+
+        const onScroll = () => {
+            if (window.scrollY > 50) {
+                if(navbar) navbar.classList.add('scrolled');
+            } else {
+                if(navbar) navbar.classList.remove('scrolled');
+            }
+        };
+
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+
+        // 2. Initialize Icons
+        try { if (window.lucide) lucide.createIcons(); } catch (e) {}
+
+        // 3. Custom Cursor
+        try {
+            const cursorDot = document.querySelector('[data-cursor-dot]');
+            const cursorOutline = document.querySelector('[data-cursor-outline]');
+            
+            if (cursorDot && cursorOutline && !('ontouchstart' in window)) {
+                document.body.classList.add('custom-cursor-active');
+                
+                window.addEventListener('mousemove', function(e) {
+                    const posX = e.clientX;
+                    const posY = e.clientY;
+                    cursorDot.style.left = `${posX}px`;
+                    cursorDot.style.top = `${posY}px`;
+                    
+                    cursorOutline.animate({
+                        left: `${posX}px`,
+                        top: `${posY}px`
+                    }, { duration: 500, fill: "forwards" });
+                });
+
+                document.querySelectorAll('a, button, iframe, .form-container').forEach(link => {
+                    link.addEventListener('mouseenter', () => {
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    });
+                    link.addEventListener('mouseleave', () => {
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                    });
+                });
+            }
+        } catch (e) {}
+    });
+  </script>
 </body>
 </html>
