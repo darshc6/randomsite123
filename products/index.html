@@ -3,557 +3,505 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEXTEON | Our Creations</title>
+  <title>NEXTEON | Products</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    /* ===== VARIABLES & RESET ===== */
-    :root {
-      --bg-light: #ffffff;
-      --bg-grid: #f0f0f0;
-      --glass-surface: rgba(255, 255, 255, 0.65);
-      --glass-border: rgba(0, 0, 0, 0.08);
-      --glass-highlight: rgba(255, 255, 255, 0.8);
-      --text-main: #111111;
-      --text-muted: #666666;
-      --accent-primary: #0047FF; /* International Klein Blue */
-      --accent-secondary: #FF4D00; /* Safety Orange */
-      --accent-lab: #FFE600; /* Lab Yellow */
-      --transition: cubic-bezier(0.16, 1, 0.3, 1);
+    :root{
+      --bg:#f7f7f5;
+      --panel:#ffffff;
+      --line:rgba(17,17,17,.12);
+      --line-soft:rgba(17,17,17,.07);
+      --text:#111111;
+      --muted:#6f6f6a;
+      --accent:#0047FF;
+      --transition:cubic-bezier(0.16,1,0.3,1);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Outfit',sans-serif;
+      background:
+        linear-gradient(rgba(0,0,0,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.045) 1px, transparent 1px),
+        radial-gradient(circle at 12% 18%, rgba(0,71,255,.04), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(255,255,255,.95), rgba(247,247,245,1) 44%),
+        linear-gradient(180deg, #fbfbfa 0%, #f6f6f3 100%);
+      background-size:40px 40px, 40px 40px, auto, auto, auto;
+      color:var(--text);
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
 
-    body {
-      font-family: 'Outfit', sans-serif;
-      background-color: var(--bg-light);
-      color: var(--text-main);
-      overflow-x: hidden;
-      width: 100%;
-      min-height: 100vh;
-      position: relative;
-    }
-    
-    /* Custom Cursor Hiding */
-    body.custom-cursor-active,
-    body.custom-cursor-active * {
-        cursor: none !important;
+    a{text-decoration:none;color:inherit}
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background:rgba(247,247,245,.82);
+      border-bottom:1px solid rgba(255,255,255,.7);
     }
 
-    /* ===== BACKGROUND FX ===== */
-    .grid-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-image: 
-        linear-gradient(var(--bg-grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
-      background-size: 40px 40px;
-      background-position: center top;
-      opacity: 0.8;
+    .nav-inner{
+      max-width:1240px;
+      margin:0 auto;
+      padding:1.15rem 1.5rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
     }
 
-    .liquid-background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      overflow: hidden;
-      background: #fff;
+    .logo{
+      font-size:1.5rem;
+      font-weight:800;
+      letter-spacing:-0.04em;
+      color:var(--text);
+      display:flex;
+      align-items:flex-start;
+      gap:0.1rem;
     }
 
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.5;
-      animation: float 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    .logo sup{
+      font-size:0.42em;
+      font-weight:600;
+      margin-top:0.3em;
+      color:var(--accent);
+      letter-spacing:0;
     }
 
-    .blob-1 { width: 800px; height: 800px; background: radial-gradient(circle, #e0f2fe 0%, transparent 70%); top: -200px; left: -200px; }
-    .blob-2 { width: 600px; height: 600px; background: radial-gradient(circle, #fce7f3 0%, transparent 70%); bottom: -100px; right: -100px; animation-delay: -5s; }
-    .blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, #eef2ff 0%, transparent 70%); top: 40%; left: 60%; animation: pulse 10s infinite alternate; }
-
-    @keyframes float { 0% { transform: translate(0, 0) rotate(0deg); } 100% { transform: translate(50px, 30px) rotate(10deg); } }
-    @keyframes pulse { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(1.1); opacity: 0.6; } }
-
-    /* ===== CUSTOM CURSOR ===== */
-    .cursor-dot, .cursor-outline {
-      position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); z-index: 9999; pointer-events: none; mix-blend-mode: exclusion;
-      opacity: 0; transition: opacity 0.3s;
-    }
-    body.custom-cursor-active .cursor-dot, body.custom-cursor-active .cursor-outline { opacity: 1; }
-    .cursor-dot { width: 8px; height: 8px; background-color: white; border-radius: 0; }
-    .cursor-outline { width: 40px; height: 40px; border-radius: 0; transition: opacity 0.3s, width 0.2s, height 0.2s; }
-    .cursor-outline::before, .cursor-outline::after { content: ''; position: absolute; top: 0; width: 30%; height: 100%; border: 1px solid white; box-sizing: border-box; }
-    .cursor-outline::before { left: 0; border-right: none; }
-    .cursor-outline::after { right: 0; border-left: none; }
-
-    /* ===== NAVBAR ===== */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-      transition: all 0.5s var(--transition);
-      border: 1px solid transparent;
-    }
-    .navbar.scrolled {
-      top: 1.5rem; width: 90%; max-width: 1400px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
-      border-radius: 24px; padding: 1rem 2.5rem;
-    }
-    .logo {
-      font-size: 1.5rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text-main);
-      display: flex; align-items: flex-start; gap: 0.1rem;
-    }
-    .logo sup { font-size: 0.4em; font-weight: 600; margin-top: 0.3em; letter-spacing: 0; color: var(--accent-primary); }
-    .nav-links { display: flex; gap: 3rem; list-style: none; }
-    .nav-links a {
-      text-decoration: none; color: var(--text-main); font-size: 0.9rem; font-weight: 500;
-      text-transform: uppercase; font-family: 'Space Mono', monospace; letter-spacing: -0.02em; transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--accent-primary); }
-    .menu-toggle { display: none; color: var(--text-main); }
-
-    /* ===== HEADER ===== */
-    .products-header {
-      padding: 10rem 2rem 4rem;
-      text-align: center;
-      position: relative;
-      z-index: 3;
-    }
-    .products-header h1 {
-      font-size: clamp(3rem, 8vw, 5rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      margin-bottom: 1rem;
-      background: linear-gradient(to bottom, #111, #444);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      opacity: 0; animation: fadeInUp 1s var(--transition) forwards 0.2s;
-    }
-    .products-header p {
-      font-family: 'Space Mono', monospace;
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      opacity: 0; animation: fadeInUp 1s var(--transition) forwards 0.4s;
+    .nav-links{
+      list-style:none;
+      display:flex;
+      gap:2.25rem;
+      align-items:center;
     }
 
-    /* ===== PRODUCTS GRID ===== */
-    .products-section {
-      padding: 0 2rem 8rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 2.5rem;
+    .nav-links a{
+      font-family:'Space Mono',monospace;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.03em;
+      color:rgba(17,17,17,.66);
+      transition:color .25s ease;
     }
 
-    /* Retro Glass Card */
-    .product-card {
-      background: var(--glass-surface);
-      backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-      border: 1px solid white;
-      border-radius: 20px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.4s var(--transition);
-      opacity: 0; /* for scroll reveal */
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      height: 100%;
-      transform-style: preserve-3d; /* for tilt */
+    .nav-links a:hover,
+    .nav-links a.active{
+      color:var(--text);
     }
 
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      border-color: var(--glass-highlight);
+    .page{
+      max-width:1240px;
+      margin:0 auto;
+      padding:4rem 1.5rem 7rem;
     }
 
-    .product-logo {
-      height: 180px;
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      overflow: hidden;
-    }
-    
-    .product-logo::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at center, rgba(0,0,0,0) 0%, rgba(0,0,0,0.03) 100%);
+    .hero{
+      padding:1.2rem 0 3.2rem;
+      display:grid;
+      grid-template-columns:minmax(0, 1.1fr) minmax(280px, .65fr);
+      gap:2.5rem;
+      align-items:end;
     }
 
-    .product-logo img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      /* iOS Squircle Approximation */
-      border-radius: 22%; 
-      transition: transform 0.5s var(--transition);
-      z-index: 1;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    .eyebrow{
+      font-family:'Space Mono',monospace;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.72rem;
+      color:var(--muted);
+      margin-bottom:1.2rem;
     }
 
-    .product-card:hover .product-logo img {
-      transform: scale(1.1);
+    h1{
+      font-size:clamp(3.25rem, 7vw, 6.2rem);
+      line-height:.92;
+      letter-spacing:-0.06em;
+      font-weight:700;
+      max-width:760px;
     }
 
-    .product-content {
-      padding: 2rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
+    .hero-copy{
+      color:var(--muted);
+      font-size:1.05rem;
+      line-height:1.6;
+      max-width:420px;
+      justify-self:end;
+      padding-bottom:.25rem;
     }
 
-    .product-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-      letter-spacing: -0.02em;
+    .section{
+      margin-top:1.3rem;
+      background:rgba(255,255,255,.38);
+      border:1px solid rgba(255,255,255,.65);
+      border-radius:28px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow:0 12px 32px rgba(0,0,0,.03);
+      overflow:hidden;
     }
 
-    .product-description {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 2rem;
-      flex-grow: 1;
+    .section-head{
+      padding:1.15rem 1.5rem;
+      border-bottom:1px solid var(--line-soft);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      background:rgba(255,255,255,.52);
     }
 
-    .product-link {
-      align-self: flex-start;
-      color: var(--text-main);
-      text-decoration: none;
-      font-family: 'Space Mono', monospace;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      border: 1px solid var(--text-main);
-      border-radius: 50px;
-      transition: all 0.3s;
+    .section-title{
+      font-size:1rem;
+      font-weight:600;
+      letter-spacing:-0.02em;
     }
 
-    .product-link:hover {
-      background: var(--text-main);
-      color: white;
-      gap: 0.8rem;
+    .section-label{
+      font-family:'Space Mono',monospace;
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
     }
 
-    /* ===== FOOTER ===== */
-    .footer {
-      padding: 6rem 2rem 2rem;
-      border-top: 1px solid var(--glass-border);
-      background: linear-gradient(to bottom, #fff, #f5f5f5);
+    .featured-list{padding:0 .9rem .45rem}
+
+    .featured-item{
+      display:grid;
+      grid-template-columns:minmax(200px, .7fr) minmax(300px, 1fr) auto;
+      gap:1.8rem;
+      align-items:center;
+      padding:1.35rem .6rem;
+      border-bottom:1px solid var(--line-soft);
+      transition:background .25s ease, transform .25s ease, border-color .25s ease;
+      border-radius:18px;
+      margin-top:.45rem;
     }
 
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 4rem;
+    .featured-item:last-child{border-bottom:none}
+
+    .featured-item:hover{
+      background:rgba(255,255,255,.85);
+      transform:translateY(-1px);
     }
 
-    .footer-col h4 {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      color: var(--text-muted);
+    .product-name{
+      font-size:clamp(2rem, 3.8vw, 3.4rem);
+      line-height:.95;
+      font-weight:700;
+      letter-spacing:-0.05em;
     }
 
-    .footer-col p, .footer-col a {
-      display: block;
-      color: var(--text-muted);
-      text-decoration: none;
-      margin-bottom: 0.8rem;
-      font-size: 0.95rem;
-      transition: color 0.2s;
+    .product-meta{
+      display:flex;
+      flex-direction:column;
+      gap:.25rem;
     }
 
-    .footer-col a:hover {
-      color: var(--accent-primary);
+    .product-type{
+      font-family:'Space Mono',monospace;
+      font-size:.68rem;
+      text-transform:uppercase;
+      letter-spacing:.07em;
+      color:var(--muted);
     }
 
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 4rem auto 0;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .product-description{
+      font-size:1rem;
+      line-height:1.58;
+      color:#4f4f4b;
+      max-width:560px;
     }
 
-    /* ===== UTILITIES ===== */
-    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(40px); transition: all 1s var(--transition); }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    .product-proof{
+      font-family:'Space Mono',monospace;
+      font-size:.68rem;
+      text-transform:uppercase;
+      letter-spacing:.045em;
+      color:var(--muted);
+      white-space:nowrap;
+      text-align:right;
+    }
 
-    @media (max-width: 768px) {
-      .navbar { padding: 1rem 1.5rem; }
-      .nav-links { display: none; } /* Mobile menu logic simplified for demo */
-      .menu-toggle { display: block; }
-      .footer-container { grid-template-columns: 1fr; gap: 2rem; }
-      .products-grid { grid-template-columns: 1fr; }
+    .product-proof strong{
+      color:var(--text);
+      font-weight:700;
+    }
+
+    .compact-list{
+      padding:0 .9rem .4rem;
+    }
+
+    .compact-row{
+      display:grid;
+      grid-template-columns:56px minmax(180px, .7fr) minmax(260px, 1fr) 120px 30px;
+      gap:1rem;
+      align-items:center;
+      min-height:82px;
+      padding:.95rem .6rem;
+      border-bottom:1px solid var(--line-soft);
+      border-radius:16px;
+      transition:background .25s ease, transform .25s ease;
+    }
+
+    .compact-row:last-child{border-bottom:none}
+
+    .compact-row:hover{
+      background:rgba(255,255,255,.8);
+      transform:translateY(-1px);
+    }
+
+    .index{
+      font-family:'Space Mono',monospace;
+      font-size:.68rem;
+      color:var(--muted);
+    }
+
+    .compact-name{
+      font-size:1.4rem;
+      font-weight:600;
+      letter-spacing:-0.03em;
+    }
+
+    .compact-desc{
+      font-size:.95rem;
+      line-height:1.5;
+      color:var(--muted);
+      max-width:560px;
+    }
+
+    .status{
+      font-family:'Space Mono',monospace;
+      font-size:.64rem;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
+      text-align:right;
+    }
+
+    .status.live{color:var(--accent)}
+
+    .arrow{
+      justify-self:end;
+      font-size:1.1rem;
+      color:rgba(17,17,17,.58);
+      transition:transform .25s ease, color .25s ease;
+    }
+
+    .featured-item:hover .arrow,
+    .compact-row:hover .arrow{
+      transform:translateX(3px);
+      color:var(--text);
+    }
+
+    .section-note{
+      padding:1rem 1.5rem 1.2rem;
+      border-top:1px solid var(--line-soft);
+      font-family:'Space Mono',monospace;
+      font-size:.68rem;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      color:var(--muted);
+      background:rgba(255,255,255,.35);
+    }
+
+    .footer{
+      max-width:1240px;
+      margin:0 auto;
+      padding:0 1.5rem 2.5rem;
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      color:var(--muted);
+      font-family:'Space Mono',monospace;
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+
+    @media (max-width: 980px){
+      .hero{
+        grid-template-columns:1fr;
+        gap:1.5rem;
+      }
+      .hero-copy{
+        justify-self:start;
+      }
+      .featured-item{
+        grid-template-columns:1fr;
+        gap:.7rem;
+      }
+      .product-proof{
+        text-align:left;
+        white-space:normal;
+      }
+      .compact-row{
+        grid-template-columns:46px 1fr 24px;
+        gap:.8rem;
+        align-items:start;
+      }
+      .compact-desc{
+        grid-column:2 / 4;
+      }
+      .status{
+        grid-column:2 / 3;
+        text-align:left;
+      }
+      .arrow{
+        grid-column:3;
+        grid-row:1;
+      }
+    }
+
+    @media (max-width: 700px){
+      .nav-inner{
+        padding:1rem 1rem;
+      }
+      .nav-links{
+        gap:1rem;
+      }
+      .page{
+        padding:2.5rem 1rem 5rem;
+      }
+      .section-head,
+      .section-note{
+        padding-left:1rem;
+        padding-right:1rem;
+      }
+      .featured-list,
+      .compact-list{
+        padding-left:.5rem;
+        padding-right:.5rem;
+      }
+      .footer{
+        padding:0 1rem 2rem;
+        flex-direction:column;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Backgrounds -->
-  <div class="grid-background"></div>
-  <div class="liquid-background">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-  </div>
-
-  <!-- Cursor -->
-  <div class="cursor-dot" data-cursor-dot></div>
-  <div class="cursor-outline" data-cursor-outline></div>
-
-  <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo">NEXTEON<sup>TM</sup></div>
-    <ul class="nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/products">Our Products</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-    <div class="menu-toggle">
-      <i data-lucide="menu"></i>
+    <div class="nav-inner">
+      <div class="logo">NEXTEON<sup>TM</sup></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/products" class="active">Products</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
-  <!-- Header -->
-  <header class="products-header">
-    <h1>Our Products</h1>
-    <p>Innovations designed to shape a better tomorrow.</p>
-  </header>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">NEXTEON / Products</div>
+        <h1>Our independent products.</h1>
+      </div>
+      <p class="hero-copy">
+        Products built by our founders and within NEXTEON Labs, from scaled consumer apps to smaller software experiments.
+      </p>
+    </header>
 
-  <!-- Products Grid -->
-  <section id="products" class="products-section">
-    <div class="products-grid">
-      
-      <!-- Product 1 -->
-      <div class="product-card reveal interactive-card">
-        <div class="product-logo">
-          <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/14/26/44/1426446c-41bb-85e3-507f-9c42039ba586/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/460x0w.webp" alt="NEO Browser">
-        </div>
-        <div class="product-content">
-          <h3 class="product-title">NEO</h3>
-          <p class="product-description">AI that makes you smarter. Supercharge your browsing experience with the fastest way to browse, understand, and dive deeper into what's on your screen.</p>
-          <a href="#" class="product-link">Learn more <i data-lucide="arrow-right" size="14"></i></a>
-        </div>
-      </div>
-      
-      <!-- Product 2 -->
-      <div class="product-card reveal interactive-card" style="transition-delay: 0.1s">
-        <div class="product-logo">
-          <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/cb/ee/ba/cbeeba11-dddc-5264-7fab-5ff9c7f32f33/Placeholder.mill/400x400bb-75.webp" alt="Aesthetic Clock">
-        </div>
-        <div class="product-content">
-          <h3 class="product-title">The Aesthetic Clock</h3>
-          <p class="product-description">A deep focus clock/timer with multiple ambient soundscapes. Empowering you to focus offline.</p>
-          <a href="#" class="product-link">Learn more <i data-lucide="arrow-right" size="14"></i></a>
-        </div>
-      </div>
-      
-      <!-- Product 3 -->
-      <div class="product-card reveal interactive-card" style="transition-delay: 0.2s">
-        <div class="product-logo">
-          <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/11/e2/aa/11e2aa99-b13a-f96c-013c-36ea3cfc5c95/Placeholder.mill/400x400bb-75.webp" alt="DocVault">
-        </div>
-        <div class="product-content">
-          <h3 class="product-title">DocVault</h3>
-          <p class="product-description">Secure and easy way to scan, organize, sign, and search your documents in one place.</p>
-          <a href="#" class="product-link">Learn more <i data-lucide="arrow-right" size="14"></i></a>
-        </div>
-      </div>
-      
-      <!-- Product 4 -->
-      <div class="product-card reveal interactive-card">
-        <div class="product-logo">
-          <img src="https://static.wixstatic.com/media/3f5208_7e90f2bbf5614fc0ba8a6c5d0ec22858~mv2.png/v1/fill/w_224,h_224,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/NEXTEON-LOGO-3.png" alt="Future">
-        </div>
-        <div class="product-content">
-          <h3 class="product-title">Also for the future</h3>
-          <p class="product-description">Inspirational concepts currently in the lab phase.</p>
-          <a href="#" class="product-link">Learn more <i data-lucide="arrow-right" size="14"></i></a>
-        </div>
-      </div>
-      
-      <!-- Product 5 -->
-      <div class="product-card reveal interactive-card" style="transition-delay: 0.1s">
-        <div class="product-logo">
-          <img src="https://static.wixstatic.com/media/3f5208_7e90f2bbf5614fc0ba8a6c5d0ec22858~mv2.png/v1/fill/w_224,h_224,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/NEXTEON-LOGO-3.png" alt="Placeholder">
-        </div>
-        <div class="product-content">
-          <h3 class="product-title">Maybe a bit later</h3>
-          <p class="product-description">Sometimes a placeholder is exactly what you need to dream big.</p>
-          <a href="#" class="product-link">Learn more <i data-lucide="arrow-right" size="14"></i></a>
-        </div>
-      </div>
-      
-      <!-- Product 6 -->
-      <div class="product-card reveal interactive-card" style="transition-delay: 0.2s">
-        <div class="product-logo">
-          <img src="https://static.wixstatic.com/media/3f5208_7e90f2bbf5614fc0ba8a6c5d0ec22858~mv2.png/v1/fill/w_224,h_224,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/NEXTEON-LOGO-3.png" alt="Quantum">
-        </div>
-        <div class="product-content">
-          <h3 class="product-title">Quantum Leap</h3>
-          <p class="product-description">Something smart will go here for sure. Could be today or years from now.</p>
-          <a href="#" class="product-link">Learn more <i data-lucide="arrow-right" size="14"></i></a>
-        </div>
+    <section class="section">
+      <div class="section-head">
+        <div class="section-title">Founder-built</div>
+        <div class="section-label">Independent products</div>
       </div>
 
-    </div>
-  </section>
+      <div class="featured-list">
+        <a class="featured-item" href="https://oneblvd.co" target="_blank" rel="noopener">
+          <div class="product-name">oneblvd</div>
+          <div class="product-meta">
+            <div class="product-type">Consumer Social</div>
+          </div>
+          <div class="product-proof">
+            <strong>Thousands of users</strong><br>
+            Millions of interactions
+            <span class="arrow">↗</span>
+          </div>
+        </a>
 
-  <!-- Footer -->
+        <a class="featured-item" href="#">
+          <div class="product-name">DayOne</div>
+          <div class="product-meta">
+            <div class="product-type">Goals / Social Utility</div>
+          </div>
+          <div class="product-proof">
+            <strong>Founder-built</strong><br>
+            Consumer product
+            <span class="arrow">↗</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="section-title">NEXTEON Labs</div>
+        <div class="section-label">Products founded in house</div>
+      </div>
+
+      <div class="compact-list">
+        <a class="compact-row" href="#">
+          <div class="index">L01</div>
+          <div class="compact-name">DocVault</div>
+          <div class="compact-desc">Securely scan, organize, sign, and search documents in one place.</div>
+          <div class="status live">Available</div>
+          <div class="arrow">↗</div>
+        </a>
+
+        <a class="compact-row" href="#">
+          <div class="index">L02</div>
+          <div class="compact-name">Aesthetic Clock</div>
+          <div class="compact-desc">A minimal focus clock with ambient soundscapes for deep work offline.</div>
+          <div class="status live">Available</div>
+          <div class="arrow">↗</div>
+        </a>
+
+        <a class="compact-row" href="#">
+          <div class="index">L03</div>
+          <div class="compact-name">Slate AI</div>
+          <div class="compact-desc">A focused AI workspace for understanding, organizing, and moving through information.</div>
+          <div class="status">In development</div>
+          <div class="arrow">↗</div>
+        </a>
+
+        <a class="compact-row" href="#">
+          <div class="index">L04</div>
+          <div class="compact-name">NEO Browser</div>
+          <div class="compact-desc">Local AI browser for iOS.</div>
+          <div class="status live">#75 on the App Store · Profitable · Later sunset to focus on new projects</div>
+          <div class="arrow">↗</div>
+        </a>
+
+        <div class="compact-row">
+          <div class="index">L05</div>
+          <div class="compact-name">And more</div>
+          <div class="compact-desc">A growing set of experiments, utilities, and ideas currently in the lab.</div>
+          <div class="status">Ongoing</div>
+          <div class="arrow">+</div>
+        </div>
+      </div>
+
+      <div class="section-note">
+        NEXTEON Labs is where we test ideas quickly.
+      </div>
+    </section>
+  </main>
+
   <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-col">
-        <div class="logo" style="margin-bottom:1rem">NEXTEON<sup>TM</sup></div>
-        <p>team@oneblvd.co</p>
-      </div>
-      <div class="footer-col">
-        <h4>Locations</h4>
-        <p>New York, NY</p>
-        <p>Los Angeles, CA</p>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="#">Accessibility Statement</a>
-        <a href="#">Privacy Policy</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-        <span>© 2025 by NEXTEON LLC.</span>
-    </div>
+    <div>© 2025 by NEXTEON LLC.</div>
+    <div>New York, NY / Los Angeles, CA</div>
   </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. Reveal Elements
-        const revealElements = document.querySelectorAll('.reveal');
-        const navbar = document.querySelector('.navbar');
-
-        const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            const elementVisible = 150;
-            const scrollY = window.scrollY;
-
-            revealElements.forEach((reveal) => {
-                const elementTop = reveal.getBoundingClientRect().top;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
-                }
-            });
-
-            if (scrollY > 50) {
-                if(navbar) navbar.classList.add('scrolled');
-            } else {
-                if(navbar) navbar.classList.remove('scrolled');
-            }
-        };
-
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
-
-        // 2. Initialize Icons
-        try { if (window.lucide) lucide.createIcons(); } catch (e) {}
-
-        // 3. Custom Cursor & Tilt
-        try {
-            const cursorDot = document.querySelector('[data-cursor-dot]');
-            const cursorOutline = document.querySelector('[data-cursor-outline]');
-            
-            if (cursorDot && cursorOutline && !('ontouchstart' in window)) {
-                document.body.classList.add('custom-cursor-active');
-                
-                window.addEventListener('mousemove', function(e) {
-                    const posX = e.clientX;
-                    const posY = e.clientY;
-                    cursorDot.style.left = `${posX}px`;
-                    cursorDot.style.top = `${posY}px`;
-                    
-                    cursorOutline.animate({
-                        left: `${posX}px`,
-                        top: `${posY}px`
-                    }, { duration: 500, fill: "forwards" });
-                });
-
-                document.querySelectorAll('a, button, .interactive-card').forEach(link => {
-                    link.addEventListener('mouseenter', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                    });
-                    link.addEventListener('mouseleave', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                    });
-                });
-            }
-        } catch (e) {}
-        
-        // 4. Simple 3D Tilt for cards
-        const cards = document.querySelectorAll('.product-card');
-        cards.forEach(card => {
-             card.addEventListener('mousemove', (e) => {
-                 const rect = card.getBoundingClientRect();
-                 const x = e.clientX - rect.left;
-                 const y = e.clientY - rect.top;
-                 const centerX = rect.width / 2;
-                 const centerY = rect.height / 2;
-                 const rotateX = ((y - centerY) / centerY) * -5;
-                 const rotateY = ((x - centerX) / centerX) * 5;
-                 
-                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-             });
-             
-             card.addEventListener('mouseleave', () => {
-                 card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-             });
-        });
-    });
-  </script>
 </body>
 </html>
