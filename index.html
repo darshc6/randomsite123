@@ -4,16 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEXTEON LABS</title>
+
   <!-- NEXTEON favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
   <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
   <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
     /* ===== VARIABLES & RESET ===== */
     :root {
@@ -24,9 +28,9 @@
       --glass-highlight: rgba(255, 255, 255, 0.8);
       --text-main: #111111;
       --text-muted: #666666;
-      --accent-primary: #0047FF; /* International Klein Blue */
-      --accent-secondary: #FF4D00; /* Safety Orange */
-      --accent-lab: #FFE600; /* Lab Yellow */
+      --accent-primary: #0047FF;
+      --accent-secondary: #FF4D00;
+      --accent-lab: #FFE600;
       --transition: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -39,7 +43,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      /* removed global cursor: none to prevent invisible cursor on error */
     }
 
     body {
@@ -51,11 +54,10 @@
       min-height: 100vh;
       position: relative;
     }
-    
-    /* Only hide default cursor when custom cursor is successfully active */
+
     body.custom-cursor-active,
     body.custom-cursor-active * {
-        cursor: none !important;
+      cursor: none !important;
     }
 
     /* ===== BACKGROUND FX ===== */
@@ -66,7 +68,7 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      background-image: 
+      background-image:
         linear-gradient(var(--bg-grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
       background-size: 40px 40px;
@@ -96,7 +98,7 @@
     .blob-1 {
       width: 800px;
       height: 800px;
-      background: radial-gradient(circle, #e0f2fe 0%, transparent 70%); /* Light Cyan */
+      background: radial-gradient(circle, #e0f2fe 0%, transparent 70%);
       top: -200px;
       left: -200px;
     }
@@ -104,7 +106,7 @@
     .blob-2 {
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, #fce7f3 0%, transparent 70%); /* Light Pink */
+      background: radial-gradient(circle, #fce7f3 0%, transparent 70%);
       bottom: -100px;
       right: -100px;
       animation-delay: -5s;
@@ -113,20 +115,32 @@
     .blob-3 {
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, #eef2ff 0%, transparent 70%); /* Indigp tint */
+      background: radial-gradient(circle, #eef2ff 0%, transparent 70%);
       top: 40%;
       left: 60%;
       animation: pulse 10s infinite alternate;
     }
 
     @keyframes float {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(50px, 30px) rotate(10deg); }
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(50px, 30px) rotate(10deg);
+      }
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.4; }
-      100% { transform: scale(1.1); opacity: 0.6; }
+      0% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+
+      100% {
+        transform: scale(1.1);
+        opacity: 0.6;
+      }
     }
 
     /* ===== CUSTOM CURSOR ===== */
@@ -139,51 +153,48 @@
       z-index: 9999;
       pointer-events: none;
       mix-blend-mode: exclusion;
-      opacity: 0; /* Hidden by default until JS activates */
+      opacity: 0;
       transition: opacity 0.3s;
     }
 
     body.custom-cursor-active .cursor-dot,
     body.custom-cursor-active .cursor-outline {
-        opacity: 1;
+      opacity: 1;
     }
 
     .cursor-dot {
       width: 8px;
       height: 8px;
       background-color: white;
-      border-radius: 0; /* Square Dot */
+      border-radius: 0;
     }
 
-    /* New Bracket Style Cursor */
     .cursor-outline {
       width: 40px;
       height: 40px;
-      /* Removed circular border */
-      border-radius: 0; 
-      transition: opacity 0.3s, width 0.2s, height 0.2s; /* Transitions for hover scaling */
+      border-radius: 0;
+      transition: opacity 0.3s, width 0.2s, height 0.2s;
     }
 
-    /* Create the brackets using pseudo-elements */
     .cursor-outline::before,
     .cursor-outline::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        width: 30%; /* Creates the gap in the middle */
-        height: 100%;
-        border: 1px solid white;
-        box-sizing: border-box;
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 30%;
+      height: 100%;
+      border: 1px solid white;
+      box-sizing: border-box;
     }
 
     .cursor-outline::before {
-        left: 0;
-        border-right: none; /* Left bracket [ */
+      left: 0;
+      border-right: none;
     }
 
     .cursor-outline::after {
-        right: 0;
-        border-left: none; /* Right bracket ] */
+      right: 0;
+      border-left: none;
     }
 
     /* ===== NAVBAR ===== */
@@ -198,26 +209,19 @@
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      transition: all 0.5s var(--transition); /* Smoother transition */
-      border: 1px solid transparent; /* Prepare for border change */
+      transition: all 0.5s var(--transition);
+      border: 1px solid transparent;
     }
 
-    /* Scrolling State: Rounded Glass Effect */
     .navbar.scrolled {
-      top: 1.5rem; /* Detach from top */
-      width: 90%; /* Detach from sides */
+      top: 1.5rem;
+      width: 90%;
       max-width: 1400px;
-      
-      /* Glass Effect */
       background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      
-      /* Borders & Shadows */
       border: 1px solid rgba(255, 255, 255, 0.5);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
-      
-      /* Rounding */
       border-radius: 24px;
       padding: 1rem 2.5rem;
     }
@@ -228,7 +232,7 @@
       letter-spacing: -0.04em;
       color: var(--text-main);
       display: flex;
-      align-items: flex-start; /* Aligns superscript properly */
+      align-items: flex-start;
       gap: 0.1rem;
     }
 
@@ -299,7 +303,7 @@
       transform: translateY(30px);
       animation: fadeInUp 1s var(--transition) forwards 0.2s;
     }
-    
+
     .hero h1 span {
       color: transparent;
       -webkit-text-stroke: 2px var(--text-main);
@@ -318,7 +322,6 @@
       animation: fadeInUp 1s var(--transition) forwards 0.4s;
     }
 
-    /* Pill Button */
     .cta-container {
       opacity: 0;
       animation: fadeInUp 1s var(--transition) forwards 0.6s;
@@ -335,7 +338,7 @@
       text-decoration: none;
       font-weight: 500;
       transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     }
 
     .cta-button:hover {
@@ -367,7 +370,7 @@
       margin-bottom: 0.5rem;
       line-height: 1;
     }
-    
+
     .about-text h3 {
       font-family: 'Space Mono', monospace;
       color: var(--accent-primary);
@@ -382,16 +385,16 @@
       line-height: 1.7;
       margin-bottom: 2.5rem;
     }
-    
+
     .highlight-blue {
-        color: var(--accent-primary);
-        font-weight: 600;
+      color: var(--accent-primary);
+      font-weight: 600;
     }
 
-    /* === INTERACTIVE LABS CARD === */
+    /* ===== INTERACTIVE LABS CARD ===== */
     .about-visual {
       height: 400px;
-      background: #111; /* Dark Gray */
+      background: #111;
       border-radius: 30px;
       position: relative;
       overflow: hidden;
@@ -399,20 +402,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      perspective: 600px; /* Reduced for stronger 3D effect */
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+      perspective: 600px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
       transition: box-shadow 0.3s ease;
     }
 
     .about-visual:hover {
-       box-shadow: 0 20px 80px rgba(255, 230, 0, 0.25); /* Stronger glow on hover */
+      box-shadow: 0 20px 80px rgba(255, 230, 0, 0.25);
     }
 
     .labs-content {
       text-align: center;
       transform-style: preserve-3d;
-      transition: transform 0.1s ease-out; /* Smooth follow */
-      pointer-events: none; /* Let mouse pass through to container */
+      transition: transform 0.1s ease-out;
+      pointer-events: none;
       padding: 2rem;
       border: 1px solid rgba(255, 230, 0, 0.2);
       border-radius: 20px;
@@ -427,7 +430,7 @@
       line-height: 0.9;
       margin-bottom: 0.5rem;
       text-shadow: 0 0 30px rgba(255, 230, 0, 0.4);
-      transform: translateZ(80px); /* Pushed out further */
+      transform: translateZ(80px);
     }
 
     .labs-sub {
@@ -436,9 +439,9 @@
       letter-spacing: 0.6em;
       color: var(--accent-lab);
       opacity: 0.8;
-      transform: translateZ(50px); /* Pushed out further */
+      transform: translateZ(50px);
     }
-    
+
     /* ===== MARQUEE ===== */
     .innovation-section {
       padding: 6rem 0;
@@ -447,9 +450,9 @@
       transform: skewY(-2deg);
       margin: 5rem 0;
     }
-    
+
     .innovation-inner {
-        transform: skewY(2deg); /* Counter skew content */
+      transform: skewY(2deg);
     }
 
     .marquee {
@@ -468,16 +471,20 @@
       align-items: center;
       gap: 2rem;
     }
-    
+
     .marquee-text svg {
-        color: var(--accent-secondary);
+      color: var(--accent-secondary);
     }
 
     @keyframes slide {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
+      0% {
+        transform: translateX(0);
+      }
 
+      100% {
+        transform: translateX(-100%);
+      }
+    }
 
     /* ===== WORK WITH US ===== */
     .work-section {
@@ -490,22 +497,22 @@
 
     .work-shell {
       overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.08);
+      border: 1px solid rgba(0, 0, 0, 0.08);
       border-radius: 28px;
-      background: rgba(255,255,255,0.58);
+      background: rgba(255, 255, 255, 0.58);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 16px 46px rgba(0,0,0,0.045);
+      box-shadow: 0 16px 46px rgba(0, 0, 0, 0.045);
     }
 
     .work-top {
       display: grid;
-      grid-template-columns: minmax(0,1.05fr) minmax(300px,.78fr);
-      gap: clamp(2rem,5vw,5rem);
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .78fr);
+      gap: clamp(2rem, 5vw, 5rem);
       align-items: end;
-      padding: clamp(2rem,4.5vw,3.75rem);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      background: rgba(255,255,255,0.26);
+      padding: clamp(2rem, 4.5vw, 3.75rem);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.26);
     }
 
     .work-kicker {
@@ -518,7 +525,7 @@
     }
 
     .work-title {
-      font-size: clamp(2.8rem,5.4vw,5.2rem);
+      font-size: clamp(2.8rem, 5.4vw, 5.2rem);
       line-height: .94;
       font-weight: 700;
       letter-spacing: -0.052em;
@@ -533,24 +540,37 @@
       justify-self: end;
     }
 
-    .work-intro strong { color: var(--text-main); font-weight: 600; }
+    .work-intro strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
 
-    .work-services { display: block; padding: 0 1.15rem; }
+    .work-services {
+      display: block;
+      padding: 0 1.15rem;
+    }
 
     .work-service {
       display: grid;
-      grid-template-columns: 110px minmax(210px,.55fr) minmax(280px,1fr);
+      grid-template-columns: 110px minmax(210px, .55fr) minmax(280px, 1fr);
       gap: 1.6rem;
       align-items: center;
       min-height: 112px;
       padding: 1.5rem .65rem;
-      border-bottom: 1px solid rgba(0,0,0,0.075);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.075);
       transition: background .28s var(--transition), padding .28s var(--transition);
       border-radius: 16px;
     }
 
-    .work-service:last-child { border-bottom: none; }
-    .work-service:hover { background: rgba(255,255,255,.76); padding-left: 1rem; padding-right: 1rem; }
+    .work-service:last-child {
+      border-bottom: none;
+    }
+
+    .work-service:hover {
+      background: rgba(255, 255, 255, .76);
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
 
     .work-service-index {
       font-family: 'Space Mono', monospace;
@@ -563,7 +583,7 @@
     }
 
     .work-service h3 {
-      font-size: clamp(1.3rem,2vw,1.75rem);
+      font-size: clamp(1.3rem, 2vw, 1.75rem);
       letter-spacing: -0.035em;
       margin: 0;
       font-weight: 600;
@@ -583,8 +603,8 @@
       align-items: center;
       gap: 2rem;
       padding: 1.4rem 1.8rem 1.55rem;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      background: rgba(255,255,255,0.32);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, 0.32);
     }
 
     .work-bottom-note {
@@ -610,40 +630,17 @@
       color: white;
       text-decoration: none;
       font-weight: 600;
-      transition: transform .3s var(--transition), background .3s var(--transition), box-shadow .3s var(--transition);
-      box-shadow: 0 8px 22px rgba(0,0,0,.09);
+      transition:
+        transform .3s var(--transition),
+        background .3s var(--transition),
+        box-shadow .3s var(--transition);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .09);
     }
 
     .work-cta:hover {
       background: var(--accent-primary);
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0,71,255,.18);
-    }
-
-    @media (max-width: 900px) {
-      .work-section { padding: 3rem 1.25rem 5.5rem; }
-      .work-top { grid-template-columns: 1fr; gap: 1.4rem; }
-      .work-intro { justify-self: start; }
-      .work-service { grid-template-columns: 86px minmax(180px,.75fr) minmax(220px,1fr); }
-    }
-
-    @media (max-width: 680px) {
-      .work-section { padding: 2.6rem 1rem 4.5rem; }
-      .work-shell { border-radius: 22px; }
-      .work-top { padding: 1.65rem 1.35rem 1.8rem; }
-      .work-title { font-size: clamp(2.55rem,12vw,3.65rem); }
-      .work-intro { font-size: .98rem; line-height: 1.58; }
-      .work-services { padding: 0 .7rem; }
-      .work-service, .work-service:hover {
-        grid-template-columns: 52px 1fr;
-        gap: .7rem 1rem;
-        min-height: 0;
-        padding: 1.3rem .45rem;
-      }
-      .work-service h3 { font-size: 1.4rem; }
-      .work-service p { grid-column: 2 / 3; font-size: .93rem; }
-      .work-bottom { flex-direction: column; align-items: stretch; gap: 1rem; padding: 1.25rem 1.35rem 1.4rem; }
-      .work-cta { width: 100%; }
+      box-shadow: 0 12px 30px rgba(0, 71, 255, .18);
     }
 
     /* ===== PAIRED CTAS ===== */
@@ -655,9 +652,9 @@
     }
 
     .cta-button.secondary {
-      background: rgba(255,255,255,0.72);
+      background: rgba(255, 255, 255, 0.72);
       color: var(--text-main);
-      border: 1px solid rgba(0,0,0,0.14);
+      border: 1px solid rgba(0, 0, 0, 0.14);
       box-shadow: none;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -666,135 +663,8 @@
     .cta-button.secondary:hover {
       background: white;
       color: var(--accent-primary);
-      border-color: rgba(0,71,255,0.35);
-      box-shadow: 0 12px 28px rgba(0,71,255,0.10);
-    }
-
-    /* ===== LABS CARD AT PAGE BOTTOM ===== */
-    .labs-bottom-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 3rem 2rem 8rem;
-      position: relative;
-      z-index: 5;
-    }
-
-    .labs-bottom-section .about-visual {
-      width: 100%;
-      height: 430px;
-    }
-
-    .labs-bottom-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 700px) {
-      .cta-row {
-        gap: 0.65rem;
-      }
-
-      .cta-row .cta-button {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .labs-bottom-section {
-        padding: 2rem 1rem 5rem;
-      }
-
-      .labs-bottom-section .about-visual {
-        height: 330px;
-      }
-    }
-
-
-    /* ===== RESPONSIVE POLISH ===== */
-    .menu-toggle {
-      cursor: pointer;
-      padding: .45rem;
-      border-radius: 10px;
-      transition: background .2s ease;
-    }
-    .menu-toggle:hover { background: rgba(0,0,0,.05); }
-
-    @media (max-width: 900px) {
-      .navbar { padding: 1rem 1.2rem; }
-      .navbar.scrolled {
-        top: .75rem;
-        width: calc(100% - 1rem);
-        padding: .85rem 1rem;
-        border-radius: 18px;
-      }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: calc(100% + .65rem);
-        right: .15rem;
-        min-width: 210px;
-        padding: .65rem;
-        flex-direction: column;
-        gap: 0;
-        background: rgba(255,255,255,.96);
-        border: 1px solid rgba(0,0,0,.08);
-        border-radius: 18px;
-        box-shadow: 0 16px 45px rgba(0,0,0,.10);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-      }
-      .navbar.mobile-open .nav-links { display: flex; }
-      .nav-links li { width: 100%; }
-      .nav-links a {
-        display: block;
-        width: 100%;
-        padding: .9rem 1rem;
-        border-radius: 12px;
-        font-size: .78rem;
-      }
-      .nav-links a:hover { background: rgba(0,0,0,.045); }
-      .menu-toggle { display: flex; align-items: center; justify-content: center; }
-
-      .section-container { padding: 5.5rem 1.25rem; }
-      .about-text h2 { font-size: clamp(2.8rem,10vw,3.5rem); }
-      .about-text p { font-size: 1.05rem; line-height: 1.62; }
-      .innovation-section { margin: 3rem 0; padding: 4rem 0; }
-      .marquee-text { font-size: clamp(3rem,10vw,4rem); gap: 1.25rem; padding-right: 2rem; }
-      .footer { padding: 4rem 1.25rem 1.5rem; }
-      .footer-container { gap: 2rem; }
-    }
-
-    @media (max-width: 640px) {
-      html { scroll-padding-top: 88px; }
-      .hero {
-        height: auto;
-        min-height: 88svh;
-        padding: 8.2rem 1.15rem 4.5rem;
-      }
-      .hero-label { font-size: .7rem; margin-bottom: .85rem; }
-      .hero h1 { font-size: clamp(3.2rem,16vw,4.6rem); line-height: .91; margin-bottom: 1.2rem; }
-      .hero h1 span { -webkit-text-stroke-width: 1.35px; }
-      .hero p { font-size: 1rem; max-width: 340px; margin-bottom: 2rem; }
-      .cta-container { width: min(100%, 390px); }
-      .cta-row { display: grid; grid-template-columns: 1fr; width: 100%; gap: .7rem; }
-      .cta-row .cta-button { width: 100%; justify-content: center; padding: .9rem 1.15rem; }
-      .section-container { padding: 4rem 1.1rem; }
-      .retro-panel { gap: 2rem; }
-      .about-text h3 { font-size: 1rem; margin-bottom: 1rem; }
-      .about-text p { font-size: .99rem; margin-bottom: 1.8rem; }
-      .innovation-section { transform: skewY(-1.2deg); margin: 2rem 0; padding: 3.25rem 0; }
-      .innovation-inner { transform: skewY(1.2deg); }
-      .marquee-text { font-size: 2.65rem; }
-      .footer-container { grid-template-columns: 1fr; }
-      .footer-bottom { margin-top: 2rem; padding-top: 1.4rem; }
-      .labs-bottom-section { padding: 2.5rem 1rem 4rem; }
-      .labs-bottom-section .about-visual { height: 285px; border-radius: 22px; }
-      .labs-logo { font-size: 2.7rem; }
-      .labs-sub { font-size: .78rem; letter-spacing: .45em; }
-      .labs-content { padding: 1.5rem; border-radius: 16px; }
+      border-color: rgba(0, 71, 255, 0.35);
+      box-shadow: 0 12px 28px rgba(0, 71, 255, 0.10);
     }
 
     /* ===== FOOTER ===== */
@@ -813,10 +683,10 @@
     }
 
     .footer-logo {
-        font-size: 2rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        display: inline-block;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      display: inline-block;
     }
 
     .footer-col h4 {
@@ -844,22 +714,345 @@
     .footer-col a:hover {
       color: var(--accent-primary);
     }
-    
+
     .footer-bottom {
-        max-width: 1200px;
-        margin: 4rem auto 0;
-        padding-top: 2rem;
-        border-top: 1px solid rgba(0,0,0,0.1);
+      max-width: 1200px;
+      margin: 4rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== MINI NEXTEON LABS FOOTER CARD ===== */
+    .footer-labs-card {
+      width: 170px;
+      height: 150px;
+      border-radius: 22px;
+      margin-bottom: 1.4rem;
+      flex-shrink: 0;
+      perspective: 600px;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.14);
+    }
+
+    .footer-labs-card:hover {
+      box-shadow: 0 16px 45px rgba(255, 230, 0, 0.18);
+    }
+
+    .footer-labs-card .labs-content {
+      padding: 1rem 0.9rem;
+      border-radius: 13px;
+    }
+
+    .footer-labs-card .labs-logo {
+      font-size: 1.55rem;
+      margin-bottom: 0.4rem;
+      transform: translateZ(38px);
+      text-shadow: 0 0 18px rgba(255, 230, 0, 0.4);
+    }
+
+    .footer-labs-card .labs-sub {
+      font-size: 0.5rem;
+      letter-spacing: 0.48em;
+      transform: translateZ(25px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    .menu-toggle {
+      cursor: pointer;
+      padding: .45rem;
+      border-radius: 10px;
+      transition: background .2s ease;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(0, 0, 0, .05);
+    }
+
+    @media (max-width: 900px) {
+      .work-section {
+        padding: 3rem 1.25rem 5.5rem;
+      }
+
+      .work-top {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+
+      .work-intro {
+        justify-self: start;
+      }
+
+      .work-service {
+        grid-template-columns: 86px minmax(180px, .75fr) minmax(220px, 1fr);
+      }
+
+      .navbar {
+        padding: 1rem 1.2rem;
+      }
+
+      .navbar.scrolled {
+        top: .75rem;
+        width: calc(100% - 1rem);
+        padding: .85rem 1rem;
+        border-radius: 18px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + .65rem);
+        right: .15rem;
+        min-width: 210px;
+        padding: .65rem;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(255, 255, 255, .96);
+        border: 1px solid rgba(0, 0, 0, .08);
+        border-radius: 18px;
+        box-shadow: 0 16px 45px rgba(0, 0, 0, .10);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+      }
+
+      .navbar.mobile-open .nav-links {
         display: flex;
-        justify-content: space-between;
-        font-family: 'Space Mono', monospace;
-        font-size: 0.8rem;
-        color: var(--text-muted);
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        width: 100%;
+        padding: .9rem 1rem;
+        border-radius: 12px;
+        font-size: .78rem;
+      }
+
+      .nav-links a:hover {
+        background: rgba(0, 0, 0, .045);
+      }
+
+      .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .section-container {
+        padding: 5.5rem 1.25rem;
+      }
+
+      .about-text h2 {
+        font-size: clamp(2.8rem, 10vw, 3.5rem);
+      }
+
+      .about-text p {
+        font-size: 1.05rem;
+        line-height: 1.62;
+      }
+
+      .innovation-section {
+        margin: 3rem 0;
+        padding: 4rem 0;
+      }
+
+      .marquee-text {
+        font-size: clamp(3rem, 10vw, 4rem);
+        gap: 1.25rem;
+        padding-right: 2rem;
+      }
+
+      .footer {
+        padding: 4rem 1.25rem 1.5rem;
+      }
+
+      .footer-container {
+        gap: 2rem;
+      }
+
+      .retro-panel,
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .work-section {
+        padding: 2.6rem 1rem 4.5rem;
+      }
+
+      .work-shell {
+        border-radius: 22px;
+      }
+
+      .work-top {
+        padding: 1.65rem 1.35rem 1.8rem;
+      }
+
+      .work-title {
+        font-size: clamp(2.55rem, 12vw, 3.65rem);
+      }
+
+      .work-intro {
+        font-size: .98rem;
+        line-height: 1.58;
+      }
+
+      .work-services {
+        padding: 0 .7rem;
+      }
+
+      .work-service,
+      .work-service:hover {
+        grid-template-columns: 52px 1fr;
+        gap: .7rem 1rem;
+        min-height: 0;
+        padding: 1.3rem .45rem;
+      }
+
+      .work-service h3 {
+        font-size: 1.4rem;
+      }
+
+      .work-service p {
+        grid-column: 2 / 3;
+        font-size: .93rem;
+      }
+
+      .work-bottom {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1.25rem 1.35rem 1.4rem;
+      }
+
+      .work-cta {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      html {
+        scroll-padding-top: 88px;
+      }
+
+      .hero {
+        height: auto;
+        min-height: 88svh;
+        padding: 8.2rem 1.15rem 4.5rem;
+      }
+
+      .hero-label {
+        font-size: .7rem;
+        margin-bottom: .85rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.2rem, 16vw, 4.6rem);
+        line-height: .91;
+        margin-bottom: 1.2rem;
+      }
+
+      .hero h1 span {
+        -webkit-text-stroke-width: 1.35px;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        max-width: 340px;
+        margin-bottom: 2rem;
+      }
+
+      .cta-container {
+        width: min(100%, 390px);
+      }
+
+      .cta-row {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: .7rem;
+      }
+
+      .cta-row .cta-button {
+        width: 100%;
+        justify-content: center;
+        padding: .9rem 1.15rem;
+      }
+
+      .section-container {
+        padding: 4rem 1.1rem;
+      }
+
+      .retro-panel {
+        gap: 2rem;
+      }
+
+      .about-text h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .about-text p {
+        font-size: .99rem;
+        margin-bottom: 1.8rem;
+      }
+
+      .innovation-section {
+        transform: skewY(-1.2deg);
+        margin: 2rem 0;
+        padding: 3.25rem 0;
+      }
+
+      .innovation-inner {
+        transform: skewY(1.2deg);
+      }
+
+      .marquee-text {
+        font-size: 2.65rem;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        margin-top: 2rem;
+        padding-top: 1.4rem;
+      }
+
+      .footer-labs-card {
+        width: 150px;
+        height: 135px;
+        border-radius: 20px;
+      }
+
+      .footer-labs-card .labs-logo {
+        font-size: 1.35rem;
+      }
+
+      .footer-labs-card .labs-sub {
+        font-size: 0.46rem;
+      }
     }
 
     /* ===== UTILITIES ===== */
     @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .reveal {
@@ -872,24 +1065,14 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    @media (max-width: 900px) {
-      .retro-panel, .footer-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-      
-      .hero h1 { font-size: 4rem; }
-      
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
-    }
   </style>
 </head>
+
 <body>
 
   <!-- Backgrounds -->
   <div class="grid-background"></div>
+
   <div class="liquid-background">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -902,298 +1085,724 @@
 
   <!-- Navbar -->
   <nav class="navbar">
+
     <div class="logo">
       NEXTEON<sup>TM</sup>
     </div>
+
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="products">Products</a></li>
       <li><a href="#work-with-us">Work with us</a></li>
       <li><a href="contact">Contact</a></li>
     </ul>
+
     <div class="menu-toggle">
       <i data-lucide="menu"></i>
     </div>
+
   </nav>
 
   <!-- Hero -->
   <section class="hero">
+
     <div class="hero-label">[ EST. 2022 ]</div>
-    <h1>BUILDING THE<br><span>FUTURE</span></h1>
-    <p>creating innovative products that shape a better tomorrow</p>
+
+    <h1>
+      BUILDING THE<br>
+      <span>FUTURE</span>
+    </h1>
+
+    <p>
+      creating innovative products that shape a better tomorrow
+    </p>
+
     <div class="cta-container">
       <div class="cta-row">
+
         <a href="#about" class="cta-button">
-          More about us <i data-lucide="arrow-right" size="16"></i>
+          More about us
+          <i data-lucide="arrow-right" size="16"></i>
         </a>
+
         <a href="#work-with-us" class="cta-button secondary">
-          Work with us <i data-lucide="arrow-up-right" size="16"></i>
+          Work with us
+          <i data-lucide="arrow-up-right" size="16"></i>
         </a>
+
       </div>
     </div>
+
   </section>
 
   <!-- About -->
   <section id="about" class="section-container">
+
     <div class="retro-panel reveal">
+
       <div class="about-text">
+
         <h2>About</h2>
+
         <h3>Who we are.</h3>
-        <p>We build products that address problems and gaps that exist in society. Be it in communication, social, or even AI. We utilize artificial intelligence, among various technologies, to streamline and accelerate the ideation and creation process. Bringing <span class="highlight-blue">positive</span> innovations to the largest audience as <span class="highlight-blue">quickly</span> as possible.</p>
-        
+
+        <p>
+          We build products that address problems and gaps that exist in society.
+          Be it in communication, social, or even AI. We utilize artificial intelligence,
+          among various technologies, to streamline and accelerate the ideation and
+          creation process. Bringing
+          <span class="highlight-blue">positive</span>
+          innovations to the largest audience as
+          <span class="highlight-blue">quickly</span>
+          as possible.
+        </p>
+
         <div class="cta-row">
+
           <a href="products" class="cta-button">
-            View our independent products <i data-lucide="arrow-up-right" size="16"></i>
+            View our independent products
+            <i data-lucide="arrow-up-right" size="16"></i>
           </a>
+
           <a href="#work-with-us" class="cta-button secondary">
-            Work with us <i data-lucide="arrow-up-right" size="16"></i>
+            Work with us
+            <i data-lucide="arrow-up-right" size="16"></i>
           </a>
+
         </div>
+
       </div>
-      
+
     </div>
+
   </section>
 
   <!-- Marquee -->
   <section class="innovation-section">
-    <div class="innovation-inner">
-      <div class="marquee">
-        <div class="marquee-text">
-            THERE'S NEVER ENOUGH INNOVATION <i data-lucide="zap" fill="currentColor"></i>
-            THERE'S NEVER ENOUGH INNOVATION <i data-lucide="zap" fill="currentColor"></i>
-        </div>
-        <div class="marquee-text">
-            THERE'S NEVER ENOUGH INNOVATION <i data-lucide="zap" fill="currentColor"></i>
-            THERE'S NEVER ENOUGH INNOVATION <i data-lucide="zap" fill="currentColor"></i>
-        </div>
-      </div>
-    </div>
-  </section>
 
+    <div class="innovation-inner">
+
+      <div class="marquee">
+
+        <div class="marquee-text">
+          THERE'S NEVER ENOUGH INNOVATION
+          <i data-lucide="zap" fill="currentColor"></i>
+
+          THERE'S NEVER ENOUGH INNOVATION
+          <i data-lucide="zap" fill="currentColor"></i>
+        </div>
+
+        <div class="marquee-text">
+          THERE'S NEVER ENOUGH INNOVATION
+          <i data-lucide="zap" fill="currentColor"></i>
+
+          THERE'S NEVER ENOUGH INNOVATION
+          <i data-lucide="zap" fill="currentColor"></i>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
 
   <!-- Work With Us -->
   <section id="work-with-us" class="work-section">
+
     <div class="work-shell reveal">
+
       <div class="work-top">
+
         <div>
-          <div class="work-kicker">Work with us</div>
-          <h2 class="work-title">Exceptional products, built efficiently.</h2>
+          <div class="work-kicker">
+            Work with us
+          </div>
+
+          <h2 class="work-title">
+            Exceptional products, built efficiently.
+          </h2>
         </div>
+
         <p class="work-intro">
           We work with select clients to build digital products at the intersection of
-          <strong>maximum quality, exceptional design, and efficiency.</strong> From a new product to an existing system that needs to work better, we focus on shipping the strongest version with less waste.
+          <strong>maximum quality, exceptional design, and efficiency.</strong>
+          From a new product to an existing system that needs to work better,
+          we focus on shipping the strongest version with less waste.
         </p>
+
       </div>
 
       <div class="work-services">
+
         <div class="work-service">
-          <div class="work-service-index">01 / Build</div>
-          <h3>Product development</h3>
-          <p>End-to-end product development from concept and UX through engineering, launch, and iteration. Clearly scoped builds can be structured at a flat project rate.</p>
+
+          <div class="work-service-index">
+            01 / Build
+          </div>
+
+          <h3>
+            Product development
+          </h3>
+
+          <p>
+            End-to-end product development from concept and UX through engineering,
+            launch, and iteration. Clearly scoped builds can be structured at a flat
+            project rate.
+          </p>
+
         </div>
 
         <div class="work-service">
-          <div class="work-service-index">02 / Optimize</div>
-          <h3>Cost optimization</h3>
-          <p>Architecture, infrastructure, workflow, and tooling audits designed to reduce unnecessary spend without compromising quality or velocity.</p>
+
+          <div class="work-service-index">
+            02 / Optimize
+          </div>
+
+          <h3>
+            Cost optimization
+          </h3>
+
+          <p>
+            Architecture, infrastructure, workflow, and tooling audits designed to
+            reduce unnecessary spend without compromising quality or velocity.
+          </p>
+
         </div>
 
         <div class="work-service">
-          <div class="work-service-index">03 / Advise</div>
-          <h3>Product consulting</h3>
-          <p>Focused consulting across product strategy, design, AI implementation, technical decisions, and the path from idea to a product people can actually use.</p>
+
+          <div class="work-service-index">
+            03 / Advise
+          </div>
+
+          <h3>
+            Product consulting
+          </h3>
+
+          <p>
+            Focused consulting across product strategy, design, AI implementation,
+            technical decisions, and the path from idea to a product people can
+            actually use.
+          </p>
+
         </div>
+
       </div>
 
       <div class="work-bottom">
-        <div class="work-bottom-note">Flexible engagements · Flat project rates · Build, optimize, or advise</div>
-        <a class="work-cta" href="mailto:nxteon@gmail.com?subject=Work%20with%20NEXTEON&body=Hi%20NEXTEON%20team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0AProject%20or%20company%3A%0AWhat%20you%27re%20looking%20to%20build%3A%0AIdeal%20timeline%3A%0ABudget%20range%3A%0A%0AThanks%2C">
-          Start a project <i data-lucide="arrow-up-right" size="16"></i>
+
+        <div class="work-bottom-note">
+          Flexible engagements · Flat project rates · Build, optimize, or advise
+        </div>
+
+        <a
+          class="work-cta"
+          href="mailto:nxteon@gmail.com?subject=Work%20with%20NEXTEON&body=Hi%20NEXTEON%20team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0AProject%20or%20company%3A%0AWhat%20you%27re%20looking%20to%20build%3A%0AIdeal%20timeline%3A%0ABudget%20range%3A%0A%0AThanks%2C"
+        >
+          Start a project
+          <i data-lucide="arrow-up-right" size="16"></i>
         </a>
+
       </div>
+
     </div>
+
   </section>
 
   <!-- Footer -->
   <footer class="footer">
+
     <div class="footer-container">
+
+      <!-- NEXTEON LABS MINI INTERACTIVE CARD -->
       <div class="footer-col">
-        <div class="footer-logo">NEXTEON</div>
+
+        <div
+          class="about-visual interactive-card footer-labs-card"
+          id="tiltCard"
+        >
+
+          <div class="labs-content">
+
+            <div class="labs-logo">
+              NEXTEON
+            </div>
+
+            <div class="labs-sub">
+              LABS
+            </div>
+
+          </div>
+
+        </div>
+
         <p>nxteon@gmail.com</p>
+
       </div>
+
       <div class="footer-col">
+
         <h4>LOCATIONS</h4>
+
         <p>New York, NY</p>
         <p>Los Angeles, CA</p>
+
       </div>
+
       <div class="footer-col">
+
         <h4>LEGAL</h4>
-        <a href="#">Accessibility Statement</a>
-        <a href="#">Privacy Policy</a>
+
+        <a href="#">
+          Accessibility Statement
+        </a>
+
+        <a href="#">
+          Privacy Policy
+        </a>
+
       </div>
+
     </div>
+
     <div class="footer-bottom">
-        <span>© 2025 by NEXTEON LLC.</span>
+      <span>© 2025 by NEXTEON LLC.</span>
     </div>
+
   </footer>
-
-
-
-
-  <!-- NEXTEON Labs Interactive Card -->
-  <section class="labs-bottom-section reveal">
-    <div class="labs-bottom-label">NEXTEON Labs</div>
-    <div class="about-visual interactive-card" id="tiltCard">
-      <div class="labs-content">
-        <div class="labs-logo">NEXTEON</div>
-        <div class="labs-sub">LABS</div>
-      </div>
-    </div>
-  </section>
-
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // 1. Initialize Scroll Reveal FIRST
-        const revealElements = document.querySelectorAll('.reveal');
-        const navbar = document.querySelector('.navbar');
-        const tiltCard = document.getElementById('tiltCard');
-        const labsContent = document.querySelector('.labs-content');
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
 
-        if (menuToggle && navbar) {
-            menuToggle.setAttribute('role', 'button');
-            menuToggle.setAttribute('tabindex', '0');
-            menuToggle.setAttribute('aria-label', 'Toggle navigation');
-            menuToggle.setAttribute('aria-expanded', 'false');
+      /* ============================
+         INITIAL SETUP
+      ============================ */
 
-            const toggleMenu = () => {
-                const isOpen = navbar.classList.toggle('mobile-open');
-                menuToggle.setAttribute('aria-expanded', String(isOpen));
-            };
+      const revealElements =
+        document.querySelectorAll('.reveal');
 
-            menuToggle.addEventListener('click', toggleMenu);
-            menuToggle.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleMenu();
-                }
-            });
+      const navbar =
+        document.querySelector('.navbar');
 
-            if (navLinks) {
-                navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-                    navbar.classList.remove('mobile-open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }));
-            }
-        }
+      const tiltCard =
+        document.getElementById('tiltCard');
 
-        const revealOnScroll = () => {
-            const windowHeight = window.innerHeight;
-            const elementVisible = 150;
-            const scrollY = window.scrollY;
+      const labsContent =
+        tiltCard
+          ? tiltCard.querySelector('.labs-content')
+          : null;
 
-            // Existing Reveal Logic
-            revealElements.forEach((reveal) => {
-                const elementTop = reveal.getBoundingClientRect().top;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveal.classList.add('active');
-                }
-            });
+      const menuToggle =
+        document.querySelector('.menu-toggle');
 
-            // Navbar Logic
-            if (scrollY > 50) {
-                if(navbar) navbar.classList.add('scrolled');
-            } else {
-                if(navbar) navbar.classList.remove('scrolled');
-            }
+      const navLinks =
+        document.querySelector('.nav-links');
 
-            // --- Scroll Parallax for Tilt Card ---
-            if(tiltCard && labsContent) {
-                // If the user is NOT hovering (mouse logic takes precedence)
-                if(!tiltCard.matches(':hover')) {
-                    const rect = tiltCard.getBoundingClientRect();
-                    const cardCenterY = rect.top + (rect.height / 2);
-                    const screenCenterY = window.innerHeight / 2;
-                    
-                    // Difference from center of screen
-                    const distFromCenter = cardCenterY - screenCenterY;
-                    
-                    // Stronger rotation mapping: limit to +/- 70 degrees (was 30)
-                    if(rect.top < window.innerHeight && rect.bottom > 0) {
-                        const rotX = (distFromCenter / window.innerHeight) * 70; 
-                        labsContent.style.transform = `rotateX(${rotX}deg)`;
-                    }
-                }
-            }
+
+      /* ============================
+         MOBILE MENU
+      ============================ */
+
+      if (menuToggle && navbar) {
+
+        menuToggle.setAttribute(
+          'role',
+          'button'
+        );
+
+        menuToggle.setAttribute(
+          'tabindex',
+          '0'
+        );
+
+        menuToggle.setAttribute(
+          'aria-label',
+          'Toggle navigation'
+        );
+
+        menuToggle.setAttribute(
+          'aria-expanded',
+          'false'
+        );
+
+        const toggleMenu = () => {
+
+          const isOpen =
+            navbar.classList.toggle(
+              'mobile-open'
+            );
+
+          menuToggle.setAttribute(
+            'aria-expanded',
+            String(isOpen)
+          );
+
         };
 
-        window.addEventListener('scroll', revealOnScroll);
-        revealOnScroll();
+        menuToggle.addEventListener(
+          'click',
+          toggleMenu
+        );
 
-        // 2. Initialize Icons
-        try {
-            if (window.lucide) {
-                lucide.createIcons();
+        menuToggle.addEventListener(
+          'keydown',
+          (e) => {
+
+            if (
+              e.key === 'Enter' ||
+              e.key === ' '
+            ) {
+
+              e.preventDefault();
+              toggleMenu();
+
             }
-        } catch (e) { console.warn('Icons failed', e); }
 
-        // 3. 3D Tilt Effect Logic (Mouse)
-        if (tiltCard && labsContent) {
-            tiltCard.addEventListener('mousemove', (e) => {
-                const rect = tiltCard.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x position within the element.
-                const y = e.clientY - rect.top;  // y position within the element.
-                
-                // Calculate center
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                // Rotation (Increased to Max 50deg)
-                const rotateX = ((y - centerY) / centerY) * -50;
-                const rotateY = ((x - centerX) / centerX) * 50;
+          }
+        );
 
-                labsContent.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        if (navLinks) {
+
+          navLinks
+            .querySelectorAll('a')
+            .forEach(a => {
+
+              a.addEventListener(
+                'click',
+                () => {
+
+                  navbar.classList.remove(
+                    'mobile-open'
+                  );
+
+                  menuToggle.setAttribute(
+                    'aria-expanded',
+                    'false'
+                  );
+
+                }
+              );
+
             });
 
-            tiltCard.addEventListener('mouseleave', () => {
-                // Reset when leaving so it doesn't get stuck
-                labsContent.style.transform = `rotateX(0deg) rotateY(0deg)`;
-            });
         }
 
-        // 4. Custom Cursor
-        try {
-            const cursorDot = document.querySelector('[data-cursor-dot]');
-            const cursorOutline = document.querySelector('[data-cursor-outline]');
-            
-            if (cursorDot && cursorOutline && !('ontouchstart' in window)) {
-                document.body.classList.add('custom-cursor-active');
-                
-                window.addEventListener('mousemove', function(e) {
-                    const posX = e.clientX;
-                    const posY = e.clientY;
-                    cursorDot.style.left = `${posX}px`;
-                    cursorDot.style.top = `${posY}px`;
-                    
-                    cursorOutline.animate({
-                        left: `${posX}px`,
-                        top: `${posY}px`
-                    }, { duration: 500, fill: "forwards" });
-                });
+      }
 
-                document.querySelectorAll('a, button, .interactive-card').forEach(link => {
-                    link.addEventListener('mouseenter', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                    });
-                    link.addEventListener('mouseleave', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                    });
-                });
+
+      /* ============================
+         SCROLL / REVEAL
+      ============================ */
+
+      const revealOnScroll = () => {
+
+        const windowHeight =
+          window.innerHeight;
+
+        const elementVisible =
+          150;
+
+        const scrollY =
+          window.scrollY;
+
+
+        revealElements.forEach(
+          (reveal) => {
+
+            const elementTop =
+              reveal
+                .getBoundingClientRect()
+                .top;
+
+            if (
+              elementTop <
+              windowHeight - elementVisible
+            ) {
+
+              reveal.classList.add(
+                'active'
+              );
+
             }
-        } catch (e) {}
+
+          }
+        );
+
+
+        /* NAVBAR */
+
+        if (scrollY > 50) {
+
+          if (navbar) {
+            navbar.classList.add(
+              'scrolled'
+            );
+          }
+
+        } else {
+
+          if (navbar) {
+            navbar.classList.remove(
+              'scrolled'
+            );
+          }
+
+        }
+
+
+        /* LABS CARD SCROLL TILT */
+
+        if (
+          tiltCard &&
+          labsContent
+        ) {
+
+          if (
+            !tiltCard.matches(':hover')
+          ) {
+
+            const rect =
+              tiltCard
+                .getBoundingClientRect();
+
+            const cardCenterY =
+              rect.top +
+              rect.height / 2;
+
+            const screenCenterY =
+              window.innerHeight / 2;
+
+            const distFromCenter =
+              cardCenterY -
+              screenCenterY;
+
+            if (
+              rect.top <
+              window.innerHeight &&
+              rect.bottom >
+              0
+            ) {
+
+              /*
+                Slightly reduced for the
+                smaller footer card so it
+                stays elegant.
+              */
+
+              const rotX =
+                (
+                  distFromCenter /
+                  window.innerHeight
+                ) * 45;
+
+              labsContent.style.transform =
+                `rotateX(${rotX}deg)`;
+
+            }
+
+          }
+
+        }
+
+      };
+
+
+      window.addEventListener(
+        'scroll',
+        revealOnScroll
+      );
+
+      revealOnScroll();
+
+
+      /* ============================
+         LUCIDE ICONS
+      ============================ */
+
+      try {
+
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+
+      } catch (e) {
+
+        console.warn(
+          'Icons failed',
+          e
+        );
+
+      }
+
+
+      /* ============================
+         3D LABS CARD
+      ============================ */
+
+      if (
+        tiltCard &&
+        labsContent
+      ) {
+
+        tiltCard.addEventListener(
+          'mousemove',
+          (e) => {
+
+            const rect =
+              tiltCard
+                .getBoundingClientRect();
+
+            const x =
+              e.clientX -
+              rect.left;
+
+            const y =
+              e.clientY -
+              rect.top;
+
+            const centerX =
+              rect.width / 2;
+
+            const centerY =
+              rect.height / 2;
+
+
+            /*
+              Slightly lower tilt than
+              the original giant panel
+              because this card is much
+              smaller.
+            */
+
+            const rotateX =
+              (
+                (y - centerY) /
+                centerY
+              ) * -32;
+
+            const rotateY =
+              (
+                (x - centerX) /
+                centerX
+              ) * 32;
+
+
+            labsContent.style.transform =
+              `rotateX(${rotateX}deg)
+               rotateY(${rotateY}deg)`;
+
+          }
+        );
+
+
+        tiltCard.addEventListener(
+          'mouseleave',
+          () => {
+
+            labsContent.style.transform =
+              'rotateX(0deg) rotateY(0deg)';
+
+          }
+        );
+
+      }
+
+
+      /* ============================
+         CUSTOM CURSOR
+      ============================ */
+
+      try {
+
+        const cursorDot =
+          document.querySelector(
+            '[data-cursor-dot]'
+          );
+
+        const cursorOutline =
+          document.querySelector(
+            '[data-cursor-outline]'
+          );
+
+
+        if (
+          cursorDot &&
+          cursorOutline &&
+          !('ontouchstart' in window)
+        ) {
+
+          document.body.classList.add(
+            'custom-cursor-active'
+          );
+
+
+          window.addEventListener(
+            'mousemove',
+            function(e) {
+
+              const posX =
+                e.clientX;
+
+              const posY =
+                e.clientY;
+
+
+              cursorDot.style.left =
+                `${posX}px`;
+
+              cursorDot.style.top =
+                `${posY}px`;
+
+
+              cursorOutline.animate(
+                {
+                  left: `${posX}px`,
+                  top: `${posY}px`
+                },
+                {
+                  duration: 500,
+                  fill: 'forwards'
+                }
+              );
+
+            }
+          );
+
+
+          document
+            .querySelectorAll(
+              'a, button, .interactive-card'
+            )
+            .forEach(link => {
+
+              link.addEventListener(
+                'mouseenter',
+                () => {
+
+                  cursorOutline.style.transform =
+                    'translate(-50%, -50%) scale(1.5)';
+
+                }
+              );
+
+              link.addEventListener(
+                'mouseleave',
+                () => {
+
+                  cursorOutline.style.transform =
+                    'translate(-50%, -50%) scale(1)';
+
+                }
+              );
+
+            });
+
+        }
+
+      } catch (e) {}
+
     });
   </script>
+
 </body>
 </html>
