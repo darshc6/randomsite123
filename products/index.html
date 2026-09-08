@@ -1,507 +1,1742 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>NEXTEON | Products</title>
+
+  <!-- NEXTEON favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    :root{
-      --bg:#f7f7f5;
-      --panel:#ffffff;
-      --line:rgba(17,17,17,.12);
-      --line-soft:rgba(17,17,17,.07);
-      --text:#111111;
-      --muted:#6f6f6a;
-      --accent:#0047FF;
-      --transition:cubic-bezier(0.16,1,0.3,1);
+
+    /* ================================
+       VARIABLES
+       ================================ */
+
+    :root {
+      --bg: #f7f7f5;
+      --panel: #ffffff;
+
+      --line: rgba(17, 17, 17, .12);
+      --line-soft: rgba(17, 17, 17, .07);
+
+      --text: #111111;
+      --muted: #6f6f6a;
+
+      --accent: #0047FF;
+
+      --transition:
+        cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Outfit',sans-serif;
+
+    /* ================================
+       RESET
+       ================================ */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+
       background:
-        linear-gradient(rgba(0,0,0,.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,.045) 1px, transparent 1px),
-        radial-gradient(circle at 12% 18%, rgba(0,71,255,.04), transparent 28%),
-        radial-gradient(circle at 88% 12%, rgba(255,255,255,.95), rgba(247,247,245,1) 44%),
-        linear-gradient(180deg, #fbfbfa 0%, #f6f6f3 100%);
-      background-size:40px 40px, 40px 40px, auto, auto, auto;
-      color:var(--text);
-      min-height:100vh;
-      -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
+        linear-gradient(
+          rgba(0, 0, 0, .045) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, .045) 1px,
+          transparent 1px
+        ),
+        radial-gradient(
+          circle at 12% 18%,
+          rgba(0, 71, 255, .04),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 88% 12%,
+          rgba(255, 255, 255, .95),
+          rgba(247, 247, 245, 1) 44%
+        ),
+        linear-gradient(
+          180deg,
+          #fbfbfa 0%,
+          #f6f6f3 100%
+        );
+
+      background-size:
+        40px 40px,
+        40px 40px,
+        auto,
+        auto,
+        auto;
+
+      color: var(--text);
+
+      min-height: 100vh;
+
+      -webkit-font-smoothing:
+        antialiased;
+
+      overflow-x: hidden;
     }
 
-    a{text-decoration:none;color:inherit}
-
-    .navbar{
-      position:sticky;
-      top:0;
-      z-index:100;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      background:rgba(247,247,245,.82);
-      border-bottom:1px solid rgba(255,255,255,.7);
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    .nav-inner{
-      max-width:1240px;
-      margin:0 auto;
-      padding:1.15rem 1.5rem;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
+
+    /* ================================
+       NAVBAR
+       SAME STYLE AS INDEX
+       ================================ */
+
+    .navbar {
+      position: fixed;
+
+      top: 0;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      width: 100%;
+
+      padding:
+        1.5rem
+        2rem;
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      align-items: center;
+
+      z-index: 100;
+
+      transition:
+        all
+        0.5s
+        var(--transition);
+
+      border:
+        1px
+        solid
+        transparent;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.92
+        );
+
+      backdrop-filter:
+        blur(10px);
+
+      -webkit-backdrop-filter:
+        blur(10px);
     }
 
-    .logo{
-      font-size:1.5rem;
-      font-weight:800;
-      letter-spacing:-0.04em;
-      color:var(--text);
-      display:flex;
-      align-items:flex-start;
-      gap:0.1rem;
+
+    /* floating navbar after scroll */
+
+    .navbar.scrolled {
+      top: 1.5rem;
+
+      width: 90%;
+
+      max-width: 1400px;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.75
+        );
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+      border:
+        1px
+        solid
+        rgba(
+          255,
+          255,
+          255,
+          0.5
+        );
+
+      box-shadow:
+        0
+        8px
+        32px
+        rgba(
+          0,
+          0,
+          0,
+          0.05
+        );
+
+      border-radius: 24px;
+
+      padding:
+        1rem
+        2.5rem;
     }
 
-    .logo sup{
-      font-size:0.42em;
-      font-weight:600;
-      margin-top:0.3em;
-      color:var(--accent);
-      letter-spacing:0;
+
+    /* logo */
+
+    .logo {
+      font-size: 1.5rem;
+
+      font-weight: 800;
+
+      letter-spacing:
+        -0.04em;
+
+      color: var(--text);
+
+      display: flex;
+
+      align-items:
+        flex-start;
+
+      gap: 0.1rem;
     }
 
-    .nav-links{
-      list-style:none;
-      display:flex;
-      gap:2.25rem;
-      align-items:center;
+    .logo sup {
+      font-size: 0.4em;
+
+      font-weight: 600;
+
+      margin-top: 0.3em;
+
+      letter-spacing: 0;
+
+      color: var(--accent);
     }
 
-    .nav-links a{
-      font-family:'Space Mono',monospace;
-      font-size:.78rem;
-      text-transform:uppercase;
-      letter-spacing:.03em;
-      color:rgba(17,17,17,.66);
-      transition:color .25s ease;
+
+    /* nav links */
+
+    .nav-links {
+      display: flex;
+
+      gap: 3rem;
+
+      list-style: none;
+
+      align-items: center;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active{
-      color:var(--text);
+    .nav-links a {
+      text-decoration: none;
+
+      color: var(--text);
+
+      font-size: 0.9rem;
+
+      font-weight: 500;
+
+      text-transform:
+        uppercase;
+
+      font-family:
+        'Space Mono',
+        monospace;
+
+      letter-spacing:
+        -0.02em;
+
+      transition:
+        color
+        0.3s;
     }
 
-    .page{
-      max-width:1240px;
-      margin:0 auto;
-      padding:4rem 1.5rem 7rem;
+    .nav-links a:hover {
+      color: var(--accent);
     }
 
-    .hero{
-      padding:1.2rem 0 3.2rem;
-      display:grid;
-      grid-template-columns:minmax(0, 1.1fr) minmax(280px, .65fr);
-      gap:2.5rem;
-      align-items:end;
+
+    /* menu */
+
+    .menu-toggle {
+      display: none;
+
+      color: var(--text);
+
+      cursor: pointer;
+
+      padding: .45rem;
+
+      border-radius: 10px;
+
+      transition:
+        background
+        .2s ease;
     }
 
-    .eyebrow{
-      font-family:'Space Mono',monospace;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      font-size:.72rem;
-      color:var(--muted);
-      margin-bottom:1.2rem;
+    .menu-toggle:hover {
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .05
+        );
     }
 
-    h1{
-      font-size:clamp(3.25rem, 7vw, 6.2rem);
-      line-height:.92;
-      letter-spacing:-0.06em;
-      font-weight:700;
-      max-width:760px;
+
+    /* ================================
+       PAGE
+       ================================ */
+
+    .page {
+      max-width: 1240px;
+
+      margin: 0 auto;
+
+      padding:
+        10rem
+        1.5rem
+        7rem;
     }
 
-    .hero-copy{
-      color:var(--muted);
-      font-size:1.05rem;
-      line-height:1.6;
-      max-width:420px;
-      justify-self:end;
-      padding-bottom:.25rem;
+
+    /* ================================
+       HERO
+       ================================ */
+
+    .hero {
+      padding:
+        1.2rem
+        0
+        3.2rem;
+
+      display: block;
+
+      max-width: 900px;
     }
 
-    .section{
-      margin-top:1.3rem;
-      background:rgba(255,255,255,.38);
-      border:1px solid rgba(255,255,255,.65);
-      border-radius:28px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow:0 12px 32px rgba(0,0,0,.03);
-      overflow:hidden;
+    .eyebrow {
+      font-family:
+        'Space Mono',
+        monospace;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .08em;
+
+      font-size: .72rem;
+
+      color: var(--muted);
+
+      margin-bottom: 1.2rem;
     }
 
-    .section-head{
-      padding:1.15rem 1.5rem;
-      border-bottom:1px solid var(--line-soft);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:1rem;
-      background:rgba(255,255,255,.52);
+    h1 {
+      font-size:
+        clamp(
+          3.25rem,
+          7vw,
+          6.2rem
+        );
+
+      line-height: .92;
+
+      letter-spacing:
+        -0.06em;
+
+      font-weight: 700;
+
+      max-width: 760px;
     }
 
-    .section-title{
-      font-size:1rem;
-      font-weight:600;
-      letter-spacing:-0.02em;
+
+    /* NOW UNDER TITLE */
+
+    .hero-copy {
+      color: var(--muted);
+
+      font-size: 1.05rem;
+
+      line-height: 1.6;
+
+      max-width: 610px;
+
+      margin-top: 1.55rem;
     }
 
-    .section-label{
-      font-family:'Space Mono',monospace;
-      font-size:.7rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--muted);
+
+    /* ================================
+       SECTION SHELL
+       ================================ */
+
+    .section {
+      margin-top: 1.3rem;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .38
+        );
+
+      border:
+        1px
+        solid
+        rgba(
+          255,
+          255,
+          255,
+          .65
+        );
+
+      border-radius: 28px;
+
+      backdrop-filter:
+        blur(10px);
+
+      -webkit-backdrop-filter:
+        blur(10px);
+
+      box-shadow:
+        0
+        12px
+        32px
+        rgba(
+          0,
+          0,
+          0,
+          .03
+        );
+
+      overflow: hidden;
     }
 
-    .featured-list{padding:0 .9rem .45rem}
 
-    .featured-item{
-      display:grid;
-      grid-template-columns:minmax(200px, .7fr) minmax(300px, 1fr) auto;
-      gap:1.8rem;
-      align-items:center;
-      padding:1.35rem .6rem;
-      border-bottom:1px solid var(--line-soft);
-      transition:background .25s ease, transform .25s ease, border-color .25s ease;
-      border-radius:18px;
-      margin-top:.45rem;
+    /* ================================
+       SECTION HEADER
+       ================================ */
+
+    .section-head {
+      padding:
+        1.15rem
+        1.5rem;
+
+      border-bottom:
+        1px
+        solid
+        var(--line-soft);
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      align-items: center;
+
+      gap: 1rem;
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .52
+        );
     }
 
-    .featured-item:last-child{border-bottom:none}
+    .section-title {
+      font-size: 1rem;
 
-    .featured-item:hover{
-      background:rgba(255,255,255,.85);
-      transform:translateY(-1px);
+      font-weight: 600;
+
+      letter-spacing:
+        -0.02em;
     }
 
-    .product-name{
-      font-size:clamp(2rem, 3.8vw, 3.4rem);
-      line-height:.95;
-      font-weight:700;
-      letter-spacing:-0.05em;
+    .section-label {
+      font-family:
+        'Space Mono',
+        monospace;
+
+      font-size: .7rem;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .08em;
+
+      color: var(--muted);
     }
 
-    .product-meta{
-      display:flex;
-      flex-direction:column;
-      gap:.25rem;
+
+    /* ================================
+       FEATURED PRODUCTS
+       ================================ */
+
+    .featured-list {
+      padding:
+        0
+        .9rem
+        .45rem;
     }
 
-    .product-type{
-      font-family:'Space Mono',monospace;
-      font-size:.68rem;
-      text-transform:uppercase;
-      letter-spacing:.07em;
-      color:var(--muted);
+    .featured-item {
+      display: grid;
+
+      grid-template-columns:
+        minmax(
+          200px,
+          .7fr
+        )
+        minmax(
+          300px,
+          1fr
+        )
+        auto;
+
+      gap: 1.8rem;
+
+      align-items: center;
+
+      padding:
+        1.35rem
+        .6rem;
+
+      border-bottom:
+        1px
+        solid
+        var(--line-soft);
+
+      transition:
+        background
+        .25s ease,
+        transform
+        .25s ease,
+        border-color
+        .25s ease;
+
+      border-radius: 18px;
+
+      margin-top: .45rem;
     }
 
-    .product-description{
-      font-size:1rem;
-      line-height:1.58;
-      color:#4f4f4b;
-      max-width:560px;
+    .featured-item:last-child {
+      border-bottom: none;
     }
 
-    .product-proof{
-      font-family:'Space Mono',monospace;
-      font-size:.68rem;
-      text-transform:uppercase;
-      letter-spacing:.045em;
-      color:var(--muted);
-      white-space:nowrap;
-      text-align:right;
+    .featured-item:hover {
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .85
+        );
+
+      transform:
+        translateY(-1px);
     }
 
-    .product-proof strong{
-      color:var(--text);
-      font-weight:700;
+    .product-name {
+      font-size:
+        clamp(
+          2rem,
+          3.8vw,
+          3.4rem
+        );
+
+      line-height: .95;
+
+      font-weight: 700;
+
+      letter-spacing:
+        -0.05em;
     }
 
-    .compact-list{
-      padding:0 .9rem .4rem;
+    .product-meta {
+      display: flex;
+
+      flex-direction:
+        column;
+
+      gap: .25rem;
     }
 
-    .compact-row{
-      display:grid;
-      grid-template-columns:56px minmax(180px, .7fr) minmax(260px, 1fr) 120px 30px;
-      gap:1rem;
-      align-items:center;
-      min-height:82px;
-      padding:.95rem .6rem;
-      border-bottom:1px solid var(--line-soft);
-      border-radius:16px;
-      transition:background .25s ease, transform .25s ease;
+    .product-type {
+      font-family:
+        'Space Mono',
+        monospace;
+
+      font-size: .68rem;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .07em;
+
+      color: var(--muted);
     }
 
-    .compact-row:last-child{border-bottom:none}
+    .product-description {
+      font-size: 1rem;
 
-    .compact-row:hover{
-      background:rgba(255,255,255,.8);
-      transform:translateY(-1px);
+      line-height: 1.58;
+
+      color: #4f4f4b;
+
+      max-width: 560px;
     }
 
-    .index{
-      font-family:'Space Mono',monospace;
-      font-size:.68rem;
-      color:var(--muted);
+    .product-proof {
+      font-family:
+        'Space Mono',
+        monospace;
+
+      font-size: .68rem;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .045em;
+
+      color: var(--muted);
+
+      white-space:
+        nowrap;
+
+      text-align: right;
     }
 
-    .compact-name{
-      font-size:1.4rem;
-      font-weight:600;
-      letter-spacing:-0.03em;
+    .product-proof strong {
+      color: var(--text);
+
+      font-weight: 700;
     }
 
-    .compact-desc{
-      font-size:.95rem;
-      line-height:1.5;
-      color:var(--muted);
-      max-width:560px;
+
+    /* ================================
+       LAB PRODUCTS
+       ================================ */
+
+    .compact-list {
+      padding:
+        0
+        .9rem
+        .4rem;
     }
 
-    .status{
-      font-family:'Space Mono',monospace;
-      font-size:.64rem;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      color:var(--muted);
-      text-align:right;
+    .compact-row {
+      display: grid;
+
+      grid-template-columns:
+        56px
+        minmax(
+          180px,
+          .7fr
+        )
+        minmax(
+          260px,
+          1fr
+        )
+        120px
+        30px;
+
+      gap: 1rem;
+
+      align-items: center;
+
+      min-height: 82px;
+
+      padding:
+        .95rem
+        .6rem;
+
+      border-bottom:
+        1px
+        solid
+        var(--line-soft);
+
+      border-radius: 16px;
+
+      transition:
+        background
+        .25s ease,
+        transform
+        .25s ease;
     }
 
-    .status.live{color:var(--accent)}
+    .compact-row:last-child {
+      border-bottom: none;
+    }
 
-    .arrow{
-      justify-self:end;
-      font-size:1.1rem;
-      color:rgba(17,17,17,.58);
-      transition:transform .25s ease, color .25s ease;
+    .compact-row:hover {
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .8
+        );
+
+      transform:
+        translateY(-1px);
+    }
+
+    .index {
+      font-family:
+        'Space Mono',
+        monospace;
+
+      font-size: .68rem;
+
+      color: var(--muted);
+    }
+
+    .compact-name {
+      font-size: 1.4rem;
+
+      font-weight: 600;
+
+      letter-spacing:
+        -0.03em;
+    }
+
+    .compact-desc {
+      font-size: .95rem;
+
+      line-height: 1.5;
+
+      color: var(--muted);
+
+      max-width: 560px;
+    }
+
+    .status {
+      font-family:
+        'Space Mono',
+        monospace;
+
+      font-size: .64rem;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .06em;
+
+      color: var(--muted);
+
+      text-align: right;
+    }
+
+    .status.live {
+      color: var(--accent);
+    }
+
+    .arrow {
+      justify-self: end;
+
+      font-size: 1.1rem;
+
+      color:
+        rgba(
+          17,
+          17,
+          17,
+          .58
+        );
+
+      transition:
+        transform
+        .25s ease,
+        color
+        .25s ease;
     }
 
     .featured-item:hover .arrow,
-    .compact-row:hover .arrow{
-      transform:translateX(3px);
-      color:var(--text);
+    .compact-row:hover .arrow {
+      transform:
+        translateX(3px);
+
+      color: var(--text);
     }
 
-    .section-note{
-      padding:1rem 1.5rem 1.2rem;
-      border-top:1px solid var(--line-soft);
-      font-family:'Space Mono',monospace;
-      font-size:.68rem;
-      text-transform:uppercase;
-      letter-spacing:.05em;
-      color:var(--muted);
-      background:rgba(255,255,255,.35);
+
+    /* ================================
+       SECTION NOTE
+       ================================ */
+
+    .section-note {
+      padding:
+        1rem
+        1.5rem
+        1.2rem;
+
+      border-top:
+        1px
+        solid
+        var(--line-soft);
+
+      font-family:
+        'Space Mono',
+        monospace;
+
+      font-size: .68rem;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .05em;
+
+      color: var(--muted);
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .35
+        );
     }
 
-    .footer{
-      max-width:1240px;
-      margin:0 auto;
-      padding:0 1.5rem 2.5rem;
-      display:flex;
-      justify-content:space-between;
-      gap:1rem;
-      color:var(--muted);
-      font-family:'Space Mono',monospace;
-      font-size:.7rem;
-      text-transform:uppercase;
-      letter-spacing:.05em;
+
+    /* ================================
+       FOOTER
+       ================================ */
+
+    .footer {
+      max-width: 1240px;
+
+      margin: 0 auto;
+
+      padding:
+        0
+        1.5rem
+        2.5rem;
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      gap: 1rem;
+
+      color: var(--muted);
+
+      font-family:
+        'Space Mono',
+        monospace;
+
+      font-size: .7rem;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .05em;
     }
 
-    @media (max-width: 980px){
-      .hero{
-        grid-template-columns:1fr;
-        gap:1.5rem;
+
+    /* ================================
+       RESPONSIVE
+       ================================ */
+
+    @media (max-width: 980px) {
+
+      .featured-item {
+        grid-template-columns:
+          1fr;
+
+        gap: .7rem;
       }
-      .hero-copy{
-        justify-self:start;
+
+      .product-proof {
+        text-align: left;
+
+        white-space: normal;
       }
-      .featured-item{
-        grid-template-columns:1fr;
-        gap:.7rem;
+
+      .compact-row {
+        grid-template-columns:
+          46px
+          1fr
+          24px;
+
+        gap: .8rem;
+
+        align-items: start;
       }
-      .product-proof{
-        text-align:left;
-        white-space:normal;
+
+      .compact-desc {
+        grid-column:
+          2 / 4;
       }
-      .compact-row{
-        grid-template-columns:46px 1fr 24px;
-        gap:.8rem;
-        align-items:start;
+
+      .status {
+        grid-column:
+          2 / 3;
+
+        text-align: left;
       }
-      .compact-desc{
-        grid-column:2 / 4;
+
+      .arrow {
+        grid-column: 3;
+
+        grid-row: 1;
       }
-      .status{
-        grid-column:2 / 3;
-        text-align:left;
-      }
-      .arrow{
-        grid-column:3;
-        grid-row:1;
-      }
+
     }
 
-    @media (max-width: 700px){
-      .nav-inner{
-        padding:1rem 1rem;
+
+    /* navbar mobile */
+
+    @media (max-width: 900px) {
+
+      .navbar {
+        padding:
+          1rem
+          1.2rem;
       }
-      .nav-links{
-        gap:1rem;
+
+      .navbar.scrolled {
+        top: .75rem;
+
+        width:
+          calc(
+            100% - 1rem
+          );
+
+        padding:
+          .85rem
+          1rem;
+
+        border-radius: 18px;
       }
-      .page{
-        padding:2.5rem 1rem 5rem;
+
+      .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top:
+          calc(
+            100% + .65rem
+          );
+
+        right: .15rem;
+
+        min-width: 210px;
+
+        padding: .65rem;
+
+        flex-direction:
+          column;
+
+        gap: 0;
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .96
+          );
+
+        border:
+          1px
+          solid
+          rgba(
+            0,
+            0,
+            0,
+            .08
+          );
+
+        border-radius: 18px;
+
+        box-shadow:
+          0
+          16px
+          45px
+          rgba(
+            0,
+            0,
+            0,
+            .10
+          );
+
+        backdrop-filter:
+          blur(18px);
+
+        -webkit-backdrop-filter:
+          blur(18px);
       }
+
+      .navbar.mobile-open
+      .nav-links {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+
+        width: 100%;
+
+        padding:
+          .9rem
+          1rem;
+
+        border-radius: 12px;
+
+        font-size: .78rem;
+      }
+
+      .nav-links a:hover {
+        background:
+          rgba(
+            0,
+            0,
+            0,
+            .045
+          );
+      }
+
+      .menu-toggle {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      html {
+        scroll-padding-top: 88px;
+      }
+
+      .page {
+        padding:
+          8rem
+          1rem
+          5rem;
+      }
+
+      .hero {
+        padding-top: .5rem;
+
+        padding-bottom: 2.5rem;
+      }
+
+      h1 {
+        font-size:
+          clamp(
+            3rem,
+            15vw,
+            4.4rem
+          );
+      }
+
+      .hero-copy {
+        font-size: .98rem;
+
+        max-width: 520px;
+
+        margin-top: 1.3rem;
+      }
+
       .section-head,
-      .section-note{
-        padding-left:1rem;
-        padding-right:1rem;
+      .section-note {
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
+
       .featured-list,
-      .compact-list{
-        padding-left:.5rem;
-        padding-right:.5rem;
+      .compact-list {
+        padding-left: .5rem;
+        padding-right: .5rem;
       }
-      .footer{
-        padding:0 1rem 2rem;
-        flex-direction:column;
+
+      .footer {
+        padding:
+          0
+          1rem
+          2rem;
+
+        flex-direction:
+          column;
       }
+
     }
+
   </style>
+
 </head>
+
+
 <body>
+
+
+  <!-- ================================
+       NAVBAR
+       ================================ -->
+
   <nav class="navbar">
-    <div class="nav-inner">
-      <div class="logo">NEXTEON<sup>TM</sup></div>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/products" class="active">Products</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
+
+    <div class="logo">
+      NEXTEON<sup>TM</sup>
     </div>
+
+
+    <ul class="nav-links">
+
+      <li>
+        <a href="/#about">
+          About
+        </a>
+      </li>
+
+      <li>
+        <a href="/products">
+          Products
+        </a>
+      </li>
+
+      <li>
+        <a href="/#work-with-us">
+          Work with us
+        </a>
+      </li>
+
+      <li>
+        <a href="/contact">
+          Contact
+        </a>
+      </li>
+
+    </ul>
+
+
+    <div class="menu-toggle">
+      <i data-lucide="menu"></i>
+    </div>
+
   </nav>
 
+
+
+  <!-- ================================
+       MAIN PAGE
+       ================================ -->
+
   <main class="page">
+
+
+    <!-- HERO -->
+
     <header class="hero">
-      <div>
-        <div class="eyebrow">NEXTEON / Products</div>
-        <h1>Our independent products.</h1>
+
+      <div class="eyebrow">
+        NEXTEON / Products
       </div>
+
+
+      <h1>
+        Our independent products.
+      </h1>
+
+
       <p class="hero-copy">
-        Products built by our founders and within NEXTEON Labs, from scaled consumer apps to smaller software experiments.
+        Products built by our founders and within NEXTEON Labs,
+        from scaled consumer apps to smaller software experiments.
       </p>
+
     </header>
 
+
+
+    <!-- ================================
+         FOUNDER BUILT
+         ================================ -->
+
     <section class="section">
+
+
       <div class="section-head">
-        <div class="section-title">Founder-built</div>
-        <div class="section-label">Independent products</div>
+
+        <div class="section-title">
+          Founder-built
+        </div>
+
+        <div class="section-label">
+          Independent products
+        </div>
+
       </div>
+
+
 
       <div class="featured-list">
-        <a class="featured-item" href="https://oneblvd.co" target="_blank" rel="noopener">
-          <div class="product-name">oneblvd</div>
+
+
+        <!-- ONEBLVD -->
+
+        <a
+          class="featured-item"
+          href="https://oneblvd.co"
+          target="_blank"
+          rel="noopener"
+        >
+
+          <div class="product-name">
+            oneblvd
+          </div>
+
+
           <div class="product-meta">
-            <div class="product-type">Consumer Social</div>
+
+            <div class="product-type">
+              Consumer Social
+            </div>
+
           </div>
+
+
           <div class="product-proof">
-            <strong>Thousands of users</strong><br>
+
+            <strong>
+              Thousands of users
+            </strong>
+
+            <br>
+
             Millions of interactions
-            <span class="arrow">↗</span>
+
+            <span class="arrow">
+              ↗
+            </span>
+
           </div>
+
         </a>
 
-        <a class="featured-item" href="#">
-          <div class="product-name">DayOne</div>
+
+
+        <!-- DAYONE -->
+
+        <a
+          class="featured-item"
+          href="#"
+        >
+
+          <div class="product-name">
+            DayOne
+          </div>
+
+
           <div class="product-meta">
-            <div class="product-type">Goals / Social Utility</div>
+
+            <div class="product-type">
+              Goals / Social Utility
+            </div>
+
           </div>
+
+
           <div class="product-proof">
-            <strong>Founder-built</strong><br>
+
+            <strong>
+              Founder-built
+            </strong>
+
+            <br>
+
             Consumer product
-            <span class="arrow">↗</span>
+
+            <span class="arrow">
+              ↗
+            </span>
+
           </div>
+
         </a>
+
 
       </div>
+
     </section>
 
+
+
+    <!-- ================================
+         NEXTEON LABS
+         ================================ -->
+
     <section class="section">
+
+
       <div class="section-head">
-        <div class="section-title">NEXTEON Labs</div>
-        <div class="section-label">Products founded in house</div>
+
+        <div class="section-title">
+          NEXTEON Labs
+        </div>
+
+        <div class="section-label">
+          Products founded in house
+        </div>
+
       </div>
+
+
 
       <div class="compact-list">
-        <a class="compact-row" href="#">
-          <div class="index">L01</div>
-          <div class="compact-name">DocVault</div>
-          <div class="compact-desc">Securely scan, organize, sign, and search documents in one place.</div>
-          <div class="status live">Available</div>
-          <div class="arrow">↗</div>
+
+
+        <!-- DOCVAULT -->
+
+        <a
+          class="compact-row"
+          href="#"
+        >
+
+          <div class="index">
+            L01
+          </div>
+
+          <div class="compact-name">
+            DocVault
+          </div>
+
+          <div class="compact-desc">
+            Securely scan, organize, sign, and search documents
+            in one place.
+          </div>
+
+          <div class="status live">
+            Available
+          </div>
+
+          <div class="arrow">
+            ↗
+          </div>
+
         </a>
 
-        <a class="compact-row" href="#">
-          <div class="index">L02</div>
-          <div class="compact-name">Aesthetic Clock</div>
-          <div class="compact-desc">A minimal focus clock with ambient soundscapes for deep work offline.</div>
-          <div class="status live">Available</div>
-          <div class="arrow">↗</div>
+
+
+        <!-- AESTHETIC CLOCK -->
+
+        <a
+          class="compact-row"
+          href="#"
+        >
+
+          <div class="index">
+            L02
+          </div>
+
+          <div class="compact-name">
+            Aesthetic Clock
+          </div>
+
+          <div class="compact-desc">
+            A minimal focus clock with ambient soundscapes
+            for deep work offline.
+          </div>
+
+          <div class="status live">
+            Available
+          </div>
+
+          <div class="arrow">
+            ↗
+          </div>
+
         </a>
 
-        <a class="compact-row" href="#">
-          <div class="index">L03</div>
-          <div class="compact-name">Slate AI</div>
-          <div class="compact-desc">A focused AI workspace for understanding, organizing, and moving through information.</div>
-          <div class="status">In development</div>
-          <div class="arrow">↗</div>
+
+
+        <!-- SLATE AI -->
+
+        <a
+          class="compact-row"
+          href="#"
+        >
+
+          <div class="index">
+            L03
+          </div>
+
+          <div class="compact-name">
+            Slate AI
+          </div>
+
+          <div class="compact-desc">
+            A focused AI workspace for understanding,
+            organizing, and moving through information.
+          </div>
+
+          <div class="status">
+            In development
+          </div>
+
+          <div class="arrow">
+            ↗
+          </div>
+
         </a>
 
-        <a class="compact-row" href="#">
-          <div class="index">L04</div>
-          <div class="compact-name">NEO Browser</div>
-          <div class="compact-desc">Local AI browser for iOS.</div>
-          <div class="status live">#75 on the App Store · Profitable · Later sunset to focus on new projects</div>
-          <div class="arrow">↗</div>
+
+
+        <!-- NEO BROWSER -->
+
+        <a
+          class="compact-row"
+          href="#"
+        >
+
+          <div class="index">
+            L04
+          </div>
+
+          <div class="compact-name">
+            NEO Browser
+          </div>
+
+          <div class="compact-desc">
+            Local AI browser for iOS.
+          </div>
+
+          <div class="status live">
+            #75 on the App Store · Profitable · Later sunset to focus on new projects
+          </div>
+
+          <div class="arrow">
+            ↗
+          </div>
+
         </a>
+
+
+
+        <!-- MORE -->
 
         <div class="compact-row">
-          <div class="index">L05</div>
-          <div class="compact-name">And more</div>
-          <div class="compact-desc">A growing set of experiments, utilities, and ideas currently in the lab.</div>
-          <div class="status">Ongoing</div>
-          <div class="arrow">+</div>
+
+          <div class="index">
+            L05
+          </div>
+
+          <div class="compact-name">
+            And more
+          </div>
+
+          <div class="compact-desc">
+            A growing set of experiments, utilities,
+            and ideas currently in the lab.
+          </div>
+
+          <div class="status">
+            Ongoing
+          </div>
+
+          <div class="arrow">
+            +
+          </div>
+
         </div>
+
+
       </div>
+
+
 
       <div class="section-note">
         NEXTEON Labs is where we test ideas quickly.
       </div>
+
+
     </section>
+
+
   </main>
 
+
+
+  <!-- ================================
+       FOOTER
+       ================================ -->
+
   <footer class="footer">
-    <div>© 2025 by NEXTEON LLC.</div>
-    <div>New York, NY / Los Angeles, CA</div>
+
+    <div>
+      © 2025 by NEXTEON LLC.
+    </div>
+
+    <div>
+      New York, NY / Los Angeles, CA
+    </div>
+
   </footer>
+
+
+
+  <!-- ================================
+       JS
+       ================================ -->
+
+  <script>
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => {
+
+
+        const navbar =
+          document.querySelector(
+            '.navbar'
+          );
+
+
+        const menuToggle =
+          document.querySelector(
+            '.menu-toggle'
+          );
+
+
+        const navLinks =
+          document.querySelector(
+            '.nav-links'
+          );
+
+
+        /* ============================
+           NAVBAR SCROLL
+           ============================ */
+
+        const updateNavbar = () => {
+
+          if (
+            window.scrollY > 50
+          ) {
+
+            navbar.classList.add(
+              'scrolled'
+            );
+
+          } else {
+
+            navbar.classList.remove(
+              'scrolled'
+            );
+
+          }
+
+        };
+
+
+        window.addEventListener(
+          'scroll',
+          updateNavbar,
+          {
+            passive: true
+          }
+        );
+
+
+        updateNavbar();
+
+
+
+        /* ============================
+           MOBILE MENU
+           ============================ */
+
+        if (
+          menuToggle &&
+          navbar
+        ) {
+
+          menuToggle.setAttribute(
+            'role',
+            'button'
+          );
+
+
+          menuToggle.setAttribute(
+            'tabindex',
+            '0'
+          );
+
+
+          menuToggle.setAttribute(
+            'aria-label',
+            'Toggle navigation'
+          );
+
+
+          menuToggle.setAttribute(
+            'aria-expanded',
+            'false'
+          );
+
+
+          const toggleMenu = () => {
+
+            const isOpen =
+              navbar.classList.toggle(
+                'mobile-open'
+              );
+
+
+            menuToggle.setAttribute(
+              'aria-expanded',
+              String(isOpen)
+            );
+
+          };
+
+
+          menuToggle.addEventListener(
+            'click',
+            toggleMenu
+          );
+
+
+          menuToggle.addEventListener(
+            'keydown',
+            (e) => {
+
+              if (
+                e.key === 'Enter' ||
+                e.key === ' '
+              ) {
+
+                e.preventDefault();
+
+                toggleMenu();
+
+              }
+
+            }
+          );
+
+
+          if (navLinks) {
+
+            navLinks
+              .querySelectorAll('a')
+              .forEach(
+                link => {
+
+                  link.addEventListener(
+                    'click',
+                    () => {
+
+                      navbar.classList.remove(
+                        'mobile-open'
+                      );
+
+
+                      menuToggle.setAttribute(
+                        'aria-expanded',
+                        'false'
+                      );
+
+                    }
+                  );
+
+                }
+              );
+
+          }
+
+        }
+
+
+
+        /* ============================
+           ICONS
+           ============================ */
+
+        try {
+
+          if (window.lucide) {
+
+            lucide.createIcons();
+
+          }
+
+        } catch (e) {
+
+          console.warn(
+            'Icons failed',
+            e
+          );
+
+        }
+
+
+      }
+    );
+
+  </script>
+
+
 </body>
+
 </html>
