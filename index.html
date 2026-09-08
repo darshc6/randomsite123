@@ -14,23 +14,32 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
 
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     /* ===== VARIABLES & RESET ===== */
+
     :root {
       --bg-light: #ffffff;
       --bg-grid: #f0f0f0;
+
       --glass-surface: rgba(255, 255, 255, 0.65);
       --glass-border: rgba(0, 0, 0, 0.08);
       --glass-highlight: rgba(255, 255, 255, 0.8);
+
       --text-main: #111111;
       --text-muted: #666666;
+
       --accent-primary: #0047FF;
       --accent-secondary: #FF4D00;
       --accent-lab: #FFE600;
+
       --transition: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -47,11 +56,16 @@
 
     body {
       font-family: 'Outfit', sans-serif;
+
       background-color: var(--bg-light);
+
       color: var(--text-main);
+
       overflow-x: hidden;
+
       width: 100%;
       min-height: 100vh;
+
       position: relative;
     }
 
@@ -60,45 +74,75 @@
       cursor: none !important;
     }
 
+
     /* ===== BACKGROUND FX ===== */
+
     .grid-background {
       position: fixed;
+
       top: 0;
       left: 0;
+
       width: 100%;
       height: 100%;
+
       z-index: -1;
+
       background-image:
         linear-gradient(var(--bg-grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+
       background-size: 40px 40px;
+
       background-position: center top;
+
       opacity: 0.8;
     }
 
     .liquid-background {
       position: fixed;
+
       top: 0;
       left: 0;
+
       width: 100%;
       height: 100%;
+
       z-index: -2;
+
       overflow: hidden;
+
       background: #fff;
     }
 
     .blob {
       position: absolute;
+
       border-radius: 50%;
+
       filter: blur(80px);
+
       opacity: 0.5;
-      animation: float 25s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+
+      animation:
+        float
+        25s
+        infinite
+        alternate
+        cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .blob-1 {
       width: 800px;
       height: 800px;
-      background: radial-gradient(circle, #e0f2fe 0%, transparent 70%);
+
+      background:
+        radial-gradient(
+          circle,
+          #e0f2fe 0%,
+          transparent 70%
+        );
+
       top: -200px;
       left: -200px;
     }
@@ -106,28 +150,52 @@
     .blob-2 {
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, #fce7f3 0%, transparent 70%);
+
+      background:
+        radial-gradient(
+          circle,
+          #fce7f3 0%,
+          transparent 70%
+        );
+
       bottom: -100px;
       right: -100px;
+
       animation-delay: -5s;
     }
 
     .blob-3 {
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, #eef2ff 0%, transparent 70%);
+
+      background:
+        radial-gradient(
+          circle,
+          #eef2ff 0%,
+          transparent 70%
+        );
+
       top: 40%;
       left: 60%;
-      animation: pulse 10s infinite alternate;
+
+      animation:
+        pulse
+        10s
+        infinite
+        alternate;
     }
 
     @keyframes float {
       0% {
-        transform: translate(0, 0) rotate(0deg);
+        transform:
+          translate(0, 0)
+          rotate(0deg);
       }
 
       100% {
-        transform: translate(50px, 30px) rotate(10deg);
+        transform:
+          translate(50px, 30px)
+          rotate(10deg);
       }
     }
 
@@ -143,17 +211,26 @@
       }
     }
 
+
     /* ===== CUSTOM CURSOR ===== */
+
     .cursor-dot,
     .cursor-outline {
       position: fixed;
+
       top: 0;
       left: 0;
+
       transform: translate(-50%, -50%);
+
       z-index: 9999;
+
       pointer-events: none;
+
       mix-blend-mode: exclusion;
+
       opacity: 0;
+
       transition: opacity 0.3s;
     }
 
@@ -165,100 +242,188 @@
     .cursor-dot {
       width: 8px;
       height: 8px;
+
       background-color: white;
+
       border-radius: 0;
     }
 
     .cursor-outline {
       width: 40px;
       height: 40px;
+
       border-radius: 0;
-      transition: opacity 0.3s, width 0.2s, height 0.2s;
+
+      transition:
+        opacity 0.3s,
+        width 0.2s,
+        height 0.2s;
     }
 
     .cursor-outline::before,
     .cursor-outline::after {
       content: '';
+
       position: absolute;
+
       top: 0;
+
       width: 30%;
       height: 100%;
+
       border: 1px solid white;
+
       box-sizing: border-box;
     }
 
     .cursor-outline::before {
       left: 0;
+
       border-right: none;
     }
 
     .cursor-outline::after {
       right: 0;
+
       border-left: none;
     }
 
+
     /* ===== NAVBAR ===== */
+
     .navbar {
       position: fixed;
+
       top: 0;
       left: 50%;
+
       transform: translateX(-50%);
+
       width: 100%;
+
       padding: 1.5rem 2rem;
+
       display: flex;
+
       justify-content: space-between;
       align-items: center;
+
       z-index: 100;
-      transition: all 0.5s var(--transition);
-      border: 1px solid transparent;
+
+      transition:
+        all
+        0.5s
+        var(--transition);
+
+      border:
+        1px
+        solid
+        transparent;
     }
 
     .navbar.scrolled {
       top: 1.5rem;
+
       width: 90%;
+
       max-width: 1400px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.75
+        );
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+      border:
+        1px
+        solid
+        rgba(
+          255,
+          255,
+          255,
+          0.5
+        );
+
+      box-shadow:
+        0
+        8px
+        32px
+        rgba(
+          0,
+          0,
+          0,
+          0.05
+        );
+
       border-radius: 24px;
+
       padding: 1rem 2.5rem;
     }
 
     .logo {
       font-size: 1.5rem;
+
       font-weight: 800;
+
       letter-spacing: -0.04em;
+
       color: var(--text-main);
+
       display: flex;
+
       align-items: flex-start;
+
       gap: 0.1rem;
     }
 
     .logo sup {
       font-size: 0.4em;
+
       font-weight: 600;
+
       margin-top: 0.3em;
+
       letter-spacing: 0;
+
       color: var(--accent-primary);
     }
 
     .nav-links {
       display: flex;
+
       gap: 3rem;
+
       list-style: none;
     }
 
     .nav-links a {
       text-decoration: none;
+
       color: var(--text-main);
+
       font-size: 0.9rem;
+
       font-weight: 500;
+
       text-transform: uppercase;
-      font-family: 'Space Mono', monospace;
+
+      font-family:
+        'Space Mono',
+        monospace;
+
       letter-spacing: -0.02em;
-      transition: color 0.3s;
+
+      transition:
+        color
+        0.3s;
     }
 
     .nav-links a:hover {
@@ -267,208 +432,318 @@
 
     .menu-toggle {
       display: none;
+
       color: var(--text-main);
     }
 
+
     /* ===== HERO ===== */
+
     .hero {
       height: 100vh;
+
       display: flex;
+
       flex-direction: column;
+
       justify-content: center;
       align-items: center;
+
       text-align: center;
+
       padding: 0 2rem;
+
       position: relative;
+
       z-index: 3;
     }
 
     .hero-label {
-      font-family: 'Space Mono', monospace;
+      font-family:
+        'Space Mono',
+        monospace;
+
       font-size: 0.8rem;
+
       color: var(--accent-primary);
+
       margin-bottom: 1rem;
+
       opacity: 0;
-      animation: fadeInUp 1s var(--transition) forwards 0.1s;
+
+      animation:
+        fadeInUp
+        1s
+        var(--transition)
+        forwards
+        0.1s;
     }
 
     .hero h1 {
-      font-size: clamp(4rem, 11vw, 8.5rem);
+      font-size:
+        clamp(
+          4rem,
+          11vw,
+          8.5rem
+        );
+
       line-height: 0.9;
+
       font-weight: 800;
+
       letter-spacing: -0.04em;
+
       margin-bottom: 1.5rem;
+
       color: var(--text-main);
+
       opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s var(--transition) forwards 0.2s;
+
+      transform:
+        translateY(30px);
+
+      animation:
+        fadeInUp
+        1s
+        var(--transition)
+        forwards
+        0.2s;
     }
 
     .hero h1 span {
       color: transparent;
-      -webkit-text-stroke: 2px var(--text-main);
+
+      -webkit-text-stroke:
+        2px
+        var(--text-main);
+
       opacity: 0.8;
     }
 
     .hero p {
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-size:
+        clamp(
+          1.1rem,
+          2vw,
+          1.4rem
+        );
+
       color: var(--text-muted);
+
       max-width: 550px;
+
       margin-bottom: 3rem;
+
       font-weight: 400;
+
       line-height: 1.5;
+
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s var(--transition) forwards 0.4s;
+
+      transform:
+        translateY(20px);
+
+      animation:
+        fadeInUp
+        1s
+        var(--transition)
+        forwards
+        0.4s;
     }
 
     .cta-container {
       opacity: 0;
-      animation: fadeInUp 1s var(--transition) forwards 0.6s;
+
+      animation:
+        fadeInUp
+        1s
+        var(--transition)
+        forwards
+        0.6s;
     }
 
     .cta-button {
       display: inline-flex;
+
       align-items: center;
+
       gap: 0.5rem;
-      padding: 1rem 2.5rem;
+
+      padding:
+        1rem
+        2.5rem;
+
       border-radius: 100px;
+
       background: var(--text-main);
+
       color: white;
+
       text-decoration: none;
+
       font-weight: 500;
-      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+      transition:
+        all
+        0.3s
+        cubic-bezier(
+          0.25,
+          1,
+          0.5,
+          1
+        );
+
+      box-shadow:
+        0
+        10px
+        30px
+        rgba(
+          0,
+          0,
+          0,
+          0.1
+        );
     }
 
     .cta-button:hover {
       background: var(--accent-primary);
-      transform: translateY(-2px);
-      box-shadow: 0 15px 40px rgba(37, 99, 235, 0.25);
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0
+        15px
+        40px
+        rgba(
+          37,
+          99,
+          235,
+          0.25
+        );
     }
 
-    /* ===== ABOUT SECTION ===== */
+
+    /* ===== ABOUT ===== */
+
     .section-container {
       max-width: 1200px;
+
       margin: 0 auto;
-      padding: 8rem 2rem;
+
+      padding:
+        8rem
+        2rem;
+
       position: relative;
+
       z-index: 5;
     }
 
     .retro-panel {
       display: grid;
+
       grid-template-columns: 1fr;
+
       gap: 3rem;
+
       align-items: center;
+
       max-width: 920px;
     }
 
     .about-text h2 {
       font-size: 3.5rem;
+
       letter-spacing: -0.03em;
+
       margin-bottom: 0.5rem;
+
       line-height: 1;
     }
 
     .about-text h3 {
-      font-family: 'Space Mono', monospace;
+      font-family:
+        'Space Mono',
+        monospace;
+
       color: var(--accent-primary);
+
       font-size: 1.2rem;
+
       margin-bottom: 1.5rem;
+
       text-transform: uppercase;
     }
 
     .about-text p {
       color: var(--text-muted);
+
       font-size: 1.15rem;
+
       line-height: 1.7;
+
       margin-bottom: 2.5rem;
     }
 
     .highlight-blue {
       color: var(--accent-primary);
+
       font-weight: 600;
     }
 
-    /* ===== INTERACTIVE LABS CARD ===== */
-    .about-visual {
-      height: 400px;
-      background: #111;
-      border-radius: 30px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      perspective: 600px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-      transition: box-shadow 0.3s ease;
-    }
-
-    .about-visual:hover {
-      box-shadow: 0 20px 80px rgba(255, 230, 0, 0.25);
-    }
-
-    .labs-content {
-      text-align: center;
-      transform-style: preserve-3d;
-      transition: transform 0.1s ease-out;
-      pointer-events: none;
-      padding: 2rem;
-      border: 1px solid rgba(255, 230, 0, 0.2);
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .labs-logo {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 3.5rem;
-      color: var(--accent-lab);
-      line-height: 0.9;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 0 30px rgba(255, 230, 0, 0.4);
-      transform: translateZ(80px);
-    }
-
-    .labs-sub {
-      font-family: 'Space Mono', monospace;
-      font-size: 1rem;
-      letter-spacing: 0.6em;
-      color: var(--accent-lab);
-      opacity: 0.8;
-      transform: translateZ(50px);
-    }
 
     /* ===== MARQUEE ===== */
+
     .innovation-section {
-      padding: 6rem 0;
+      padding:
+        6rem
+        0;
+
       background: var(--text-main);
+
       color: white;
-      transform: skewY(-2deg);
-      margin: 5rem 0;
+
+      transform:
+        skewY(-2deg);
+
+      margin:
+        5rem
+        0;
     }
 
     .innovation-inner {
-      transform: skewY(2deg);
+      transform:
+        skewY(2deg);
     }
 
     .marquee {
       display: flex;
+
       white-space: nowrap;
+
       overflow: hidden;
     }
 
     .marquee-text {
       font-size: 5rem;
+
       font-weight: 800;
+
       text-transform: uppercase;
+
       padding-right: 4rem;
-      animation: slide 15s linear infinite;
+
+      animation:
+        slide
+        15s
+        linear
+        infinite;
+
       display: flex;
+
       align-items: center;
+
       gap: 2rem;
     }
 
@@ -478,87 +753,224 @@
 
     @keyframes slide {
       0% {
-        transform: translateX(0);
+        transform:
+          translateX(0);
       }
 
       100% {
-        transform: translateX(-100%);
+        transform:
+          translateX(-100%);
       }
     }
 
+
     /* ===== WORK WITH US ===== */
+
     .work-section {
       max-width: 1200px;
+
       margin: 0 auto;
-      padding: 4rem 2rem 7rem;
+
+      padding:
+        4rem
+        2rem
+        7rem;
+
       position: relative;
+
       z-index: 5;
     }
 
     .work-shell {
       overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+
+      border:
+        1px
+        solid
+        rgba(
+          0,
+          0,
+          0,
+          0.08
+        );
+
       border-radius: 28px;
-      background: rgba(255, 255, 255, 0.58);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 16px 46px rgba(0, 0, 0, 0.045);
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.58
+        );
+
+      backdrop-filter:
+        blur(16px);
+
+      -webkit-backdrop-filter:
+        blur(16px);
+
+      box-shadow:
+        0
+        16px
+        46px
+        rgba(
+          0,
+          0,
+          0,
+          0.045
+        );
     }
 
     .work-top {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .78fr);
-      gap: clamp(2rem, 5vw, 5rem);
+
+      grid-template-columns:
+        minmax(
+          0,
+          1.05fr
+        )
+        minmax(
+          300px,
+          .78fr
+        );
+
+      gap:
+        clamp(
+          2rem,
+          5vw,
+          5rem
+        );
+
       align-items: end;
-      padding: clamp(2rem, 4.5vw, 3.75rem);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      background: rgba(255, 255, 255, 0.26);
+
+      padding:
+        clamp(
+          2rem,
+          4.5vw,
+          3.75rem
+        );
+
+      border-bottom:
+        1px
+        solid
+        rgba(
+          0,
+          0,
+          0,
+          0.08
+        );
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.26
+        );
     }
 
     .work-kicker {
-      font-family: 'Space Mono', monospace;
+      font-family:
+        'Space Mono',
+        monospace;
+
       font-size: 0.7rem;
+
       color: var(--accent-primary);
+
       text-transform: uppercase;
+
       letter-spacing: 0.08em;
+
       margin-bottom: 1rem;
     }
 
     .work-title {
-      font-size: clamp(2.8rem, 5.4vw, 5.2rem);
+      font-size:
+        clamp(
+          2.8rem,
+          5.4vw,
+          5.2rem
+        );
+
       line-height: .94;
+
       font-weight: 700;
+
       letter-spacing: -0.052em;
+
       max-width: 670px;
     }
 
     .work-intro {
       color: var(--text-muted);
+
       font-size: 1.05rem;
+
       line-height: 1.65;
+
       max-width: 470px;
+
       justify-self: end;
     }
 
     .work-intro strong {
       color: var(--text-main);
+
       font-weight: 600;
     }
 
     .work-services {
       display: block;
-      padding: 0 1.15rem;
+
+      padding:
+        0
+        1.15rem;
     }
 
     .work-service {
       display: grid;
-      grid-template-columns: 110px minmax(210px, .55fr) minmax(280px, 1fr);
+
+      grid-template-columns:
+        110px
+        minmax(
+          210px,
+          .55fr
+        )
+        minmax(
+          280px,
+          1fr
+        );
+
       gap: 1.6rem;
+
       align-items: center;
+
       min-height: 112px;
-      padding: 1.5rem .65rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.075);
-      transition: background .28s var(--transition), padding .28s var(--transition);
+
+      padding:
+        1.5rem
+        .65rem;
+
+      border-bottom:
+        1px
+        solid
+        rgba(
+          0,
+          0,
+          0,
+          0.075
+        );
+
+      transition:
+        background
+        .28s
+        var(--transition),
+        padding
+        .28s
+        var(--transition);
+
       border-radius: 16px;
     }
 
@@ -567,148 +979,322 @@
     }
 
     .work-service:hover {
-      background: rgba(255, 255, 255, .76);
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          .76
+        );
+
       padding-left: 1rem;
       padding-right: 1rem;
     }
 
     .work-service-index {
-      font-family: 'Space Mono', monospace;
+      font-family:
+        'Space Mono',
+        monospace;
+
       font-size: 0.68rem;
+
       line-height: 1.45;
+
       color: var(--text-muted);
+
       text-transform: uppercase;
+
       letter-spacing: .04em;
+
       margin: 0;
     }
 
     .work-service h3 {
-      font-size: clamp(1.3rem, 2vw, 1.75rem);
+      font-size:
+        clamp(
+          1.3rem,
+          2vw,
+          1.75rem
+        );
+
       letter-spacing: -0.035em;
+
       margin: 0;
+
       font-weight: 600;
     }
 
     .work-service p {
       color: var(--text-muted);
+
       font-size: .96rem;
+
       line-height: 1.58;
+
       max-width: 560px;
+
       margin: 0;
     }
 
     .work-bottom {
       display: flex;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
+
       align-items: center;
+
       gap: 2rem;
-      padding: 1.4rem 1.8rem 1.55rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-      background: rgba(255, 255, 255, 0.32);
+
+      padding:
+        1.4rem
+        1.8rem
+        1.55rem;
+
+      border-top:
+        1px
+        solid
+        rgba(
+          0,
+          0,
+          0,
+          0.08
+        );
+
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.32
+        );
     }
 
     .work-bottom-note {
-      font-family: 'Space Mono', monospace;
+      font-family:
+        'Space Mono',
+        monospace;
+
       font-size: 0.68rem;
+
       line-height: 1.55;
+
       text-transform: uppercase;
+
       letter-spacing: .035em;
+
       color: var(--text-muted);
+
       max-width: 560px;
     }
 
     .work-cta {
       flex-shrink: 0;
+
       display: inline-flex;
+
       align-items: center;
+
       justify-content: center;
+
       gap: .65rem;
+
       min-height: 48px;
-      padding: .9rem 1.45rem;
+
+      padding:
+        .9rem
+        1.45rem;
+
       border-radius: 999px;
+
       background: var(--text-main);
+
       color: white;
+
       text-decoration: none;
+
       font-weight: 600;
+
       transition:
-        transform .3s var(--transition),
-        background .3s var(--transition),
-        box-shadow .3s var(--transition);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, .09);
+        transform
+        .3s
+        var(--transition),
+        background
+        .3s
+        var(--transition),
+        box-shadow
+        .3s
+        var(--transition);
+
+      box-shadow:
+        0
+        8px
+        22px
+        rgba(
+          0,
+          0,
+          0,
+          .09
+        );
     }
 
     .work-cta:hover {
       background: var(--accent-primary);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0, 71, 255, .18);
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0
+        12px
+        30px
+        rgba(
+          0,
+          71,
+          255,
+          .18
+        );
     }
 
+
     /* ===== PAIRED CTAS ===== */
+
     .cta-row {
       display: flex;
+
       align-items: center;
+
       gap: 0.85rem;
+
       flex-wrap: wrap;
     }
 
     .cta-button.secondary {
-      background: rgba(255, 255, 255, 0.72);
+      background:
+        rgba(
+          255,
+          255,
+          255,
+          0.72
+        );
+
       color: var(--text-main);
-      border: 1px solid rgba(0, 0, 0, 0.14);
+
+      border:
+        1px
+        solid
+        rgba(
+          0,
+          0,
+          0,
+          0.14
+        );
+
       box-shadow: none;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+
+      backdrop-filter:
+        blur(12px);
+
+      -webkit-backdrop-filter:
+        blur(12px);
     }
 
     .cta-button.secondary:hover {
       background: white;
+
       color: var(--accent-primary);
-      border-color: rgba(0, 71, 255, 0.35);
-      box-shadow: 0 12px 28px rgba(0, 71, 255, 0.10);
+
+      border-color:
+        rgba(
+          0,
+          71,
+          255,
+          0.35
+        );
+
+      box-shadow:
+        0
+        12px
+        28px
+        rgba(
+          0,
+          71,
+          255,
+          0.10
+        );
     }
 
+
     /* ===== FOOTER ===== */
+
     .footer {
-      padding: 6rem 2rem 2rem;
-      border-top: 1px solid var(--glass-border);
-      background: linear-gradient(to bottom, #fff, #f5f5f5);
+      padding:
+        6rem
+        2rem
+        2rem;
+
+      border-top:
+        1px
+        solid
+        var(--glass-border);
+
+      background:
+        linear-gradient(
+          to bottom,
+          #fff,
+          #f5f5f5
+        );
     }
 
     .footer-container {
       max-width: 1200px;
+
       margin: 0 auto;
+
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
+
+      grid-template-columns:
+        2fr
+        1fr
+        1fr;
+
       gap: 4rem;
     }
 
-    .footer-logo {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-
     .footer-col h4 {
-      font-family: 'Space Mono', monospace;
+      font-family:
+        'Space Mono',
+        monospace;
+
       font-size: 0.9rem;
+
       text-transform: uppercase;
+
       margin-bottom: 1.5rem;
+
       color: var(--text-muted);
     }
 
     .footer-col p {
       margin-bottom: 0.8rem;
+
       color: var(--text-muted);
     }
 
     .footer-col a {
       display: block;
+
       color: var(--text-main);
+
       text-decoration: none;
+
       margin-bottom: 0.8rem;
+
       font-weight: 500;
-      transition: color 0.2s;
+
+      transition:
+        color
+        0.2s;
     }
 
     .footer-col a:hover {
@@ -717,68 +1303,243 @@
 
     .footer-bottom {
       max-width: 1200px;
-      margin: 4rem auto 0;
+
+      margin:
+        4rem
+        auto
+        0;
+
       padding-top: 2rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+      border-top:
+        1px
+        solid
+        rgba(
+          0,
+          0,
+          0,
+          0.1
+        );
+
       display: flex;
-      justify-content: space-between;
-      font-family: 'Space Mono', monospace;
+
+      justify-content:
+        space-between;
+
+      font-family:
+        'Space Mono',
+        monospace;
+
       font-size: 0.8rem;
+
       color: var(--text-muted);
     }
 
-    /* ===== MINI NEXTEON LABS FOOTER CARD ===== */
-    .footer-labs-card {
-      width: 170px;
-      height: 150px;
-      border-radius: 22px;
-      margin-bottom: 1.4rem;
-      flex-shrink: 0;
-      perspective: 600px;
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.14);
+
+    /* =====================================
+       INTERACTIVE NEXTEON FOOTER LOGO MARK
+       ===================================== */
+
+    .footer-logo-zone {
+      width: 150px;
+      height: 100px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: flex-start;
+
+      perspective: 800px;
+
+      margin-bottom: 0.45rem;
+
+      position: relative;
     }
 
-    .footer-labs-card:hover {
-      box-shadow: 0 16px 45px rgba(255, 230, 0, 0.18);
+    .footer-logo-mark {
+      position: relative;
+
+      width: 62px;
+      height: 62px;
+
+      transform-style: preserve-3d;
+
+      transform:
+        rotateX(0deg)
+        rotateY(0deg)
+        translate3d(0, 0, 0);
+
+      transition:
+        transform
+        0.32s
+        cubic-bezier(
+          0.16,
+          1,
+          0.3,
+          1
+        );
+
+      will-change: transform;
     }
 
-    .footer-labs-card .labs-content {
-      padding: 1rem 0.9rem;
-      border-radius: 13px;
+
+    /* LEFT BRACKET */
+
+    .footer-logo-mark::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 18px;
+      height: 100%;
+
+      border-left:
+        1.4px
+        solid
+        #111;
+
+      border-top:
+        1.4px
+        solid
+        #111;
+
+      border-bottom:
+        1.4px
+        solid
+        #111;
+
+      transform:
+        translateZ(10px);
     }
 
-    .footer-labs-card .labs-logo {
-      font-size: 1.55rem;
-      margin-bottom: 0.4rem;
-      transform: translateZ(38px);
-      text-shadow: 0 0 18px rgba(255, 230, 0, 0.4);
+
+    /* RIGHT BRACKET */
+
+    .footer-logo-mark::after {
+      content: "";
+
+      position: absolute;
+
+      right: 0;
+      top: 0;
+
+      width: 18px;
+      height: 100%;
+
+      border-right:
+        1.4px
+        solid
+        #111;
+
+      border-top:
+        1.4px
+        solid
+        #111;
+
+      border-bottom:
+        1.4px
+        solid
+        #111;
+
+      transform:
+        translateZ(10px);
     }
 
-    .footer-labs-card .labs-sub {
-      font-size: 0.5rem;
-      letter-spacing: 0.48em;
-      transform: translateZ(25px);
+
+    /* CENTER BLACK SQUARE */
+
+    .footer-logo-dot {
+      position: absolute;
+
+      width: 10px;
+      height: 10px;
+
+      background: #111;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(
+          -50%,
+          -50%
+        )
+        translateZ(32px);
+
+      transition:
+        transform
+        0.25s
+        var(--transition);
+
+      box-shadow:
+        0
+        4px
+        12px
+        rgba(
+          0,
+          0,
+          0,
+          0.08
+        );
     }
 
-    /* ===== RESPONSIVE ===== */
+
+    /* subtle extra response on direct hover */
+
+    .footer-logo-zone:hover
+    .footer-logo-dot {
+      transform:
+        translate(
+          -50%,
+          -50%
+        )
+        translateZ(44px)
+        scale(1.08);
+    }
+
+
+    /* ===== RESPONSIVE POLISH ===== */
+
     .menu-toggle {
       cursor: pointer;
+
       padding: .45rem;
+
       border-radius: 10px;
-      transition: background .2s ease;
+
+      transition:
+        background
+        .2s
+        ease;
     }
 
     .menu-toggle:hover {
-      background: rgba(0, 0, 0, .05);
+      background:
+        rgba(
+          0,
+          0,
+          0,
+          .05
+        );
     }
 
+
     @media (max-width: 900px) {
+
       .work-section {
-        padding: 3rem 1.25rem 5.5rem;
+        padding:
+          3rem
+          1.25rem
+          5.5rem;
       }
 
       .work-top {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
+
         gap: 1.4rem;
       }
 
@@ -787,38 +1548,99 @@
       }
 
       .work-service {
-        grid-template-columns: 86px minmax(180px, .75fr) minmax(220px, 1fr);
+        grid-template-columns:
+          86px
+          minmax(
+            180px,
+            .75fr
+          )
+          minmax(
+            220px,
+            1fr
+          );
       }
 
       .navbar {
-        padding: 1rem 1.2rem;
+        padding:
+          1rem
+          1.2rem;
       }
 
       .navbar.scrolled {
         top: .75rem;
-        width: calc(100% - 1rem);
-        padding: .85rem 1rem;
+
+        width:
+          calc(
+            100% - 1rem
+          );
+
+        padding:
+          .85rem
+          1rem;
+
         border-radius: 18px;
       }
 
       .nav-links {
         display: none;
+
         position: absolute;
-        top: calc(100% + .65rem);
+
+        top:
+          calc(
+            100% + .65rem
+          );
+
         right: .15rem;
+
         min-width: 210px;
+
         padding: .65rem;
+
         flex-direction: column;
+
         gap: 0;
-        background: rgba(255, 255, 255, .96);
-        border: 1px solid rgba(0, 0, 0, .08);
+
+        background:
+          rgba(
+            255,
+            255,
+            255,
+            .96
+          );
+
+        border:
+          1px
+          solid
+          rgba(
+            0,
+            0,
+            0,
+            .08
+          );
+
         border-radius: 18px;
-        box-shadow: 0 16px 45px rgba(0, 0, 0, .10);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
+
+        box-shadow:
+          0
+          16px
+          45px
+          rgba(
+            0,
+            0,
+            0,
+            .10
+          );
+
+        backdrop-filter:
+          blur(18px);
+
+        -webkit-backdrop-filter:
+          blur(18px);
       }
 
-      .navbar.mobile-open .nav-links {
+      .navbar.mobile-open
+      .nav-links {
         display: flex;
       }
 
@@ -828,68 +1650,109 @@
 
       .nav-links a {
         display: block;
+
         width: 100%;
-        padding: .9rem 1rem;
+
+        padding:
+          .9rem
+          1rem;
+
         border-radius: 12px;
+
         font-size: .78rem;
       }
 
       .nav-links a:hover {
-        background: rgba(0, 0, 0, .045);
+        background:
+          rgba(
+            0,
+            0,
+            0,
+            .045
+          );
       }
 
       .menu-toggle {
         display: flex;
+
         align-items: center;
+
         justify-content: center;
       }
 
       .section-container {
-        padding: 5.5rem 1.25rem;
+        padding:
+          5.5rem
+          1.25rem;
       }
 
       .about-text h2 {
-        font-size: clamp(2.8rem, 10vw, 3.5rem);
+        font-size:
+          clamp(
+            2.8rem,
+            10vw,
+            3.5rem
+          );
       }
 
       .about-text p {
         font-size: 1.05rem;
+
         line-height: 1.62;
       }
 
       .innovation-section {
-        margin: 3rem 0;
-        padding: 4rem 0;
+        margin:
+          3rem
+          0;
+
+        padding:
+          4rem
+          0;
       }
 
       .marquee-text {
-        font-size: clamp(3rem, 10vw, 4rem);
+        font-size:
+          clamp(
+            3rem,
+            10vw,
+            4rem
+          );
+
         gap: 1.25rem;
+
         padding-right: 2rem;
       }
 
       .footer {
-        padding: 4rem 1.25rem 1.5rem;
-      }
-
-      .footer-container {
-        gap: 2rem;
+        padding:
+          4rem
+          1.25rem
+          1.5rem;
       }
 
       .retro-panel,
       .footer-container {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
+
         gap: 3rem;
       }
 
       .hero h1 {
         font-size: 4rem;
       }
+
     }
 
+
     @media (max-width: 680px) {
+
       .work-section {
-        padding: 2.6rem 1rem 4.5rem;
+        padding:
+          2.6rem
+          1rem
+          4.5rem;
       }
 
       .work-shell {
@@ -897,28 +1760,48 @@
       }
 
       .work-top {
-        padding: 1.65rem 1.35rem 1.8rem;
+        padding:
+          1.65rem
+          1.35rem
+          1.8rem;
       }
 
       .work-title {
-        font-size: clamp(2.55rem, 12vw, 3.65rem);
+        font-size:
+          clamp(
+            2.55rem,
+            12vw,
+            3.65rem
+          );
       }
 
       .work-intro {
         font-size: .98rem;
+
         line-height: 1.58;
       }
 
       .work-services {
-        padding: 0 .7rem;
+        padding:
+          0
+          .7rem;
       }
 
       .work-service,
       .work-service:hover {
-        grid-template-columns: 52px 1fr;
-        gap: .7rem 1rem;
+        grid-template-columns:
+          52px
+          1fr;
+
+        gap:
+          .7rem
+          1rem;
+
         min-height: 0;
-        padding: 1.3rem .45rem;
+
+        padding:
+          1.3rem
+          .45rem;
       }
 
       .work-service h3 {
@@ -926,73 +1809,114 @@
       }
 
       .work-service p {
-        grid-column: 2 / 3;
+        grid-column:
+          2 / 3;
+
         font-size: .93rem;
       }
 
       .work-bottom {
         flex-direction: column;
+
         align-items: stretch;
+
         gap: 1rem;
-        padding: 1.25rem 1.35rem 1.4rem;
+
+        padding:
+          1.25rem
+          1.35rem
+          1.4rem;
       }
 
       .work-cta {
         width: 100%;
       }
+
     }
 
+
     @media (max-width: 640px) {
+
       html {
         scroll-padding-top: 88px;
       }
 
       .hero {
         height: auto;
+
         min-height: 88svh;
-        padding: 8.2rem 1.15rem 4.5rem;
+
+        padding:
+          8.2rem
+          1.15rem
+          4.5rem;
       }
 
       .hero-label {
         font-size: .7rem;
+
         margin-bottom: .85rem;
       }
 
       .hero h1 {
-        font-size: clamp(3.2rem, 16vw, 4.6rem);
+        font-size:
+          clamp(
+            3.2rem,
+            16vw,
+            4.6rem
+          );
+
         line-height: .91;
+
         margin-bottom: 1.2rem;
       }
 
       .hero h1 span {
-        -webkit-text-stroke-width: 1.35px;
+        -webkit-text-stroke-width:
+          1.35px;
       }
 
       .hero p {
         font-size: 1rem;
+
         max-width: 340px;
+
         margin-bottom: 2rem;
       }
 
       .cta-container {
-        width: min(100%, 390px);
+        width:
+          min(
+            100%,
+            390px
+          );
       }
 
       .cta-row {
         display: grid;
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
         width: 100%;
+
         gap: .7rem;
       }
 
       .cta-row .cta-button {
         width: 100%;
+
         justify-content: center;
-        padding: .9rem 1.15rem;
+
+        padding:
+          .9rem
+          1.15rem;
       }
 
       .section-container {
-        padding: 4rem 1.1rem;
+        padding:
+          4rem
+          1.1rem;
       }
 
       .retro-panel {
@@ -1001,22 +1925,32 @@
 
       .about-text h3 {
         font-size: 1rem;
+
         margin-bottom: 1rem;
       }
 
       .about-text p {
         font-size: .99rem;
+
         margin-bottom: 1.8rem;
       }
 
       .innovation-section {
-        transform: skewY(-1.2deg);
-        margin: 2rem 0;
-        padding: 3.25rem 0;
+        transform:
+          skewY(-1.2deg);
+
+        margin:
+          2rem
+          0;
+
+        padding:
+          3.25rem
+          0;
       }
 
       .innovation-inner {
-        transform: skewY(1.2deg);
+        transform:
+          skewY(1.2deg);
       }
 
       .marquee-text {
@@ -1024,78 +1958,140 @@
       }
 
       .footer-container {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       .footer-bottom {
         margin-top: 2rem;
+
         padding-top: 1.4rem;
       }
 
-      .footer-labs-card {
-        width: 150px;
-        height: 135px;
-        border-radius: 20px;
+      .footer-logo-zone {
+        width: 130px;
+        height: 90px;
       }
 
-      .footer-labs-card .labs-logo {
-        font-size: 1.35rem;
+      .footer-logo-mark {
+        width: 56px;
+        height: 56px;
       }
 
-      .footer-labs-card .labs-sub {
-        font-size: 0.46rem;
+      .footer-logo-mark::before,
+      .footer-logo-mark::after {
+        width: 17px;
       }
+
+      .footer-logo-dot {
+        width: 9px;
+        height: 9px;
+      }
+
     }
 
+
     /* ===== UTILITIES ===== */
+
     @keyframes fadeInUp {
       to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+          translateY(0);
       }
     }
 
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: all 1s var(--transition);
+
+      transform:
+        translateY(40px);
+
+      transition:
+        all
+        1s
+        var(--transition);
     }
 
     .reveal.active {
       opacity: 1;
-      transform: translateY(0);
+
+      transform:
+        translateY(0);
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- Backgrounds -->
+  <!-- BACKGROUNDS -->
+
   <div class="grid-background"></div>
 
   <div class="liquid-background">
+
     <div class="blob blob-1"></div>
+
     <div class="blob blob-2"></div>
+
     <div class="blob blob-3"></div>
+
   </div>
 
-  <!-- Cursor -->
-  <div class="cursor-dot" data-cursor-dot></div>
-  <div class="cursor-outline" data-cursor-outline></div>
 
-  <!-- Navbar -->
+  <!-- CUSTOM CURSOR -->
+
+  <div
+    class="cursor-dot"
+    data-cursor-dot
+  ></div>
+
+  <div
+    class="cursor-outline"
+    data-cursor-outline
+  ></div>
+
+
+  <!-- NAVBAR -->
+
   <nav class="navbar">
 
     <div class="logo">
       NEXTEON<sup>TM</sup>
     </div>
 
+
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="products">Products</a></li>
-      <li><a href="#work-with-us">Work with us</a></li>
-      <li><a href="contact">Contact</a></li>
+
+      <li>
+        <a href="#about">
+          About
+        </a>
+      </li>
+
+      <li>
+        <a href="products">
+          Products
+        </a>
+      </li>
+
+      <li>
+        <a href="#work-with-us">
+          Work with us
+        </a>
+      </li>
+
+      <li>
+        <a href="contact">
+          Contact
+        </a>
+      </li>
+
     </ul>
+
 
     <div class="menu-toggle">
       <i data-lucide="menu"></i>
@@ -1103,70 +2099,130 @@
 
   </nav>
 
-  <!-- Hero -->
+
+  <!-- HERO -->
+
   <section class="hero">
 
-    <div class="hero-label">[ EST. 2022 ]</div>
+    <div class="hero-label">
+      [ EST. 2022 ]
+    </div>
+
 
     <h1>
-      BUILDING THE<br>
-      <span>FUTURE</span>
+      BUILDING THE
+      <br>
+
+      <span>
+        FUTURE
+      </span>
     </h1>
+
 
     <p>
       creating innovative products that shape a better tomorrow
     </p>
 
+
     <div class="cta-container">
+
       <div class="cta-row">
 
-        <a href="#about" class="cta-button">
+        <a
+          href="#about"
+          class="cta-button"
+        >
           More about us
-          <i data-lucide="arrow-right" size="16"></i>
+
+          <i
+            data-lucide="arrow-right"
+            size="16"
+          ></i>
         </a>
 
-        <a href="#work-with-us" class="cta-button secondary">
+
+        <a
+          href="#work-with-us"
+          class="cta-button secondary"
+        >
           Work with us
-          <i data-lucide="arrow-up-right" size="16"></i>
+
+          <i
+            data-lucide="arrow-up-right"
+            size="16"
+          ></i>
         </a>
 
       </div>
+
     </div>
 
   </section>
 
-  <!-- About -->
-  <section id="about" class="section-container">
+
+  <!-- ABOUT -->
+
+  <section
+    id="about"
+    class="section-container"
+  >
 
     <div class="retro-panel reveal">
 
       <div class="about-text">
 
-        <h2>About</h2>
+        <h2>
+          About
+        </h2>
 
-        <h3>Who we are.</h3>
+
+        <h3>
+          Who we are.
+        </h3>
+
 
         <p>
           We build products that address problems and gaps that exist in society.
-          Be it in communication, social, or even AI. We utilize artificial intelligence,
-          among various technologies, to streamline and accelerate the ideation and
-          creation process. Bringing
-          <span class="highlight-blue">positive</span>
+          Be it in communication, social, or even AI.
+          We utilize artificial intelligence, among various technologies,
+          to streamline and accelerate the ideation and creation process.
+          Bringing
+          <span class="highlight-blue">
+            positive
+          </span>
           innovations to the largest audience as
-          <span class="highlight-blue">quickly</span>
+          <span class="highlight-blue">
+            quickly
+          </span>
           as possible.
         </p>
 
+
         <div class="cta-row">
 
-          <a href="products" class="cta-button">
+          <a
+            href="products"
+            class="cta-button"
+          >
             View our independent products
-            <i data-lucide="arrow-up-right" size="16"></i>
+
+            <i
+              data-lucide="arrow-up-right"
+              size="16"
+            ></i>
           </a>
 
-          <a href="#work-with-us" class="cta-button secondary">
+
+          <a
+            href="#work-with-us"
+            class="cta-button secondary"
+          >
             Work with us
-            <i data-lucide="arrow-up-right" size="16"></i>
+
+            <i
+              data-lucide="arrow-up-right"
+              size="16"
+            ></i>
           </a>
 
         </div>
@@ -1177,7 +2233,9 @@
 
   </section>
 
-  <!-- Marquee -->
+
+  <!-- MARQUEE -->
+
   <section class="innovation-section">
 
     <div class="innovation-inner">
@@ -1185,19 +2243,40 @@
       <div class="marquee">
 
         <div class="marquee-text">
-          THERE'S NEVER ENOUGH INNOVATION
-          <i data-lucide="zap" fill="currentColor"></i>
 
           THERE'S NEVER ENOUGH INNOVATION
-          <i data-lucide="zap" fill="currentColor"></i>
+
+          <i
+            data-lucide="zap"
+            fill="currentColor"
+          ></i>
+
+          THERE'S NEVER ENOUGH INNOVATION
+
+          <i
+            data-lucide="zap"
+            fill="currentColor"
+          ></i>
+
         </div>
 
+
         <div class="marquee-text">
-          THERE'S NEVER ENOUGH INNOVATION
-          <i data-lucide="zap" fill="currentColor"></i>
 
           THERE'S NEVER ENOUGH INNOVATION
-          <i data-lucide="zap" fill="currentColor"></i>
+
+          <i
+            data-lucide="zap"
+            fill="currentColor"
+          ></i>
+
+          THERE'S NEVER ENOUGH INNOVATION
+
+          <i
+            data-lucide="zap"
+            fill="currentColor"
+          ></i>
+
         </div>
 
       </div>
@@ -1206,14 +2285,21 @@
 
   </section>
 
-  <!-- Work With Us -->
-  <section id="work-with-us" class="work-section">
+
+  <!-- WORK WITH US -->
+
+  <section
+    id="work-with-us"
+    class="work-section"
+  >
 
     <div class="work-shell reveal">
+
 
       <div class="work-top">
 
         <div>
+
           <div class="work-kicker">
             Work with us
           </div>
@@ -1221,18 +2307,30 @@
           <h2 class="work-title">
             Exceptional products, built efficiently.
           </h2>
+
         </div>
 
+
         <p class="work-intro">
-          We work with select clients to build digital products at the intersection of
-          <strong>maximum quality, exceptional design, and efficiency.</strong>
-          From a new product to an existing system that needs to work better,
-          we focus on shipping the strongest version with less waste.
+
+          We work with select clients to build digital products
+          at the intersection of
+
+          <strong>
+            maximum quality, exceptional design, and efficiency.
+          </strong>
+
+          From a new product to an existing system that needs to
+          work better, we focus on shipping the strongest version
+          with less waste.
+
         </p>
 
       </div>
 
+
       <div class="work-services">
+
 
         <div class="work-service">
 
@@ -1245,12 +2343,14 @@
           </h3>
 
           <p>
-            End-to-end product development from concept and UX through engineering,
-            launch, and iteration. Clearly scoped builds can be structured at a flat
+            End-to-end product development from concept and UX
+            through engineering, launch, and iteration.
+            Clearly scoped builds can be structured at a flat
             project rate.
           </p>
 
         </div>
+
 
         <div class="work-service">
 
@@ -1263,11 +2363,13 @@
           </h3>
 
           <p>
-            Architecture, infrastructure, workflow, and tooling audits designed to
-            reduce unnecessary spend without compromising quality or velocity.
+            Architecture, infrastructure, workflow, and tooling
+            audits designed to reduce unnecessary spend without
+            compromising quality or velocity.
           </p>
 
         </div>
+
 
         <div class="work-service">
 
@@ -1280,14 +2382,15 @@
           </h3>
 
           <p>
-            Focused consulting across product strategy, design, AI implementation,
-            technical decisions, and the path from idea to a product people can
-            actually use.
+            Focused consulting across product strategy, design,
+            AI implementation, technical decisions, and the path
+            from idea to a product people can actually use.
           </p>
 
         </div>
 
       </div>
+
 
       <div class="work-bottom">
 
@@ -1295,12 +2398,19 @@
           Flexible engagements · Flat project rates · Build, optimize, or advise
         </div>
 
+
         <a
           class="work-cta"
           href="mailto:nxteon@gmail.com?subject=Work%20with%20NEXTEON&body=Hi%20NEXTEON%20team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20project.%0A%0AProject%20or%20company%3A%0AWhat%20you%27re%20looking%20to%20build%3A%0AIdeal%20timeline%3A%0ABudget%20range%3A%0A%0AThanks%2C"
         >
+
           Start a project
-          <i data-lucide="arrow-up-right" size="16"></i>
+
+          <i
+            data-lucide="arrow-up-right"
+            size="16"
+          ></i>
+
         </a>
 
       </div>
@@ -1309,49 +2419,68 @@
 
   </section>
 
-  <!-- Footer -->
+
+  <!-- FOOTER -->
+
   <footer class="footer">
 
     <div class="footer-container">
 
-      <!-- NEXTEON LABS MINI INTERACTIVE CARD -->
+
+      <!-- INTERACTIVE NEXTEON MARK -->
+
       <div class="footer-col">
 
         <div
-          class="about-visual interactive-card footer-labs-card"
-          id="tiltCard"
+          class="footer-logo-zone"
+          id="footerLogoZone"
         >
 
-          <div class="labs-content">
+          <div
+            class="footer-logo-mark"
+            id="footerLogoMark"
+          >
 
-            <div class="labs-logo">
-              NEXTEON
-            </div>
-
-            <div class="labs-sub">
-              LABS
-            </div>
+            <div class="footer-logo-dot"></div>
 
           </div>
 
         </div>
 
-        <p>nxteon@gmail.com</p>
+
+        <p>
+          nxteon@gmail.com
+        </p>
 
       </div>
 
+
+      <!-- LOCATIONS -->
+
       <div class="footer-col">
 
-        <h4>LOCATIONS</h4>
+        <h4>
+          LOCATIONS
+        </h4>
 
-        <p>New York, NY</p>
-        <p>Los Angeles, CA</p>
+        <p>
+          New York, NY
+        </p>
+
+        <p>
+          Los Angeles, CA
+        </p>
 
       </div>
 
+
+      <!-- LEGAL -->
+
       <div class="footer-col">
 
-        <h4>LEGAL</h4>
+        <h4>
+          LEGAL
+        </h4>
 
         <a href="#">
           Accessibility Statement
@@ -1365,443 +2494,682 @@
 
     </div>
 
+
     <div class="footer-bottom">
-      <span>© 2025 by NEXTEON LLC.</span>
+
+      <span>
+        © 2025 by NEXTEON LLC.
+      </span>
+
     </div>
 
   </footer>
 
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
 
-      /* ============================
-         INITIAL SETUP
-      ============================ */
-
-      const revealElements =
-        document.querySelectorAll('.reveal');
-
-      const navbar =
-        document.querySelector('.navbar');
-
-      const tiltCard =
-        document.getElementById('tiltCard');
-
-      const labsContent =
-        tiltCard
-          ? tiltCard.querySelector('.labs-content')
-          : null;
-
-      const menuToggle =
-        document.querySelector('.menu-toggle');
-
-      const navLinks =
-        document.querySelector('.nav-links');
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => {
 
 
-      /* ============================
-         MOBILE MENU
-      ============================ */
+        /* =====================================
+           BASIC REFERENCES
+           ===================================== */
 
-      if (menuToggle && navbar) {
+        const revealElements =
+          document.querySelectorAll(
+            '.reveal'
+          );
 
-        menuToggle.setAttribute(
-          'role',
-          'button'
-        );
+        const navbar =
+          document.querySelector(
+            '.navbar'
+          );
 
-        menuToggle.setAttribute(
-          'tabindex',
-          '0'
-        );
+        const menuToggle =
+          document.querySelector(
+            '.menu-toggle'
+          );
 
-        menuToggle.setAttribute(
-          'aria-label',
-          'Toggle navigation'
-        );
+        const navLinks =
+          document.querySelector(
+            '.nav-links'
+          );
 
-        menuToggle.setAttribute(
-          'aria-expanded',
-          'false'
-        );
 
-        const toggleMenu = () => {
+        /* =====================================
+           MOBILE MENU
+           ===================================== */
 
-          const isOpen =
-            navbar.classList.toggle(
-              'mobile-open'
-            );
+        if (
+          menuToggle &&
+          navbar
+        ) {
+
+          menuToggle.setAttribute(
+            'role',
+            'button'
+          );
+
+          menuToggle.setAttribute(
+            'tabindex',
+            '0'
+          );
+
+          menuToggle.setAttribute(
+            'aria-label',
+            'Toggle navigation'
+          );
 
           menuToggle.setAttribute(
             'aria-expanded',
-            String(isOpen)
+            'false'
           );
 
-        };
 
-        menuToggle.addEventListener(
-          'click',
-          toggleMenu
-        );
+          const toggleMenu = () => {
 
-        menuToggle.addEventListener(
-          'keydown',
-          (e) => {
+            const isOpen =
+              navbar.classList.toggle(
+                'mobile-open'
+              );
 
-            if (
-              e.key === 'Enter' ||
-              e.key === ' '
-            ) {
+            menuToggle.setAttribute(
+              'aria-expanded',
+              String(isOpen)
+            );
 
-              e.preventDefault();
-              toggleMenu();
+          };
+
+
+          menuToggle.addEventListener(
+            'click',
+            toggleMenu
+          );
+
+
+          menuToggle.addEventListener(
+            'keydown',
+            (e) => {
+
+              if (
+                e.key === 'Enter' ||
+                e.key === ' '
+              ) {
+
+                e.preventDefault();
+
+                toggleMenu();
+
+              }
 
             }
+          );
 
-          }
-        );
 
-        if (navLinks) {
+          if (navLinks) {
 
-          navLinks
-            .querySelectorAll('a')
-            .forEach(a => {
+            navLinks
+              .querySelectorAll('a')
+              .forEach(
+                link => {
 
-              a.addEventListener(
-                'click',
-                () => {
+                  link.addEventListener(
+                    'click',
+                    () => {
 
-                  navbar.classList.remove(
-                    'mobile-open'
-                  );
+                      navbar.classList.remove(
+                        'mobile-open'
+                      );
 
-                  menuToggle.setAttribute(
-                    'aria-expanded',
-                    'false'
+                      menuToggle.setAttribute(
+                        'aria-expanded',
+                        'false'
+                      );
+
+                    }
                   );
 
                 }
               );
 
-            });
+          }
 
         }
 
-      }
+
+        /* =====================================
+           SCROLL REVEALS + NAVBAR
+           ===================================== */
+
+        const revealOnScroll = () => {
+
+          const windowHeight =
+            window.innerHeight;
+
+          const elementVisible =
+            150;
+
+          const scrollY =
+            window.scrollY;
 
 
-      /* ============================
-         SCROLL / REVEAL
-      ============================ */
+          revealElements.forEach(
+            reveal => {
 
-      const revealOnScroll = () => {
-
-        const windowHeight =
-          window.innerHeight;
-
-        const elementVisible =
-          150;
-
-        const scrollY =
-          window.scrollY;
+              const elementTop =
+                reveal
+                  .getBoundingClientRect()
+                  .top;
 
 
-        revealElements.forEach(
-          (reveal) => {
+              if (
+                elementTop <
+                windowHeight -
+                elementVisible
+              ) {
 
-            const elementTop =
-              reveal
-                .getBoundingClientRect()
-                .top;
+                reveal.classList.add(
+                  'active'
+                );
 
-            if (
-              elementTop <
-              windowHeight - elementVisible
-            ) {
-
-              reveal.classList.add(
-                'active'
-              );
+              }
 
             }
+          );
 
-          }
-        );
-
-
-        /* NAVBAR */
-
-        if (scrollY > 50) {
-
-          if (navbar) {
-            navbar.classList.add(
-              'scrolled'
-            );
-          }
-
-        } else {
-
-          if (navbar) {
-            navbar.classList.remove(
-              'scrolled'
-            );
-          }
-
-        }
-
-
-        /* LABS CARD SCROLL TILT */
-
-        if (
-          tiltCard &&
-          labsContent
-        ) {
 
           if (
-            !tiltCard.matches(':hover')
+            scrollY > 50
           ) {
 
-            const rect =
-              tiltCard
-                .getBoundingClientRect();
+            if (navbar) {
+              navbar.classList.add(
+                'scrolled'
+              );
+            }
 
-            const cardCenterY =
-              rect.top +
-              rect.height / 2;
+          } else {
 
-            const screenCenterY =
-              window.innerHeight / 2;
-
-            const distFromCenter =
-              cardCenterY -
-              screenCenterY;
-
-            if (
-              rect.top <
-              window.innerHeight &&
-              rect.bottom >
-              0
-            ) {
-
-              /*
-                Slightly reduced for the
-                smaller footer card so it
-                stays elegant.
-              */
-
-              const rotX =
-                (
-                  distFromCenter /
-                  window.innerHeight
-                ) * 45;
-
-              labsContent.style.transform =
-                `rotateX(${rotX}deg)`;
-
+            if (navbar) {
+              navbar.classList.remove(
+                'scrolled'
+              );
             }
 
           }
 
-        }
-
-      };
+        };
 
 
-      window.addEventListener(
-        'scroll',
-        revealOnScroll
-      );
-
-      revealOnScroll();
-
-
-      /* ============================
-         LUCIDE ICONS
-      ============================ */
-
-      try {
-
-        if (window.lucide) {
-          lucide.createIcons();
-        }
-
-      } catch (e) {
-
-        console.warn(
-          'Icons failed',
-          e
-        );
-
-      }
-
-
-      /* ============================
-         3D LABS CARD
-      ============================ */
-
-      if (
-        tiltCard &&
-        labsContent
-      ) {
-
-        tiltCard.addEventListener(
-          'mousemove',
-          (e) => {
-
-            const rect =
-              tiltCard
-                .getBoundingClientRect();
-
-            const x =
-              e.clientX -
-              rect.left;
-
-            const y =
-              e.clientY -
-              rect.top;
-
-            const centerX =
-              rect.width / 2;
-
-            const centerY =
-              rect.height / 2;
-
-
-            /*
-              Slightly lower tilt than
-              the original giant panel
-              because this card is much
-              smaller.
-            */
-
-            const rotateX =
-              (
-                (y - centerY) /
-                centerY
-              ) * -32;
-
-            const rotateY =
-              (
-                (x - centerX) /
-                centerX
-              ) * 32;
-
-
-            labsContent.style.transform =
-              `rotateX(${rotateX}deg)
-               rotateY(${rotateY}deg)`;
-
+        window.addEventListener(
+          'scroll',
+          revealOnScroll,
+          {
+            passive: true
           }
         );
 
 
-        tiltCard.addEventListener(
-          'mouseleave',
-          () => {
+        revealOnScroll();
 
-            labsContent.style.transform =
-              'rotateX(0deg) rotateY(0deg)';
+
+        /* =====================================
+           LUCIDE ICONS
+           ===================================== */
+
+        try {
+
+          if (window.lucide) {
+
+            lucide.createIcons();
 
           }
-        );
 
-      }
+        } catch (e) {
 
-
-      /* ============================
-         CUSTOM CURSOR
-      ============================ */
-
-      try {
-
-        const cursorDot =
-          document.querySelector(
-            '[data-cursor-dot]'
+          console.warn(
+            'Icons failed',
+            e
           );
 
-        const cursorOutline =
-          document.querySelector(
-            '[data-cursor-outline]'
+        }
+
+
+        /* =====================================
+           INTERACTIVE NEXTEON FOOTER MARK
+
+           Reacts before you actually hover it.
+           ===================================== */
+
+        const footerLogoZone =
+          document.getElementById(
+            'footerLogoZone'
           );
+
+        const footerLogoMark =
+          document.getElementById(
+            'footerLogoMark'
+          );
+
+        const footerLogoDot =
+          footerLogoMark
+            ? footerLogoMark.querySelector(
+                '.footer-logo-dot'
+              )
+            : null;
 
 
         if (
-          cursorDot &&
-          cursorOutline &&
+          footerLogoZone &&
+          footerLogoMark &&
+          footerLogoDot &&
           !('ontouchstart' in window)
         ) {
 
-          document.body.classList.add(
-            'custom-cursor-active'
-          );
+          let currentRotateX = 0;
+          let currentRotateY = 0;
+
+          let currentMoveX = 0;
+          let currentMoveY = 0;
+
+          let targetRotateX = 0;
+          let targetRotateY = 0;
+
+          let targetMoveX = 0;
+          let targetMoveY = 0;
+
+          let currentDotX = 0;
+          let currentDotY = 0;
+
+          let targetDotX = 0;
+          let targetDotY = 0;
+
+          let currentScale = 1;
+          let targetScale = 1;
+
+
+          /*
+            Larger than the visible logo itself.
+
+            This is what makes it respond when your
+            cursor is simply around that section.
+          */
+
+          const influenceRadius = 260;
 
 
           window.addEventListener(
             'mousemove',
-            function(e) {
+            (e) => {
 
-              const posX =
-                e.clientX;
-
-              const posY =
-                e.clientY;
+              const rect =
+                footerLogoMark
+                  .getBoundingClientRect();
 
 
-              cursorDot.style.left =
-                `${posX}px`;
+              const centerX =
+                rect.left +
+                rect.width / 2;
 
-              cursorDot.style.top =
-                `${posY}px`;
+              const centerY =
+                rect.top +
+                rect.height / 2;
 
 
-              cursorOutline.animate(
-                {
-                  left: `${posX}px`,
-                  top: `${posY}px`
-                },
-                {
-                  duration: 500,
-                  fill: 'forwards'
-                }
-              );
+              const deltaX =
+                e.clientX -
+                centerX;
 
+              const deltaY =
+                e.clientY -
+                centerY;
+
+
+              const distance =
+                Math.sqrt(
+                  deltaX * deltaX +
+                  deltaY * deltaY
+                );
+
+
+              if (
+                distance <
+                influenceRadius
+              ) {
+
+                /*
+                  Strength becomes stronger as
+                  cursor approaches.
+                */
+
+                const strength =
+                  1 -
+                  (
+                    distance /
+                    influenceRadius
+                  );
+
+
+                /*
+                  normalized cursor direction
+                */
+
+                const normalizedX =
+                  Math.max(
+                    -1,
+                    Math.min(
+                      1,
+                      deltaX /
+                      influenceRadius
+                    )
+                  );
+
+                const normalizedY =
+                  Math.max(
+                    -1,
+                    Math.min(
+                      1,
+                      deltaY /
+                      influenceRadius
+                    )
+                  );
+
+
+                /*
+                  Main logo tilt
+                */
+
+                targetRotateY =
+                  normalizedX *
+                  26 *
+                  strength;
+
+                targetRotateX =
+                  normalizedY *
+                  -26 *
+                  strength;
+
+
+                /*
+                  The whole mark subtly shifts
+                  toward the cursor.
+                */
+
+                targetMoveX =
+                  normalizedX *
+                  8 *
+                  strength;
+
+                targetMoveY =
+                  normalizedY *
+                  8 *
+                  strength;
+
+
+                /*
+                  Center square moves slightly
+                  more than the brackets.
+                */
+
+                targetDotX =
+                  normalizedX *
+                  8 *
+                  strength;
+
+                targetDotY =
+                  normalizedY *
+                  8 *
+                  strength;
+
+
+                /*
+                  Slight expansion as mouse
+                  comes closer.
+                */
+
+                targetScale =
+                  1 +
+                  (
+                    strength *
+                    0.055
+                  );
+
+              } else {
+
+                targetRotateX = 0;
+                targetRotateY = 0;
+
+                targetMoveX = 0;
+                targetMoveY = 0;
+
+                targetDotX = 0;
+                targetDotY = 0;
+
+                targetScale = 1;
+
+              }
+
+            },
+            {
+              passive: true
             }
           );
 
 
-          document
-            .querySelectorAll(
-              'a, button, .interactive-card'
-            )
-            .forEach(link => {
+          /*
+            Smooth continuous movement.
+          */
 
-              link.addEventListener(
-                'mouseenter',
-                () => {
+          const animateFooterLogo = () => {
 
-                  cursorOutline.style.transform =
-                    'translate(-50%, -50%) scale(1.5)';
+            const ease =
+              0.09;
 
-                }
-              );
 
-              link.addEventListener(
-                'mouseleave',
-                () => {
+            currentRotateX +=
+              (
+                targetRotateX -
+                currentRotateX
+              ) *
+              ease;
 
-                  cursorOutline.style.transform =
-                    'translate(-50%, -50%) scale(1)';
+            currentRotateY +=
+              (
+                targetRotateY -
+                currentRotateY
+              ) *
+              ease;
 
-                }
-              );
 
-            });
+            currentMoveX +=
+              (
+                targetMoveX -
+                currentMoveX
+              ) *
+              ease;
+
+            currentMoveY +=
+              (
+                targetMoveY -
+                currentMoveY
+              ) *
+              ease;
+
+
+            currentDotX +=
+              (
+                targetDotX -
+                currentDotX
+              ) *
+              0.11;
+
+            currentDotY +=
+              (
+                targetDotY -
+                currentDotY
+              ) *
+              0.11;
+
+
+            currentScale +=
+              (
+                targetScale -
+                currentScale
+              ) *
+              0.09;
+
+
+            footerLogoMark.style.transform =
+              `
+                translate3d(
+                  ${currentMoveX}px,
+                  ${currentMoveY}px,
+                  0
+                )
+                rotateX(
+                  ${currentRotateX}deg
+                )
+                rotateY(
+                  ${currentRotateY}deg
+                )
+                scale(
+                  ${currentScale}
+                )
+              `;
+
+
+            footerLogoDot.style.transform =
+              `
+                translate(
+                  calc(-50% + ${currentDotX}px),
+                  calc(-50% + ${currentDotY}px)
+                )
+                translateZ(34px)
+              `;
+
+
+            requestAnimationFrame(
+              animateFooterLogo
+            );
+
+          };
+
+
+          animateFooterLogo();
 
         }
 
-      } catch (e) {}
 
-    });
+        /* =====================================
+           CUSTOM CURSOR
+           ===================================== */
+
+        try {
+
+          const cursorDot =
+            document.querySelector(
+              '[data-cursor-dot]'
+            );
+
+          const cursorOutline =
+            document.querySelector(
+              '[data-cursor-outline]'
+            );
+
+
+          if (
+            cursorDot &&
+            cursorOutline &&
+            !('ontouchstart' in window)
+          ) {
+
+            document.body.classList.add(
+              'custom-cursor-active'
+            );
+
+
+            window.addEventListener(
+              'mousemove',
+              function(e) {
+
+                const posX =
+                  e.clientX;
+
+                const posY =
+                  e.clientY;
+
+
+                cursorDot.style.left =
+                  `${posX}px`;
+
+                cursorDot.style.top =
+                  `${posY}px`;
+
+
+                cursorOutline.animate(
+                  {
+
+                    left:
+                      `${posX}px`,
+
+                    top:
+                      `${posY}px`
+
+                  },
+
+                  {
+
+                    duration: 500,
+
+                    fill: 'forwards'
+
+                  }
+                );
+
+              }
+            );
+
+
+            document
+              .querySelectorAll(
+                'a, button, .footer-logo-zone'
+              )
+              .forEach(
+                element => {
+
+                  element.addEventListener(
+                    'mouseenter',
+                    () => {
+
+                      cursorOutline.style.transform =
+                        'translate(-50%, -50%) scale(1.5)';
+
+                    }
+                  );
+
+
+                  element.addEventListener(
+                    'mouseleave',
+                    () => {
+
+                      cursorOutline.style.transform =
+                        'translate(-50%, -50%) scale(1)';
+
+                    }
+                  );
+
+                }
+              );
+
+          }
+
+        } catch (e) {}
+
+      }
+    );
+
   </script>
 
 </body>
