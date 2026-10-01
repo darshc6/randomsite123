@@ -121,7 +121,7 @@
     .pill-light:hover { background: var(--yellow); transform: translateY(-3px); }
     .contact-card .pill { min-height: 66px; padding: 19px 30px; font-size: 1.2rem; gap: 16px; }
     .contact-card .pill svg { width: 22px; height: 22px; }
-    .contact-email { font-size: .84rem; margin-top: 25px; color: rgba(255,255,255,.72); }
+    .contact-email { font-size: 1rem; margin-top: 26px; color: rgba(255,255,255,.82); }
     footer { border-top: 1px solid var(--line); background: rgba(255,255,255,.75); }
     .footer-inner { min-height: 145px; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
     .footer-links { display: flex; gap: 25px; flex-wrap: wrap; }
@@ -166,6 +166,7 @@
       .contact-section { padding: 65px 0 75px; }
       .contact-card { min-height: 510px; border-radius: 23px; }
       .contact-card::after { font-size: 18rem; top: 21%; right: -19%; opacity: .3; }
+      .contact-email { font-size: .9rem; }
       .footer-inner { padding: 30px 0; align-items: flex-start; flex-direction: column; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -255,7 +256,7 @@
       </div>
     </div></section>
 
-    <section class="contact-section shell" aria-labelledby="contact-title"><div class="contact-card reveal" id="start">
+    <section class="contact-section shell" aria-labelledby="contact-title"><div class="contact-card" id="start">
       <div class="eyebrow mono">03 / YOUR MOVE</div>
       <h2 id="contact-title">What are we<br>building?</h2>
       <p>Send us the rough idea, the big vision, or just the problem you want to solve. We'll take it from there.</p>
