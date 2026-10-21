@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>Slate AI by NEXTEON — A little space for big ideas</title>
+  <meta name="description" content="Meet Slate AI by NEXTEON. A private workspace for Mac that brings notes, documents, meetings, and local AI together. Public beta is here, with Pro free for everyone during the beta.">
+  <link rel="canonical" href="https://nexteonlabs.com/slate-ai/">
+  <meta property="og:title" content="Slate AI by NEXTEON">
+  <meta property="og:description" content="A little space for big ideas. Your private AI workspace for Mac. Now in public beta, with Pro free for everyone during the beta.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nexteonlabs.com/slate-ai/">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#141723; --muted:#626775; --blue:#0047ff; --paper:#f6f7fb; --line:#dfe3ed; --ease:cubic-bezier(.16,1,.3,1); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:100px; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Outfit,sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; }
+    img { max-width:100%; height:auto; display:block; }
+    svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+    ::selection { background:#cbd8ff; color:#12172e; }
+    :focus-visible { outline:3px solid #477aff; outline-offset:5px; }
+    .shell { width:min(1280px,calc(100% - 80px)); margin-inline:auto; }
+    .mono { font-family:'Space Mono',monospace; font-size:.66rem; letter-spacing:.065em; text-transform:uppercase; }
+    .site-header { position:sticky; top:0; z-index:20; background:rgba(246,247,251,.88); border-bottom:1px solid var(--line); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); }
+    .nav { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .logo { font-size:1.45rem; font-weight:800; letter-spacing:-.075em; white-space:nowrap; }
+    .logo sup { font-size:.42rem; font-family:'Space Mono',monospace; letter-spacing:0; margin-left:3px; vertical-align:super; }
+    .nav-links { display:flex; gap:32px; align-items:center; font-size:.9rem; }
+    .nav-links a:hover { color:var(--blue); }
+    .nav-links .active { color:var(--blue); }
+    .nav-download { padding:11px 17px; border:1px solid var(--line); border-radius:100px; background:#fff; }
+    .skip { position:absolute; left:20px; top:-80px; background:white; padding:15px; z-index:100; }
+    .skip:focus { top:10px; }
+    .hero { position:relative; overflow:hidden; padding:38px 0 52px; background:radial-gradient(ellipse at 88% 64%,#d9e3ff 0,transparent 50%); }
+    .product-line { display:flex; justify-content:space-between; align-items:center; gap:20px; padding-bottom:34px; }
+    .product-id { display:flex; align-items:center; gap:11px; }
+    .app-icon { width:44px; height:44px; border-radius:12px; box-shadow:0 5px 12px #182c5420; }
+    .product-id strong { font-size:1.12rem; font-weight:600; letter-spacing:-.03em; }
+    .product-id small { display:block; font-size:.57rem; color:var(--muted); margin-top:3px; }
+    .beta-label { display:inline-flex; align-items:center; gap:9px; color:#35496b; }
+    .status-dot { width:6px; height:6px; border-radius:50%; background:#216f51; box-shadow:0 0 0 4px #216f5110; }
+    .hero-grid { display:grid; grid-template-columns:1.02fr 1fr; gap:38px; align-items:center; }
+    .hero h1 { font-size:clamp(3.7rem,6.5vw,6.4rem); letter-spacing:-.075em; line-height:.98; font-weight:500; margin:0 0 25px; }
+    .hero h1 em { color:var(--blue); font-style:normal; }
+    .hero-copy { max-width:460px; font-size:1.12rem; line-height:1.62; color:var(--muted); margin:0; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; align-items:center; }
+    .button { display:inline-flex; gap:14px; align-items:center; justify-content:center; padding:17px 23px; border-radius:100px; background:var(--ink); color:white; font-size:.97rem; font-weight:500; border:1px solid transparent; transition:transform .3s var(--ease),box-shadow .3s,background .3s; }
+    .button:hover { transform:translateY(-3px); background:var(--blue); box-shadow:0 12px 24px #0047ff20; }
+    .button svg { width:18px; height:18px; }
+    .button.secondary { background:transparent; border-color:#cbd1de; color:var(--ink); }
+    .button.secondary:hover { background:white; }
+    .availability { color:var(--muted); font-size:.76rem; line-height:1.5; margin:16px 0 0; }
+    .hero-visual { position:relative; padding:44px 0 30px; min-width:0; }
+    .hero-visual::before { content:''; position:absolute; inset:0 3%; border-radius:50%; border:1px solid #bacbf5; transform:rotate(-25deg); }
+    .hero-visual::after { content:''; position:absolute; inset:9% 11%; border-radius:50%; border:1px dashed #bacbf5; transform:rotate(25deg); }
+    .glass-window { position:relative; z-index:1; border:1px solid #fff; border-radius:18px; padding:8px; background:#ffffff8c; box-shadow:0 28px 65px #253b6e25,0 2px 5px #243b6e10; transform:rotate(-3deg); animation:float 8s ease-in-out infinite; }
+    .glass-window img { width:100%; border-radius:12px; aspect-ratio:1.6; object-fit:cover; }
+    .window-caption { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 8px 5px; color:#5a6680; font-size:.56rem; }
+    .thought { position:relative; z-index:2; width:max-content; max-width:95%; display:flex; align-items:center; gap:12px; padding:16px 19px; background:#fff; border:1px solid #dfe5f3; border-radius:14px; box-shadow:0 16px 40px #24428312; margin:-3px 0 0 42px; transform:rotate(3deg); font-size:.85rem; }
+    .thought svg { color:var(--blue); }
+    .thought small { display:block; margin-top:4px; color:var(--muted); font-size:.71rem; }
+    .hero-foot { display:flex; align-items:center; justify-content:space-between; border-top:1px solid #d4dbea; margin-top:45px; padding-top:20px; color:var(--muted); gap:20px; }
+    .hero-foot span { display:flex; align-items:center; gap:9px; }
+    .hero-foot svg { width:15px; height:15px; }
+    .section { padding-block:90px; }
+    .kicker { color:var(--blue); margin:0 0 19px; }
+    h2 { font-size:clamp(2.5rem,4.4vw,4.2rem); font-weight:500; line-height:1.05; letter-spacing:-.065em; margin:0; }
+    .section-intro { display:grid; grid-template-columns:1.1fr .9fr; gap:65px; align-items:end; margin-bottom:36px; }
+    .section-intro p:not(.kicker) { color:var(--muted); font-size:1.08rem; line-height:1.65; margin:0; max-width:470px; }
+    .workspace { border:1px solid #dce2ef; border-radius:26px; padding:12px; background:#e9edf6; }
+    .view-controls { display:flex; gap:5px; padding:7px 8px 17px; flex-wrap:wrap; }
+    .view-button { border:1px solid transparent; background:transparent; color:#566078; border-radius:100px; padding:11px 19px; cursor:pointer; font-size:.9rem; transition:background .2s,color .2s; }
+    .view-button[aria-pressed="true"] { background:#fff; color:var(--ink); border-color:#dce2ed; box-shadow:0 3px 9px #1e365a09; }
+    .view-button:hover { color:var(--blue); }
+    .product-screen { border-radius:16px; overflow:hidden; background:#e0e6f1; }
+    .product-screen img { width:100%; aspect-ratio:1.6; object-fit:cover; }
+    .screen-caption { display:flex; gap:16px; align-items:center; justify-content:space-between; padding:18px 12px 6px; color:#556074; font-size:.86rem; line-height:1.5; }
+    .screen-caption .mono { flex-shrink:0; font-size:.56rem; }
+    .features { display:grid; grid-template-columns:repeat(3,1fr); gap:0 38px; padding-top:35px; }
+    .feature { padding:27px 0; border-bottom:1px solid var(--line); }
+    .feature-icon { color:var(--blue); margin-bottom:17px; }
+    .feature h3 { font-size:1.3rem; font-weight:500; letter-spacing:-.035em; margin:0 0 10px; }
+    .feature p { color:var(--muted); font-size:.95rem; line-height:1.65; margin:0; }
+    .privacy { position:relative; overflow:hidden; background:#101626; color:white; padding:75px 0; }
+    .privacy::before { content:''; position:absolute; width:640px; height:640px; border-radius:50%; top:-290px; right:-100px; background:radial-gradient(circle,#2259c85c,transparent 65%); }
+    .privacy-grid { position:relative; display:grid; grid-template-columns:1.15fr .85fr; gap:90px; align-items:center; }
+    .privacy .kicker { color:#98b6ff; }
+    .privacy h2 { max-width:600px; }
+    .privacy-copy { color:#b5bfd3; font-size:1.08rem; line-height:1.7; max-width:510px; margin:25px 0 0; }
+    .privacy-note { color:#95a2bb; font-size:.78rem; line-height:1.6; margin-top:22px; max-width:480px; }
+    .local-diagram { position:relative; aspect-ratio:1.15; max-width:390px; width:100%; margin:auto; display:grid; place-items:center; }
+    .local-ring { position:absolute; width:86%; aspect-ratio:1; border:1px solid #ffffff17; border-radius:50%; }
+    .local-ring.two { width:62%; border-style:dashed; }
+    .local-core { display:grid; justify-items:center; gap:13px; background:linear-gradient(145deg,#263754,#151e32); border:1px solid #7899d73d; padding:32px; border-radius:28px; box-shadow:0 0 80px #2c5bbc24; }
+    .local-core svg { width:48px; height:48px; color:#aec6ff; }
+    .orbit-label { position:absolute; border:1px solid #ffffff20; border-radius:100px; background:#172137; padding:10px 15px; color:#c0cde5; font-size:.65rem; }
+    .orbit-label.one { top:8%; left:4%; }
+    .orbit-label.two { top:19%; right:-2%; }
+    .orbit-label.three { bottom:9%; left:10%; }
+    .orbit-label.four { bottom:19%; right:-2%; }
+    .manifesto { padding-block:90px; border-bottom:1px solid var(--line); display:grid; grid-template-columns:.55fr 1.45fr; gap:70px; }
+    .manifesto .kicker { margin-top:10px; }
+    .manifesto h2 { font-size:clamp(2.2rem,3.7vw,3.5rem); }
+    .manifesto h2 span { color:var(--blue); }
+    .manifesto p:not(.kicker) { max-width:680px; color:var(--muted); font-size:1.1rem; line-height:1.7; margin:24px 0 0; }
+    .release-heading { display:flex; justify-content:space-between; align-items:end; gap:25px; margin-bottom:40px; }
+    .release-heading>a { display:flex; align-items:center; gap:9px; font-size:.86rem; color:var(--blue); padding-bottom:4px; }
+    .release { display:grid; grid-template-columns:.55fr 1.45fr; gap:70px; }
+    .release-date { color:var(--muted); padding-top:24px; border-top:1px solid var(--line); }
+    .release-date time { display:block; margin-bottom:12px; font-size:.8rem; }
+    .release-body { border-top:2px solid var(--blue); padding-top:24px; }
+    .release-badges { display:flex; flex-wrap:wrap; gap:8px; }
+    .badge { border:1px solid #d1dbf5; background:#e9efff; color:#254b9d; border-radius:100px; padding:7px 11px; font-size:.57rem; }
+    .badge.green { background:#e6f3ed; border-color:#c9e4d5; color:#286243; }
+    .release h3 { font-weight:500; font-size:2.1rem; letter-spacing:-.05em; margin:22px 0 13px; }
+    .release-body>p { color:var(--muted); font-size:1.03rem; line-height:1.65; max-width:650px; }
+    .release ul { padding:0; list-style:none; margin:25px 0; }
+    .release li { display:flex; gap:12px; padding:9px 0; color:#4e586b; font-size:.94rem; line-height:1.5; }
+    .release li::before { content:'+'; color:var(--blue); }
+    .beta-note { padding:17px 20px; border-left:2px solid #c4d2f6; background:#edf1f9; font-size:.9rem!important; }
+    .beta-note a { color:var(--blue); text-decoration:underline; text-underline-offset:3px; }
+    .closing { text-align:center; padding:72px 25px; margin-bottom:50px; border:1px solid #d6e0f7; border-radius:28px; background:radial-gradient(ellipse at 50% 130%,#bccfff,transparent 70%),#edf2fd; }
+    .closing .app-icon { width:68px; height:68px; border-radius:18px; margin:0 auto 24px; }
+    .closing h2 { font-size:clamp(2.6rem,4.6vw,4.4rem); }
+    .closing p { color:var(--muted); font-size:1.05rem; line-height:1.6; margin:18px auto 24px; max-width:490px; }
+    .closing .availability { font-size:.75rem; margin-bottom:0; }
+    footer { border-top:1px solid var(--line); }
+    .footer-inner { padding:30px 0; display:flex; align-items:center; justify-content:space-between; gap:25px; }
+    .footer-meta { color:var(--muted); font-size:.64rem; margin:10px 0 0; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:24px; font-size:.83rem; }
+    .footer-links a:hover { color:var(--blue); }
+    @keyframes float { 50% { transform:translateY(-8px) rotate(-2deg); } }
+    @media (max-width:1000px) {
+      .shell { width:calc(100% - 48px); }
+      .hero-grid { gap:25px; }
+      .hero h1 { font-size:clamp(3.6rem,7vw,5rem); }
+      .nav-links { gap:20px; }
+      .privacy-grid { gap:35px; }
+      .section-intro { gap:35px; }
+      .manifesto,.release { gap:40px; grid-template-columns:.45fr 1fr; }
+    }
+    @media (max-width:720px) {
+      html { scroll-padding-top:85px; }
+      .shell { width:calc(100% - 36px); }
+      .nav { min-height:66px; gap:12px; }
+      .logo { font-size:1.25rem; }
+      .nav-links { gap:16px; font-size:.8rem; }
+      .nav-links .desktop-link { display:none; }
+      .nav-download { padding:9px 12px; }
+      .hero { padding:23px 0 28px; }
+      .product-line { padding-bottom:29px; }
+      .beta-label { font-size:.52rem; gap:7px; }
+      .product-id strong { font-size:1rem; }
+      .hero-grid { grid-template-columns:1fr; gap:12px; }
+      .hero h1 { font-size:clamp(3.5rem,13.5vw,5.6rem); max-width:550px; margin-bottom:22px; }
+      .hero-copy { font-size:1.06rem; max-width:540px; }
+      .actions { margin-top:23px; gap:10px; }
+      .actions .button { width:100%; }
+      .button { font-size:.9rem; padding:15px 18px; gap:9px; }
+      .hero-visual { width:min(100%,530px); margin:auto; padding:34px 8px 12px; }
+      .thought { margin-left:20px; padding:13px 16px; }
+      .hero-foot { margin-top:25px; gap:16px; flex-wrap:wrap; justify-content:flex-start; }
+      .hero-foot .mono { font-size:.53rem; }
+      .section { padding-block:65px; }
+      .section-intro { grid-template-columns:1fr; gap:22px; margin-bottom:28px; }
+      .section-intro p:not(.kicker) { font-size:1rem; }
+      .workspace { padding:7px; border-radius:18px; }
+      .view-controls { padding:5px 0 12px; gap:1px; }
+      .view-button { font-size:.77rem; padding:10px 13px; }
+      .product-screen { border-radius:11px; }
+      .screen-caption { font-size:.79rem; padding:12px 7px 6px; }
+      .screen-caption .mono { display:none; }
+      .features { grid-template-columns:repeat(2,1fr); gap:0 24px; padding-top:18px; }
+      .feature p { font-size:.9rem; }
+      .feature h3 { font-size:1.19rem; }
+      .privacy { padding:60px 0 35px; }
+      .privacy-grid { grid-template-columns:1fr; gap:25px; }
+      .local-diagram { max-width:320px; }
+      .manifesto { padding-block:60px; grid-template-columns:1fr; gap:15px; }
+      .manifesto p:not(.kicker) { font-size:1rem; }
+      .release-heading { align-items:start; flex-direction:column; gap:22px; margin-bottom:28px; }
+      .release { grid-template-columns:1fr; gap:24px; }
+      .release-date { padding-top:18px; display:flex; align-items:center; justify-content:space-between; }
+      .release-date time { margin:0; }
+      .release h3 { font-size:1.8rem; }
+      .closing { padding:50px 20px; border-radius:22px; margin-bottom:30px; }
+      .footer-inner { align-items:start; flex-direction:column; }
+    }
+    @media (max-width:370px) { .nav-links { gap:10px; } .features { grid-template-columns:1fr; } .beta-label { letter-spacing:0; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none!important; transition:none!important; } }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 19 19 5M5 5h14v14"/></symbol>
+    <symbol id="down" viewBox="0 0 24 24"><path d="M12 4v16m-7-7 7 7 7-7"/></symbol>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/></symbol>
+    <symbol id="folder" viewBox="0 0 24 24"><path d="M3 7V5h6l3 3h9v12H3Z"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/></symbol>
+    <symbol id="note" viewBox="0 0 24 24"><path d="M14 3H4v18h16V9m-7-1 6-6 3 3-6 6-4 1Z"/><path d="M8 16h8"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="m3 6 2 2 4-4m3 2h9M3 13l2 2 4-4m3 2h9M5 20h16"/></symbol>
+    <symbol id="mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2m-7 9v3m-4 0h8"/></symbol>
+    <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></symbol>
+    <symbol id="mac" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8m-4-5v5"/></symbol>
+  </svg>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="logo" href="/" aria-label="NEXTEON home">NEXTEON<sup>TM</sup></a>
+      <div class="nav-links"><a class="desktop-link" href="/#about">About</a><a class="active" href="/products/">Products</a><a class="desktop-link" href="/start-project/">Work with us</a><a class="nav-download" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12">Get Slate ↗</a></div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell">
+        <div class="product-line">
+          <div class="product-id"><img class="app-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f1/3d/1c/f13d1c2a-2c49-1edb-9226-3ddcd2bf80bc/AppIcon-0-0-85-220-0-5-0-2x.png/512x512bb.png" width="44" height="44" alt="Slate AI app icon"><div><strong>Slate AI</strong><small class="mono">by NEXTEON</small></div></div>
+          <a class="beta-label mono" href="#releases"><span class="status-dot" aria-hidden="true"></span>Public beta is here ↗</a>
+        </div>
+        <div class="hero-grid">
+          <div>
+            <h1 id="hero-title">A little space.<br>For your<br><em>big ideas.</em></h1>
+            <p class="hero-copy">Your thoughts move fast. Give them a place to land. Slate brings your notes, projects, and meetings together in a private workspace, with AI that runs right on your Mac.</p>
+            <div class="actions"><a class="button" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12">Download for Mac <svg aria-hidden="true"><use href="#arrow"/></svg></a><a class="button secondary" href="#inside">Meet your workspace <svg aria-hidden="true"><use href="#down"/></svg></a></div>
+            <p class="availability">Public beta · Pro is free for everyone during the beta<br>Requires macOS 14.0 or later.</p>
+          </div>
+          <div class="hero-visual">
+            <div class="glass-window"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dd/64/96/dd64964a-1673-0381-4419-8216ce1ce1ee/Web_1920__U2013_2.png/1600x1000bb.jpg" width="800" height="500" fetchpriority="high" alt="Slate AI workspace showing project search and contextual answers"><div class="window-caption mono"><span>A clearer view of your thinking</span><svg aria-hidden="true"><use href="#spark"/></svg></div></div>
+            <div class="thought"><svg aria-hidden="true"><use href="#lock"/></svg><div>Your ideas. Your Mac.<small>Powered by private, on-device AI.</small></div></div>
+          </div>
+        </div>
+        <div class="hero-foot"><span class="mono"><svg aria-hidden="true"><use href="#mac"/></svg>Made for Mac</span><span class="mono"><svg aria-hidden="true"><use href="#lock"/></svg>Local AI, by design</span><span class="mono">An ambitious project by NEXTEON ↗</span></div>
+      </div>
+    </section>
+
+    <section class="section shell" id="inside" aria-labelledby="inside-title">
+      <div class="section-intro"><div><p class="kicker mono">01 / Meet your workspace</p><h2 id="inside-title">Everything on your mind.<br>Finally, in one place.</h2></div><p>The passing thought. The project in progress. The conversation worth remembering. Bring it all into Slate, then let local AI help you find the connections.</p></div>
+      <div class="workspace">
+        <div class="view-controls" role="group" aria-label="Explore Slate screenshots"><button class="view-button" aria-pressed="true" data-view="0">Your workspace</button><button class="view-button" aria-pressed="false" data-view="1">Ask your project</button><button class="view-button" aria-pressed="false" data-view="2">Think with Slate Assist</button></div>
+        <div class="product-screen"><img id="workspace-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/88/4a/e8/884ae826-5131-5572-fa89-efa8140e5873/Web_1920__U2013_1.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI in dark mode with workspaces, project notes, tasks, and quick capture"></div>
+        <div class="screen-caption"><span id="workspace-caption" aria-live="polite">A home for your projects, notes, and everything in between.</span><span class="mono">Inside Slate / macOS</span></div>
+      </div>
+      <div class="features">
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#folder"/></svg><h3>Make room for everything.</h3><p>Create separate workspaces and projects for different parts of your life. Keep documents, notes, links, and recordings together.</p></article>
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#note"/></svg><h3>Catch the passing thought.</h3><p>Type it or say it. Quick Capture turns a fleeting idea into a note, then helps title and sort it so you can keep moving.</p></article>
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#search"/></svg><h3>Ask. Find. Connect.</h3><p>Search across your project with AI. Rediscover relevant information, explore a question, or use what you know to start something new.</p></article>
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#spark"/></svg><h3>A little help, in context.</h3><p>Use Slate Assist inside a document to brainstorm, clarify your thinking, and draw on the contexts you choose.</p></article>
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#mic"/></svg><h3>Stay in the conversation.</h3><p>Record a meeting without an extra bot joining. Get a local AI summary, pull out action items, and ask questions about what was discussed.</p></article>
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#check"/></svg><h3>Turn talk into next steps.</h3><p>Find the tasks tucked inside a conversation. Slate brings them into a checklist you can work through, one small step at a time.</p></article>
+      </div>
+    </section>
+
+    <section class="privacy" aria-labelledby="privacy-title"><div class="shell privacy-grid">
+      <div><p class="kicker mono">02 / Your mind. Your space.</p><h2 id="privacy-title">Big possibilities.<br>A smaller footprint<br>on your privacy.</h2><p class="privacy-copy">Your workspace is personal. Slate’s AI runs on your device, keeping the processing of your notes, documents, and recordings on your Mac. Your ideas get room to grow, with you in control.</p><p class="privacy-note">Choose whether to sync. Optional iCloud sync stores your Slate data in iCloud; AI processing stays on your device.</p></div>
+      <div class="local-diagram" role="img" aria-label="Notes, documents, ideas, and meetings stay around your Mac, with local AI at the center"><div class="local-ring"></div><div class="local-ring two"></div><div class="local-core"><svg aria-hidden="true"><use href="#mac"/></svg><span class="mono">On your Mac</span></div><span class="orbit-label one mono">Notes</span><span class="orbit-label two mono">Documents</span><span class="orbit-label three mono">Ideas</span><span class="orbit-label four mono">Meetings</span></div>
+    </div></section>
+
+    <section class="manifesto shell" aria-labelledby="mission-title"><p class="kicker mono">03 / Why we're building Slate</p><div><h2 id="mission-title">An ambitious idea.<br>A simpler everyday.<br><span>More space to do your thing.</span></h2><p>We’re building Slate around a simple belief: keeping up with your ideas should feel easier. Less time searching for that note. Less effort turning a conversation into a plan. More room for the work you care about.</p><p>It’s an ambitious project, and this public beta is an early step. We’re shaping a workspace that grows with the way people actually think, create, and get things done. Come help us make it better.</p></div></section>
+
+    <section class="section shell" id="releases" aria-labelledby="releases-title">
+      <div class="release-heading"><div><p class="kicker mono">04 / The release log</p><h2 id="releases-title">A work in progress.<br>In the best way.</h2></div><a href="mailto:nxteon@gmail.com?subject=Slate%20AI%20beta%20feedback">Help shape what comes next <svg aria-hidden="true"><use href="#arrow"/></svg></a></div>
+      <article class="release"><div class="release-date"><time class="mono" datetime="2026-10-19">October 19, 2026</time><span class="mono">Release 001 / Public beta</span></div><div class="release-body"><div class="release-badges"><span class="badge mono">Early release</span><span class="badge green mono">Pro free during beta</span></div><h3>Slate is out in the world.</h3><p>Our public beta is here. Slate AI is now open for everyone to try on Mac, with <strong>Pro free for everyone during the public beta</strong>. Bring your real projects, your scattered notes, and your next big idea.</p><ul><li>Workspaces for your projects, notes, documents, links, and recordings.</li><li>Quick Capture by text or voice, with help organizing your notes.</li><li>Local AI search and Slate Assist for working with your context.</li><li>Meeting recordings, summaries, and actionable to-dos.</li></ul><p class="beta-note">This is an early release, and we’re still refining the experience. Found a rough edge or have an idea? <a href="mailto:nxteon@gmail.com?subject=Slate%20AI%20beta%20feedback">Tell us about it.</a> Future feature releases will be logged here.</p></div></article>
+    </section>
+
+    <section class="closing shell" aria-labelledby="download-title"><img class="app-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f1/3d/1c/f13d1c2a-2c49-1edb-9226-3ddcd2bf80bc/AppIcon-0-0-85-220-0-5-0-2x.png/512x512bb.png" width="68" height="68" loading="lazy" alt=""><h2 id="download-title">Give your next idea<br>a clean Slate.</h2><p>A private workspace for everything you’re working on.<br>And everything you haven’t thought of yet.</p><a class="button" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12">Get Slate AI for Mac <svg aria-hidden="true"><use href="#arrow"/></svg></a><p class="availability">Public beta · Pro free for everyone during the beta<br>macOS 14.0 or later</p></section>
+  </main>
+  <footer><div class="footer-inner shell"><div><a class="logo" href="/">NEXTEON<sup>TM</sup></a><p class="footer-meta mono">Slate AI by NEXTEON · © 2026 NEXTEON LLC</p></div><div class="footer-links"><a href="/products/">All products</a><a href="/start-project/">Work with us</a><a href="https://www.notion.so/Privacy-Policy-for-Slate-AI-36719ae31dc58067a9b4d2904741a2fc">Privacy</a><a href="mailto:nxteon@gmail.com?subject=Slate%20AI">Get in touch ↗</a></div></div></footer>
+  <script>
+    const views = [
+      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/88/4a/e8/884ae826-5131-5572-fa89-efa8140e5873/Web_1920__U2013_1.png/1600x1000bb.jpg', alt: 'Slate AI in dark mode with workspaces, project notes, tasks, and quick capture', caption: 'A home for your projects, notes, and everything in between.' },
+      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dd/64/96/dd64964a-1673-0381-4419-8216ce1ce1ee/Web_1920__U2013_2.png/1600x1000bb.jpg', alt: 'Slate AI answering a question using the context of a project', caption: 'Ask a question. Connect the dots across your project.' },
+      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a7/bb/ec/a7bbec4b-9ba8-24df-62c1-076108e35b5b/Web_1920__U2013_5.png/1600x1000bb.jpg', alt: 'Slate Assist beside a note, with brainstorming and action items', caption: 'Brainstorm, clarify, and find your next step with Slate Assist.' }
+    ];
+    const image = document.getElementById('workspace-image');
+    const caption = document.getElementById('workspace-caption');
+    const controls = document.querySelectorAll('[data-view]');
+    controls.forEach(button => button.addEventListener('click', () => {
+      const view = views[Number(button.dataset.view)];
+      image.src = view.src;
+      image.alt = view.alt;
+      caption.textContent = view.caption;
+      controls.forEach(control => control.setAttribute('aria-pressed', String(control === button)));
+    }));
+  </script>
+</body>
+</html>
