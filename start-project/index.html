@@ -175,23 +175,23 @@
       .reveal { opacity: 1; transform: none; }
     }
   </style>
+  <link rel="stylesheet" href="/site-header.css">
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
   <div class="grid" aria-hidden="true"></div>
 
-  <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="logo" href="/" aria-label="NEXTEON home">NEXTEON<sup>TM</sup></a>
-      <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><i data-lucide="menu"></i></button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="/#about">About</a></li>
-        <li><a href="/products/">Products</a></li>
-        <li><a href="/start-project/" aria-current="page">Work with us</a></li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <header class="nex-site-header">
+  <nav class="nex-header" aria-label="Main navigation">
+    <a class="nex-logo" href="/" aria-label="NEXTEON home">NEXTEON<sup>TM</sup></a>
+    <div class="nex-links">
+        <a class="nex-desktop-link" href="/#about">About</a>
+        <a href="/products/">Products</a>
+        <a class="nex-desktop-link" aria-current="page" href="/start-project/">Work with us</a>
+        <a class="nex-download" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12">Get Slate ↗</a>
+    </div>
+  </nav>
+</header>
 
   <main>
     <section class="hero shell" aria-labelledby="hero-title">
@@ -270,21 +270,6 @@
 
   <footer><div class="footer-inner shell"><a class="logo" href="/" aria-label="NEXTEON home">NEXTEON<sup>TM</sup></a><div class="footer-links"><a href="/">Home</a><a href="/products/">Products</a><a href="/contact/">Contact</a></div><div class="copyright mono">© NEXTEON LLC</div></div></footer>
   <script>
-    const menuButton = document.querySelector('.menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    menuButton.addEventListener('click', () => {
-      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
-      menuButton.setAttribute('aria-expanded', String(!isOpen));
-      menuButton.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
-      navLinks.classList.toggle('open', !isOpen);
-    });
-    navLinks.addEventListener('click', event => {
-      if (event.target.closest('a')) {
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuButton.setAttribute('aria-label', 'Open menu');
-        navLinks.classList.remove('open');
-      }
-    });
     if (window.lucide) window.lucide.createIcons();
     else window.addEventListener('load', () => { if (window.lucide) window.lucide.createIcons(); });
     if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {

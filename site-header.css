@@ -1,0 +1,131 @@
+/* Shared NEXTEON navigation, first introduced on the Slate AI page. */
+.nex-site-header {
+  position: sticky !important;
+  inset: auto;
+  top: 0 !important;
+  z-index: 1000;
+  width: 100%;
+  padding: 0 !important;
+  margin: 0;
+  overflow: visible !important;
+  color: #141723 !important;
+  background: rgba(246, 247, 251, .88) !important;
+  border: 0;
+  border-bottom: 1px solid #dfe3ed;
+  box-shadow: none !important;
+  text-align: left !important;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  line-height: normal;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+.nex-site-header::before,
+.nex-site-header::after { content: none !important; }
+.nex-site-header .nex-header.navbar,
+.nex-site-header .nex-header {
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  width: min(1280px, calc(100% - 80px)) !important;
+  max-width: 1280px !important;
+  min-height: 76px;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 24px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  color: inherit !important;
+  text-align: left !important;
+}
+.nex-site-header .nex-logo {
+  flex: none;
+  display: inline-block;
+  color: #141723;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.075em;
+  white-space: nowrap;
+}
+.nex-site-header .nex-logo sup {
+  position: static;
+  margin-left: 3px;
+  color: #141723;
+  font-family: 'Space Mono', monospace;
+  font-size: .42rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  vertical-align: super;
+}
+.nex-site-header .nex-links {
+  display: flex !important;
+  align-items: center;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: .9rem;
+  line-height: 1.2;
+}
+.nex-site-header .nex-links a {
+  display: inline-flex;
+  align-items: center;
+  color: #141723;
+  text-decoration: none;
+  text-transform: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: .9rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  white-space: nowrap;
+  transition: color .2s;
+}
+.nex-site-header .nex-links a:hover,
+.nex-site-header .nex-links a[aria-current="page"] { color: #0047ff; }
+.nex-site-header .nex-links .nex-download {
+  padding: 11px 17px;
+  border: 1px solid #dfe3ed;
+  border-radius: 100px;
+  background: #fff;
+}
+.nex-site-header .nex-links .nex-download:hover { border-color: #b8c8ef; }
+.nex-site-header a:focus-visible { outline: 3px solid #477aff; outline-offset: 4px; }
+
+/* The older pages reserved room for a fixed header. */
+.nex-site-header + .hero { height: calc(100vh - 76px); }
+.nex-site-header + .page { padding-top: clamp(42px, 5vw, 76px); }
+.nex-site-header + .contact-wrapper { padding-top: 5rem; }
+
+@media (max-width: 1000px) {
+  .nex-site-header .nex-header.navbar,
+  .nex-site-header .nex-header { width: calc(100% - 48px) !important; }
+  .nex-site-header .nex-links { gap: 20px; }
+}
+@media (max-width: 720px) {
+  .nex-site-header .nex-header.navbar,
+  .nex-site-header .nex-header { width: calc(100% - 36px) !important; min-height: 66px; gap: 12px; }
+  .nex-site-header .nex-logo { font-size: 1.25rem; }
+  .nex-site-header .nex-links { gap: 16px; font-size: .8rem; }
+  .nex-site-header .nex-links .nex-desktop-link { display: none !important; }
+  .nex-site-header .nex-links a { font-size: .8rem; }
+  .nex-site-header .nex-links .nex-download { padding: 9px 12px; }
+  .nex-site-header + .hero { height: calc(100svh - 66px); }
+  .nex-site-header + .contact-wrapper { padding-top: 4rem; }
+}
+@media (max-width: 370px) {
+  .nex-site-header .nex-links { gap: 10px; }
+}
