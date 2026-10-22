@@ -2021,6 +2021,32 @@
         translateY(0);
     }
 
+
+    /* Work with us: a unified introduction and three clear offerings. */
+    .work-section { padding-top: 2.5rem; padding-bottom: 4rem; }
+    .work-shell { border-radius: 24px; box-shadow: 0 10px 35px rgba(0,0,0,.025); }
+    .work-top { display: block; padding: clamp(1.5rem, 3.5vw, 2.75rem); background: transparent; }
+    .work-kicker { margin-bottom: .9rem; }
+    .work-title { max-width: 900px; font-size: clamp(2.5rem, 4.4vw, 3.7rem); line-height: 1.04; font-weight: 600; letter-spacing: -.05em; }
+    .work-title span { color: var(--accent-primary); }
+    .work-intro { justify-self: start; max-width: 720px; margin-top: 1.15rem; font-size: 1rem; line-height: 1.6; }
+    .work-services { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); padding: 0; }
+    .work-service, .work-service:hover { display: block; min-height: 0; padding: 1.8rem clamp(1.4rem,2.6vw,2.75rem); border-radius: 0; border-bottom: 0; background: transparent; }
+    .work-service + .work-service { border-left: 1px solid rgba(0,0,0,.08); }
+    .work-service-index { color: var(--accent-primary); margin-bottom: 1.35rem; }
+    .work-service h3 { font-size: clamp(1.35rem,2vw,1.65rem); line-height: 1.15; margin-bottom: .8rem; }
+    .work-service p { font-size: .93rem; line-height: 1.6; }
+    .work-bottom { padding: 1.25rem clamp(1.5rem,3.5vw,2.75rem); gap: 1rem; background: rgba(0,71,255,.025); }
+    .work-bottom-note { font-family: 'Outfit',sans-serif; text-transform: none; letter-spacing: 0; font-size: .9rem; }
+    @media (max-width: 700px) {
+      .work-services { grid-template-columns: 1fr; }
+      .work-service, .work-service:hover { padding: 1.4rem 1.5rem; }
+      .work-service + .work-service { border-left: 0; border-top: 1px solid rgba(0,0,0,.08); }
+      .work-service-index { margin-bottom: .65rem; }
+      .work-service h3 { margin-bottom: .55rem; }
+      .work-bottom { align-items: stretch; }
+      .work-title { font-size: clamp(2.3rem,9vw,3rem); }
+    }
   </style>
   <link rel="stylesheet" href="/site-header.css">
 </head>
@@ -2276,26 +2302,13 @@
           </div>
 
           <h2 class="work-title">
-            Exceptional products, built efficiently.
+            Exceptional products.<br><span>Thoughtfully built.</span>
           </h2>
 
         </div>
 
 
-        <p class="work-intro">
-
-          We work with select clients to build digital products
-          at the intersection of
-
-          <strong>
-            maximum quality, exceptional design, and efficiency.
-          </strong>
-
-          From a new product to an existing system that needs to
-          work better, we focus on shipping the strongest version
-          with less waste.
-
-        </p>
+        <p class="work-intro">We help select clients design, build, and improve digital products. From a first release to a system ready for its next chapter, we bring a focus on quality, design, and efficiency.</p>
 
       </div>
 
@@ -2366,7 +2379,7 @@
       <div class="work-bottom">
 
         <div class="work-bottom-note">
-          Flexible engagements · Flat project rates · Build, optimize, or advise
+          Flexible engagements. Clear scope. Flat project rates available.
         </div>
 
 
