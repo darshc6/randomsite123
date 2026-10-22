@@ -345,14 +345,11 @@
        ================================ */
 
     .hero {
-      padding:
-        1.2rem
-        0
-        3.2rem;
-
-      display: block;
-
-      max-width: 900px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+      align-items: center;
+      gap: clamp(2rem, 5vw, 5rem);
+      padding: 0 0 2rem;
     }
 
     .eyebrow {
@@ -373,37 +370,103 @@
       margin-bottom: 1.2rem;
     }
 
-    h1 {
-      font-size:
-        clamp(
-          3.25rem,
-          7vw,
-          6.2rem
-        );
-
-      line-height: .92;
-
-      letter-spacing:
-        -0.06em;
-
+    .hero h1 {
+      max-width: 650px;
+      font-size: clamp(3.5rem, 5.5vw, 5.8rem);
+      line-height: .98;
+      letter-spacing: -.065em;
       font-weight: 700;
-
-      max-width: 760px;
     }
+
+    .hero h1 span { color: #0849ff; }
 
 
     /* NOW UNDER TITLE */
 
     .hero-copy {
       color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.55;
+      max-width: 510px;
+      margin-top: 1.35rem;
+    }
 
-      font-size: 1.05rem;
+    .hero-jump {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.4rem;
+      margin-top: 1.7rem;
+      padding: .85rem 1.15rem;
+      border-radius: 999px;
+      background: #111;
+      color: #fff;
+      font-size: .88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease;
+    }
 
-      line-height: 1.6;
+    .hero-jump:hover { transform: translateY(-2px); background: #0849ff; }
+    .hero-jump:focus-visible { outline: 3px solid #0849ff; outline-offset: 3px; }
+    .hero-jump span { font-size: 1.2rem; line-height: 1; }
 
-      max-width: 610px;
+    .hero-art {
+      position: relative;
+      min-height: 350px;
+      overflow: hidden;
+      border-radius: 28px;
+      background: radial-gradient(circle at 52% 46%, #194cff 0, #0732b4 28%, #101632 58%, #111 85%);
+      color: #fff;
+      isolation: isolate;
+    }
 
-      margin-top: 1.55rem;
+    .hero-art::before {
+      content: '';
+      position: absolute;
+      inset: -26%;
+      background: repeating-radial-gradient(circle at 52% 46%, transparent 0 52px, rgba(255,255,255,.12) 53px 54px, transparent 55px 94px);
+      opacity: .75;
+    }
+
+    .hero-art::after {
+      content: '✳';
+      position: absolute;
+      left: 50%;
+      top: 47%;
+      transform: translate(-50%, -50%) rotate(-15deg);
+      color: #ffe500;
+      font-family: Arial, sans-serif;
+      font-size: clamp(9rem, 16vw, 15rem);
+      line-height: 1;
+      text-shadow: 0 16px 55px rgba(0,0,0,.25);
+    }
+
+    .art-label {
+      position: absolute;
+      z-index: 1;
+      font: 600 .68rem 'Space Mono', monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .art-label { top: 1.5rem; left: 1.6rem; }
+
+    .art-index {
+      position: absolute;
+      z-index: 1;
+      bottom: 1.3rem;
+      left: 1.6rem;
+      display: flex;
+      gap: .5rem;
+    }
+
+    .art-index span {
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 999px;
+      padding: .55rem .7rem;
+      font: 600 .62rem 'Space Mono', monospace;
+      letter-spacing: .04em;
+      text-transform: uppercase;
     }
 
 
@@ -1076,27 +1139,17 @@
           5rem;
       }
 
-      .hero {
-        padding-top: .5rem;
-
-        padding-bottom: 2.5rem;
-      }
-
-      h1 {
-        font-size:
-          clamp(
-            3rem,
-            15vw,
-            4.4rem
-          );
-      }
+      .hero { grid-template-columns: 1fr; gap: 1.7rem; padding: 0 0 1.5rem; }
+      .hero h1 { font-size: clamp(3rem, 12vw, 4.4rem); }
+      .hero-art { min-height: 240px; border-radius: 22px; }
+      .hero-art::after { font-size: 10rem; }
 
       .hero-copy {
         font-size: .98rem;
 
         max-width: 520px;
 
-        margin-top: 1.3rem;
+        margin-top: 1.1rem;
       }
 
       .section-head,
@@ -1143,7 +1196,7 @@
         <a class="nex-desktop-link" href="/#about">About</a>
         <a aria-current="page" href="/products/">Products</a>
         <a class="nex-desktop-link" href="/start-project/">Work with us</a>
-        <a class="nex-download" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12">Get Slate ↗</a>
+        <a class="nex-download" href="/slate-ai/">Get Slate ↗</a>
     </div>
   </nav>
 </header>
@@ -1160,22 +1213,16 @@
     <!-- HERO -->
 
     <header class="hero">
-
-      <div class="eyebrow">
-        NEXTEON / Products
+      <div class="hero-content">
+        <div class="eyebrow">NEXTEON / Products</div>
+        <h1>Ideas turned<br>into <span>products.</span></h1>
+        <p class="hero-copy">Built by our founders and NEXTEON Labs. From the apps people use every day to the experiments that might become the next big thing.</p>
+        <a class="hero-jump" href="#products-list">Explore our products <span aria-hidden="true">↓</span></a>
       </div>
-
-
-      <h1>
-        Our independent products.
-      </h1>
-
-
-      <p class="hero-copy">
-        Products built by our founders and within NEXTEON Labs,
-        from scaled consumer apps to smaller software experiments.
-      </p>
-
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-label">NEXTEON / MADE HERE</div>
+        <div class="art-index"><span>Founder-built</span><span>NEXTEON Labs</span></div>
+      </div>
     </header>
 
 
@@ -1184,7 +1231,7 @@
          FOUNDER BUILT
          ================================ -->
 
-    <section class="section">
+    <section class="section" id="products-list">
 
 
       <div class="section-head">
