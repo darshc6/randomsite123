@@ -569,7 +569,12 @@
       border-bottom: none;
     }
 
-    .featured-item:hover {
+    .featured-item:not(a):hover {
+      background: transparent;
+      transform: none;
+    }
+
+    a.featured-item:hover {
       background:
         rgba(
           255,
@@ -716,7 +721,7 @@
       border-bottom: none;
     }
 
-    .compact-row:hover {
+    a.compact-row:hover {
       background:
         rgba(
           255,
@@ -1162,123 +1167,10 @@
 
 
     <!-- ================================
-         FOUNDER BUILT
-         ================================ -->
-
-    <section class="section" id="products-list">
-
-
-      <div class="section-head">
-
-        <div class="section-title">
-          Founder-built
-        </div>
-
-        <div class="section-label">
-          Independent products
-        </div>
-
-      </div>
-
-
-
-      <div class="featured-list">
-
-
-        <!-- ONEBLVD -->
-
-        <a
-          class="featured-item"
-          href="https://oneblvd.co"
-          target="_blank"
-          rel="noopener"
-        >
-
-          <div class="product-name">
-            oneblvd
-          </div>
-
-
-          <div class="product-meta">
-
-            <div class="product-type">
-              Consumer Social
-            </div>
-
-          </div>
-
-
-          <div class="product-proof">
-
-            <strong>
-              Thousands of users
-            </strong>
-
-            <br>
-
-            Millions of interactions
-
-            <span class="arrow">
-              ↗
-            </span>
-
-          </div>
-
-        </a>
-
-
-
-        <!-- DAYONE -->
-
-        <a
-          class="featured-item"
-          href="#"
-        >
-
-          <div class="product-name">
-            DayOne
-          </div>
-
-
-          <div class="product-meta">
-
-            <div class="product-type">
-              Goals / Social Utility
-            </div>
-
-          </div>
-
-
-          <div class="product-proof">
-
-            <strong>
-              Founder-built
-            </strong>
-
-            <br>
-
-            Consumer product
-
-            <span class="arrow">
-              ↗
-            </span>
-
-          </div>
-
-        </a>
-
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ================================
          NEXTEON LABS
          ================================ -->
 
-    <section class="section">
+    <section class="section" id="products-list">
 
 
       <div class="section-head">
@@ -1330,6 +1222,15 @@
 
 
 
+        <!-- DAYONE -->
+        <div class="compact-row">
+          <div class="index">L02</div>
+          <div class="compact-name">DayOne</div>
+          <div class="compact-desc">A goals and social utility product.</div>
+          <div class="status">NEXTEON Labs</div>
+        </div>
+
+
         <!-- DOCVAULT -->
 
         <a
@@ -1338,7 +1239,7 @@
         >
 
           <div class="index">
-            L02
+            L03
           </div>
 
           <div class="compact-name">
@@ -1370,7 +1271,7 @@
         >
 
           <div class="index">
-            L03
+            L04
           </div>
 
           <div class="compact-name">
@@ -1402,7 +1303,7 @@
         >
 
           <div class="index">
-            L04
+            L05
           </div>
 
           <div class="compact-name">
@@ -1430,7 +1331,7 @@
         <div class="compact-row">
 
           <div class="index">
-            L05
+            L06
           </div>
 
           <div class="compact-name">
@@ -1462,6 +1363,46 @@
       </div>
 
 
+    </section>
+
+
+    <!-- ================================
+         FOUNDER BUILT
+         ================================ -->
+    <section class="section">
+      <div class="section-head">
+        <div class="section-title">Founder-built</div>
+        <div class="section-label">Independent products</div>
+      </div>
+
+      <div class="featured-list">
+        <!-- WORDZY -->
+        <div class="featured-item">
+          <div class="product-name">Wordzy!</div>
+          <div class="product-meta">
+            <div class="product-type">Education / word game · founded 2022</div>
+            <div class="product-description">An education-focused word game with a daily community of players.</div>
+          </div>
+          <div class="product-proof"><strong>15,000 daily players</strong><br>Five figures in revenue</div>
+        </div>
+
+        <!-- BOLT SOCIAL -->
+        <div class="featured-item">
+          <div class="product-name">BOLT Social</div>
+          <div class="product-meta">
+            <div class="product-type">High school-only social app · 2022–2024</div>
+            <div class="product-description">A social app made exclusively for high school students.</div>
+          </div>
+          <div class="product-proof"><strong>1,000 daily active users</strong><br>Featured in the news</div>
+        </div>
+
+        <!-- ONEBLVD -->
+        <a class="featured-item" href="https://oneblvd.co" target="_blank" rel="noopener">
+          <div class="product-name">oneblvd</div>
+          <div class="product-meta"><div class="product-type">Consumer social</div></div>
+          <div class="product-proof"><strong>Thousands of users</strong><br>Millions of interactions <span class="arrow">↗</span></div>
+        </a>
+      </div>
     </section>
 
 
