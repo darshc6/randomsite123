@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f7fb">
   <title>Slate AI by NEXTEON — A little space for big ideas</title>
-  <meta name="description" content="Meet Slate AI by NEXTEON. A private workspace for Mac that brings notes, documents, meetings, and local AI together. Public beta is here, with Pro free for everyone during the beta.">
+  <meta name="description" content="Meet Slate AI 2.0 by NEXTEON. A private Mac workspace for Spaces, projects, notes, meetings, tasks, and local AI, with connections to the AI apps you already use.">
   <link rel="canonical" href="https://nexteonlabs.com/slate-ai/">
   <meta property="og:title" content="Slate AI by NEXTEON">
-  <meta property="og:description" content="A little space for big ideas. Your private AI workspace for Mac. Now in public beta, with Pro free for everyone during the beta.">
+  <meta property="og:description" content="A little space for big ideas. Slate AI 2.0 brings your work together with private, on-device AI and Spaces built around what you do.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://nexteonlabs.com/slate-ai/">
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -89,6 +89,11 @@
     .feature-icon { color:var(--blue); margin-bottom:17px; }
     .feature h3 { font-size:1.3rem; font-weight:500; letter-spacing:-.035em; margin:0 0 10px; }
     .feature p { color:var(--muted); font-size:.95rem; line-height:1.65; margin:0; }
+    .app-bridge { display:grid; grid-template-columns:.8fr 1.2fr; gap:34px; align-items:center; margin-top:34px; padding:28px; border:1px solid #d5dff4; border-radius:24px; background:#edf2ff; }
+    .app-bridge .kicker { margin-bottom:12px; }
+    .app-bridge h3 { margin:0 0 15px; font-size:clamp(1.65rem,2.5vw,2.4rem); font-weight:500; line-height:1.12; letter-spacing:-.05em; }
+    .app-bridge p:not(.kicker) { margin:0; color:#546079; line-height:1.6; }
+    .app-bridge img { width:100%; border:1px solid #d1d9e9; border-radius:15px; box-shadow:0 18px 35px #253b6e17; }
     .privacy { position:relative; overflow:hidden; background:#101626; color:white; padding:75px 0; }
     .privacy::before { content:''; position:absolute; width:640px; height:640px; border-radius:50%; top:-290px; right:-100px; background:radial-gradient(circle,#2259c85c,transparent 65%); }
     .privacy-grid { position:relative; display:grid; grid-template-columns:1.15fr .85fr; gap:90px; align-items:center; }
@@ -114,6 +119,7 @@
     .release-heading { display:flex; justify-content:space-between; align-items:end; gap:25px; margin-bottom:40px; }
     .release-heading>a { display:flex; align-items:center; gap:9px; font-size:.86rem; color:var(--blue); padding-bottom:4px; }
     .release { display:grid; grid-template-columns:.55fr 1.45fr; gap:70px; }
+    .release + .release { margin-top:52px; }
     .release-date { color:var(--muted); padding-top:24px; border-top:1px solid var(--line); }
     .release-date time { display:block; margin-bottom:12px; font-size:.8rem; }
     .release-body { border-top:2px solid var(--blue); padding-top:24px; }
@@ -181,6 +187,7 @@
       .features { grid-template-columns:repeat(2,1fr); gap:0 24px; padding-top:18px; }
       .feature p { font-size:.9rem; }
       .feature h3 { font-size:1.19rem; }
+      .app-bridge { grid-template-columns:1fr; gap:20px; padding:22px; margin-top:25px; }
       .privacy { padding:60px 0 35px; }
       .privacy-grid { grid-template-columns:1fr; gap:25px; }
       .local-diagram { max-width:320px; }
@@ -188,6 +195,7 @@
       .manifesto p:not(.kicker) { font-size:1rem; }
       .release-heading { align-items:start; flex-direction:column; gap:22px; margin-bottom:28px; }
       .release { grid-template-columns:1fr; gap:24px; }
+      .release + .release { margin-top:38px; }
       .release-date { padding-top:18px; display:flex; align-items:center; justify-content:space-between; }
       .release-date time { margin:0; }
       .release h3 { font-size:1.8rem; }
@@ -228,62 +236,65 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="shell">
         <div class="product-line">
-          <div class="product-id"><img class="app-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f1/3d/1c/f13d1c2a-2c49-1edb-9226-3ddcd2bf80bc/AppIcon-0-0-85-220-0-5-0-2x.png/512x512bb.png" width="44" height="44" alt="Slate AI app icon"><div><strong>Slate AI</strong><small class="mono">by NEXTEON</small></div></div>
-          <a class="beta-label mono" href="#releases"><span class="status-dot" aria-hidden="true"></span>Public beta is here ↗</a>
+          <div class="product-id"><img class="app-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1b/67/2d/1b672ddf-50a7-06bf-9499-941b385779b1/AppIcon-0-0-85-220-0-5-0-2x.png/512x512bb.png" width="44" height="44" alt="Slate AI app icon"><div><strong>Slate AI</strong><small class="mono">by NEXTEON</small></div></div>
+          <a class="beta-label mono" href="#releases"><span class="status-dot" aria-hidden="true"></span>Slate AI 2.0 is here ↗</a>
         </div>
         <div class="hero-grid">
           <div>
             <h1 id="hero-title">A little space.<br>For your<br><em>big ideas.</em></h1>
-            <p class="hero-copy">Your thoughts move fast. Give them a place to land. Slate brings your notes, projects, and meetings together in a private workspace, with AI that runs right on your Mac.</p>
-            <div class="actions"><a class="button" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12">Download for Mac <svg aria-hidden="true"><use href="#arrow"/></svg></a><a class="button secondary" href="#inside">Meet your workspace <svg aria-hidden="true"><use href="#down"/></svg></a></div>
-            <p class="availability">Public beta · Pro is free for everyone during the beta<br>Requires macOS 14.0 or later.</p>
+            <p class="hero-copy">Spaces bring your projects, notes, meetings, and connected folders together. Local AI helps you find answers, capture ideas, and turn conversations into next steps.</p>
+            <div class="actions"><a class="button" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12" target="_blank" rel="noopener noreferrer">Download for Mac <svg aria-hidden="true"><use href="#arrow"/></svg></a><a class="button secondary" href="#inside">Meet your workspace <svg aria-hidden="true"><use href="#down"/></svg></a></div>
+            <p class="availability">Free with two Spaces · Slate Plus free for now<br>Requires macOS 14.0 or later.</p>
           </div>
           <div class="hero-visual">
-            <div class="glass-window"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dd/64/96/dd64964a-1673-0381-4419-8216ce1ce1ee/Web_1920__U2013_2.png/1600x1000bb.jpg" width="800" height="500" fetchpriority="high" alt="Slate AI workspace showing project search and contextual answers"><div class="window-caption mono"><span>A clearer view of your thinking</span><svg aria-hidden="true"><use href="#spark"/></svg></div></div>
+            <div class="glass-window"><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c5/3b/c0/c53bc04b-cbee-85dd-aee7-e36be6df9420/slate-mac-1-all-your-work.png/1600x1000bb.jpg" width="800" height="500" fetchpriority="high" alt="Slate AI 2.0 showing Spaces, projects, notes, and tasks in one workspace"><div class="window-caption mono"><span>A clearer view of your thinking</span><svg aria-hidden="true"><use href="#spark"/></svg></div></div>
             <div class="thought"><svg aria-hidden="true"><use href="#lock"/></svg><div>Your ideas. Your Mac.<small>Powered by private, on-device AI.</small></div></div>
           </div>
         </div>
-        <div class="hero-foot"><span class="mono"><svg aria-hidden="true"><use href="#mac"/></svg>Made for Mac</span><span class="mono"><svg aria-hidden="true"><use href="#lock"/></svg>Local AI, by design</span><span class="mono">An ambitious project by NEXTEON ↗</span></div>
+        <div class="hero-foot"><span class="mono"><svg aria-hidden="true"><use href="#mac"/></svg>Made for Mac</span><span class="mono"><svg aria-hidden="true"><use href="#lock"/></svg>Local AI, by design</span><span class="mono">Built by NEXTEON</span></div>
       </div>
     </section>
 
     <section class="section shell" id="inside" aria-labelledby="inside-title">
-      <div class="section-intro"><div><p class="kicker mono">01 / Meet your workspace</p><h2 id="inside-title">Everything on your mind.<br>Finally, in one place.</h2></div><p>The passing thought. The project in progress. The conversation worth remembering. Bring it all into Slate, then let local AI help you find the connections.</p></div>
+      <div class="section-intro"><div><p class="kicker mono">01 / Meet your workspace</p><h2 id="inside-title">Everything on your mind.<br>Finally, in one place.</h2></div><p>Give each part of your life its own Space. Keep projects, notes, recordings, links, and connected folders in context, then find your way back with local AI.</p></div>
       <div class="workspace">
-        <div class="view-controls" role="group" aria-label="Explore Slate screenshots"><button class="view-button" aria-pressed="true" data-view="0">Your workspace</button><button class="view-button" aria-pressed="false" data-view="1">Ask your project</button><button class="view-button" aria-pressed="false" data-view="2">Think with Slate Assist</button></div>
-        <div class="product-screen"><img id="workspace-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/88/4a/e8/884ae826-5131-5572-fa89-efa8140e5873/Web_1920__U2013_1.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI in dark mode with workspaces, project notes, tasks, and quick capture"></div>
-        <div class="screen-caption"><span id="workspace-caption" aria-live="polite">A home for your projects, notes, and everything in between.</span><span class="mono">Inside Slate / macOS</span></div>
+        <div class="view-controls" role="group" aria-label="Explore Slate screenshots"><button class="view-button" aria-pressed="true" data-view="0">Your Spaces</button><button class="view-button" aria-pressed="false" data-view="1">Ask your Space</button><button class="view-button" aria-pressed="false" data-view="2">Meeting notes</button><button class="view-button" aria-pressed="false" data-view="3">Your AI apps</button></div>
+        <div class="product-screen"><img id="workspace-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c5/3b/c0/c53bc04b-cbee-85dd-aee7-e36be6df9420/slate-mac-1-all-your-work.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI 2.0 with Spaces and projects organized in one workspace"></div>
+        <div class="screen-caption"><span id="workspace-caption" aria-live="polite">A home for all the parts of your work.</span><span class="mono">Inside Slate / macOS</span></div>
       </div>
       <div class="features">
-        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#folder"/></svg><h3>Make room for everything.</h3><p>Create separate workspaces and projects for different parts of your life. Keep documents, notes, links, and recordings together.</p></article>
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#folder"/></svg><h3>Give everything a Space.</h3><p>Make Spaces with their own context, group work into projects, and bring documents, notes, recordings, links, and connected folders together.</p></article>
         <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#note"/></svg><h3>Catch the passing thought.</h3><p>Type it or say it. Quick Capture turns a fleeting idea into a note, then helps title and sort it so you can keep moving.</p></article>
-        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#search"/></svg><h3>Ask. Find. Connect.</h3><p>Search across your project with AI. Rediscover relevant information, explore a question, or use what you know to start something new.</p></article>
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#search"/></svg><h3>Find the source, too.</h3><p>Search an entire Space with local AI, get a relevant answer, and open the sources behind it in one click.</p></article>
         <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#spark"/></svg><h3>A little help, in context.</h3><p>Use Slate Assist inside a document to brainstorm, clarify your thinking, and draw on the contexts you choose.</p></article>
         <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#mic"/></svg><h3>Stay in the conversation.</h3><p>Record a meeting without an extra bot joining. Get a local AI summary, pull out action items, and ask questions about what was discussed.</p></article>
-        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#check"/></svg><h3>Turn talk into next steps.</h3><p>Find the tasks tucked inside a conversation. Slate brings them into a checklist you can work through, one small step at a time.</p></article>
+        <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#check"/></svg><h3>Keep every next step close.</h3><p>Slate finds tasks in your meetings and notes and brings them into one list you can work through.</p></article>
       </div>
+      <div class="app-bridge"><div><p class="kicker mono">New in Slate AI 2.0</p><h3>Bring your AI apps into the conversation.</h3><p>Share a Space with tools you already use, including Claude and Cursor. Their suggestions land in your Inbox, where you decide what to approve.</p></div><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/89/9e/70/899e7039-1876-927f-3e93-78656fba66ae/slate-mac-4-ai-apps.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI showing connected AI apps and suggestions awaiting approval"></div>
     </section>
 
     <section class="privacy" aria-labelledby="privacy-title"><div class="shell privacy-grid">
-      <div><p class="kicker mono">02 / Your mind. Your space.</p><h2 id="privacy-title">Big possibilities.<br>A smaller footprint<br>on your privacy.</h2><p class="privacy-copy">Your workspace is personal. Slate’s AI runs on your device, keeping the processing of your notes, documents, and recordings on your Mac. Your ideas get room to grow, with you in control.</p><p class="privacy-note">Choose whether to sync. Optional iCloud sync stores your Slate data in iCloud; AI processing stays on your device.</p></div>
+      <div><p class="kicker mono">02 / Your mind. Your space.</p><h2 id="privacy-title">Big possibilities.<br>A smaller footprint<br>on your privacy.</h2><p class="privacy-copy">Slate’s built-in AI runs on your Mac. Your notes, documents, and recordings are stored and processed on your device, keeping your workspace personal and under your control.</p><p class="privacy-note">You choose when to go beyond your Mac: optional iCloud sync stores Slate data in iCloud, and sharing a Space with an external AI app sends that chosen context to the app.</p></div>
       <div class="local-diagram" role="img" aria-label="Notes, documents, ideas, and meetings stay around your Mac, with local AI at the center"><div class="local-ring"></div><div class="local-ring two"></div><div class="local-core"><svg aria-hidden="true"><use href="#mac"/></svg><span class="mono">On your Mac</span></div><span class="orbit-label one mono">Notes</span><span class="orbit-label two mono">Documents</span><span class="orbit-label three mono">Ideas</span><span class="orbit-label four mono">Meetings</span></div>
     </div></section>
 
-    <section class="manifesto shell" aria-labelledby="mission-title"><p class="kicker mono">03 / Why we're building Slate</p><div><h2 id="mission-title">An ambitious idea.<br>A simpler everyday.<br><span>More space to do your thing.</span></h2><p>We’re building Slate around a simple belief: keeping up with your ideas should feel easier. Less time searching for that note. Less effort turning a conversation into a plan. More room for the work you care about.</p><p>It’s an ambitious project, and this public beta is an early step. We’re shaping a workspace that grows with the way people actually think, create, and get things done. Come help us make it better.</p></div></section>
+    <section class="manifesto shell" aria-labelledby="mission-title"><p class="kicker mono">03 / Why we're building Slate</p><div><h2 id="mission-title">An ambitious idea.<br>A simpler everyday.<br><span>More space to do your thing.</span></h2><p>We’re building Slate around a simple belief: keeping up with your ideas should feel easier. Less time searching for that note. Less effort turning a conversation into a plan. More room for the work you care about.</p><p>Slate AI 2.0 brings more of that work into one place, from the first thought to the next task. We’re shaping a workspace that grows with the way people actually think, create, and get things done.</p></div></section>
 
     <section class="section shell" id="releases" aria-labelledby="releases-title">
-      <div class="release-heading"><div><p class="kicker mono">04 / The release log</p><h2 id="releases-title">A work in progress.<br>In the best way.</h2></div><a href="mailto:nxteon@gmail.com?subject=Slate%20AI%20beta%20feedback">Help shape what comes next <svg aria-hidden="true"><use href="#arrow"/></svg></a></div>
-      <article class="release"><div class="release-date"><time class="mono" datetime="2026-10-19">October 19, 2026</time><span class="mono">Release 001 / Public beta</span></div><div class="release-body"><div class="release-badges"><span class="badge mono">Early release</span><span class="badge green mono">Pro free during beta</span></div><h3>Slate is out in the world.</h3><p>Our public beta is here. Slate AI is now open for everyone to try on Mac, with <strong>Pro free for everyone during the public beta</strong>. Bring your real projects, your scattered notes, and your next big idea.</p><ul><li>Workspaces for your projects, notes, documents, links, and recordings.</li><li>Quick Capture by text or voice, with help organizing your notes.</li><li>Local AI search and Slate Assist for working with your context.</li><li>Meeting recordings, summaries, and actionable to-dos.</li></ul><p class="beta-note">This is an early release, and we’re still refining the experience. Found a rough edge or have an idea? <a href="mailto:nxteon@gmail.com?subject=Slate%20AI%20beta%20feedback">Tell us about it.</a> Future feature releases will be logged here.</p></div></article>
+      <div class="release-heading"><div><p class="kicker mono">04 / The release log</p><h2 id="releases-title">A work in progress.<br>In the best way.</h2></div><a href="mailto:nxteon@gmail.com?subject=Slate%20AI%20feedback">Help shape what comes next <svg aria-hidden="true"><use href="#arrow"/></svg></a></div>
+      <article class="release"><div class="release-date"><time class="mono" datetime="2026-11">November 2026</time><span class="mono">Current release / App Store v1.53</span></div><div class="release-body"><div class="release-badges"><span class="badge mono">Slate AI 2.0</span><span class="badge green mono">Free to start</span></div><h3>More room for your work.</h3><p>Slate AI 2.0 brings a fuller, more connected workspace to Mac. The latest App Store update adds features and improves Slate Pulse.</p><ul><li>Spaces with their own context, projects, and connected folders.</li><li>AI Search with one-click access to sources, plus a single place for tasks from notes and meetings.</li><li>Connections to AI apps like Claude and Cursor, with an approval Inbox for their suggestions.</li><li>Local AI for capture, writing, and meeting summaries.</li></ul><p class="beta-note">Slate is free with two Spaces and every feature. Slate Plus adds unlimited Spaces and is free for now.</p></div></article>
+      <article class="release"><div class="release-date"><time class="mono" datetime="2026-10-19">October 19, 2026</time><span class="mono">Release 001 / Public beta</span></div><div class="release-body"><div class="release-badges"><span class="badge mono">Early release</span><span class="badge green mono">Free early access</span></div><h3>Slate is out in the world.</h3><p>Our public beta opened Slate AI for everyone to try on Mac. It was the first step toward a private workspace for real projects, scattered notes, and your next big idea.</p><ul><li>Workspaces for projects, notes, documents, links, and recordings.</li><li>Quick Capture by text or voice, with help organizing notes.</li><li>Local AI search and Slate Assist for working with context.</li><li>Meeting recordings, summaries, and actionable to-dos.</li></ul></div></article>
     </section>
 
-    <section class="closing shell" aria-labelledby="download-title"><img class="app-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f1/3d/1c/f13d1c2a-2c49-1edb-9226-3ddcd2bf80bc/AppIcon-0-0-85-220-0-5-0-2x.png/512x512bb.png" width="68" height="68" loading="lazy" alt=""><h2 id="download-title">Give your next idea<br>a clean Slate.</h2><p>A private workspace for everything you’re working on.<br>And everything you haven’t thought of yet.</p><a class="button" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12">Get Slate AI for Mac <svg aria-hidden="true"><use href="#arrow"/></svg></a><p class="availability">Public beta · Pro free for everyone during the beta<br>macOS 14.0 or later</p></section>
+    <section class="closing shell" aria-labelledby="download-title"><img class="app-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1b/67/2d/1b672ddf-50a7-06bf-9499-941b385779b1/AppIcon-0-0-85-220-0-5-0-2x.png/512x512bb.png" width="68" height="68" loading="lazy" alt=""><h2 id="download-title">Give your next idea<br>a clean Slate.</h2><p>A private workspace for everything you’re working on.<br>And everything you haven’t thought of yet.</p><a class="button" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12" target="_blank" rel="noopener noreferrer">Get Slate AI for Mac <svg aria-hidden="true"><use href="#arrow"/></svg></a><p class="availability">Free with two Spaces · Slate Plus free for now<br>macOS 14.0 or later</p></section>
   </main>
   <footer><div class="footer-inner shell"><div><a class="logo" href="/">NEXTEON<sup>TM</sup></a><p class="footer-meta mono">Slate AI by NEXTEON · © 2026 NEXTEON LLC</p></div><div class="footer-links"><a href="/products/">All products</a><a href="/start-project/">Work with us</a><a href="https://www.notion.so/Privacy-Policy-for-Slate-AI-36719ae31dc58067a9b4d2904741a2fc">Privacy</a><a href="mailto:nxteon@gmail.com?subject=Slate%20AI">Get in touch ↗</a></div></div></footer>
   <script>
     const views = [
-      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/88/4a/e8/884ae826-5131-5572-fa89-efa8140e5873/Web_1920__U2013_1.png/1600x1000bb.jpg', alt: 'Slate AI in dark mode with workspaces, project notes, tasks, and quick capture', caption: 'A home for your projects, notes, and everything in between.' },
-      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/dd/64/96/dd64964a-1673-0381-4419-8216ce1ce1ee/Web_1920__U2013_2.png/1600x1000bb.jpg', alt: 'Slate AI answering a question using the context of a project', caption: 'Ask a question. Connect the dots across your project.' },
-      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/a7/bb/ec/a7bbec4b-9ba8-24df-62c1-076108e35b5b/Web_1920__U2013_5.png/1600x1000bb.jpg', alt: 'Slate Assist beside a note, with brainstorming and action items', caption: 'Brainstorm, clarify, and find your next step with Slate Assist.' }
+      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c5/3b/c0/c53bc04b-cbee-85dd-aee7-e36be6df9420/slate-mac-1-all-your-work.png/1600x1000bb.jpg', alt: 'Slate AI 2.0 with Spaces and projects organized in one workspace', caption: 'A home for all the parts of your work.' },
+      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/1b/c2/6b/1bc26b9e-1914-352e-d3ae-31c078366a7f/slate-mac-3-ask.png/1600x1000bb.jpg', alt: 'Slate AI Search answering a question with sources from a Space', caption: 'Ask your Space, then open the source.' },
+      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/aa/99/f7/aa99f708-c7a2-b15f-2e94-9e168abea684/slate-mac-2-meetings.png/1600x1000bb.jpg', alt: 'Slate AI meeting recording with a summary and tasks', caption: 'From a conversation to a clearer next step.' },
+      { src: 'https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/89/9e/70/899e7039-1876-927f-3e93-78656fba66ae/slate-mac-4-ai-apps.png/1600x1000bb.jpg', alt: 'Slate AI connected to other AI apps with suggestions in an approval Inbox', caption: 'Share context with your AI apps on your terms.' }
     ];
     const image = document.getElementById('workspace-image');
     const caption = document.getElementById('workspace-caption');
