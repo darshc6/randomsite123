@@ -80,8 +80,18 @@
     .view-button { border:1px solid transparent; background:transparent; color:#566078; border-radius:100px; padding:11px 19px; cursor:pointer; font-size:.9rem; transition:background .2s,color .2s; }
     .view-button[aria-pressed="true"] { background:#fff; color:var(--ink); border-color:#dce2ed; box-shadow:0 3px 9px #1e365a09; }
     .view-button:hover { color:var(--blue); }
-    .product-screen { border-radius:16px; overflow:hidden; background:#e0e6f1; }
+    .product-screen { position:relative; border-radius:16px; overflow:hidden; background:#e0e6f1; }
     .product-screen img { width:100%; aspect-ratio:1.6; object-fit:cover; }
+    .screen-expand { display:none; position:absolute; right:12px; bottom:12px; z-index:1; min-height:40px; padding:9px 13px; border:1px solid #dce2ed; border-radius:100px; background:#fff; color:#182239; box-shadow:0 5px 18px #0e183259; font:inherit; font-size:.75rem; cursor:pointer; }
+    .screen-expand:hover { color:var(--blue); }
+    .screen-expand:focus-visible,.dialog-close:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
+    .screenshot-dialog { width:min(92vw,1050px); max-width:none; max-height:90vh; padding:16px; border:1px solid #dce2ef; border-radius:20px; background:#f3f6fc; color:var(--ink); box-shadow:0 30px 80px #050b1e66; }
+    .screenshot-dialog::backdrop { background:#081024d9; }
+    .dialog-top { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:10px; }
+    .dialog-top p { margin:0; color:#4c5971; font-size:.87rem; }
+    .dialog-close { min-width:42px; min-height:42px; border:1px solid #d7deec; border-radius:50%; background:#fff; color:var(--ink); font:inherit; font-size:1.35rem; cursor:pointer; }
+    .dialog-scroll { max-height:calc(90vh - 90px); overflow:auto; border-radius:12px; background:#111827; }
+    .dialog-scroll img { display:block; width:100%; max-width:none; }
     .screen-caption { display:flex; gap:16px; align-items:center; justify-content:space-between; padding:18px 12px 6px; color:#556074; font-size:.86rem; line-height:1.5; }
     .screen-caption .mono { flex-shrink:0; font-size:.56rem; }
     .features { display:grid; grid-template-columns:repeat(3,1fr); gap:0 38px; padding-top:35px; }
@@ -93,6 +103,7 @@
     .app-bridge .kicker { margin-bottom:12px; }
     .app-bridge h3 { margin:0 0 15px; font-size:clamp(1.65rem,2.5vw,2.4rem); font-weight:500; line-height:1.12; letter-spacing:-.05em; }
     .app-bridge p:not(.kicker) { margin:0; color:#546079; line-height:1.6; }
+    .bridge-visual { position:relative; }
     .app-bridge img { width:100%; border:1px solid #d1d9e9; border-radius:15px; box-shadow:0 18px 35px #253b6e17; }
     .privacy { position:relative; overflow:hidden; background:#101626; color:white; padding:58px 0 42px; }
     .privacy::before { content:''; position:absolute; width:640px; height:640px; border-radius:50%; top:-290px; right:-100px; background:radial-gradient(circle,#2259c85c,transparent 65%); }
@@ -193,9 +204,13 @@
       .section-intro { grid-template-columns:1fr; gap:22px; margin-bottom:28px; }
       .section-intro p:not(.kicker) { font-size:1rem; }
       .workspace { padding:7px; border-radius:18px; }
-      .view-controls { padding:5px 0 12px; gap:1px; }
-      .view-button { font-size:.77rem; padding:10px 13px; }
+      .view-controls { flex-wrap:nowrap; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; -webkit-overflow-scrolling:touch; padding:5px 0 12px; gap:3px; }
+      .view-controls::-webkit-scrollbar { display:none; }
+      .view-button { flex:0 0 auto; min-height:42px; white-space:nowrap; font-size:.77rem; padding:10px 13px; }
       .product-screen { border-radius:11px; }
+      .screen-expand { display:block; }
+      .screenshot-dialog { width:calc(100vw - 18px); max-height:90vh; padding:10px; border-radius:14px; }
+      .dialog-scroll img { width:760px; }
       .screen-caption { font-size:.79rem; padding:12px 7px 6px; }
       .screen-caption .mono { display:none; }
       .features { grid-template-columns:repeat(2,1fr); gap:0 24px; padding-top:18px; }
@@ -276,7 +291,7 @@
       <div class="section-intro"><div><p class="kicker mono">01 / Meet your workspace</p><h2 id="inside-title">Everything on your mind.<br>Finally, in one place.</h2></div><p>Give each part of your life its own Space. Keep projects, notes, recordings, links, and connected folders in context, then find your way back with local AI.</p></div>
       <div class="workspace">
         <div class="view-controls" role="group" aria-label="Explore Slate screenshots"><button class="view-button" aria-pressed="true" data-view="0">Your Spaces</button><button class="view-button" aria-pressed="false" data-view="1">Ask your Space</button><button class="view-button" aria-pressed="false" data-view="2">Meeting notes</button><button class="view-button" aria-pressed="false" data-view="3">Your AI apps</button></div>
-        <div class="product-screen"><img id="workspace-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c5/3b/c0/c53bc04b-cbee-85dd-aee7-e36be6df9420/slate-mac-1-all-your-work.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI 2.0 with Spaces and projects organized in one workspace"></div>
+        <div class="product-screen"><img id="workspace-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c5/3b/c0/c53bc04b-cbee-85dd-aee7-e36be6df9420/slate-mac-1-all-your-work.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI 2.0 with Spaces and projects organized in one workspace"><button class="screen-expand" type="button" data-expand-image="workspace-image" aria-label="View current Slate screenshot larger">View larger ↗</button></div>
         <div class="screen-caption"><span id="workspace-caption" aria-live="polite">A home for all the parts of your work.</span><span class="mono">Inside Slate / macOS</span></div>
       </div>
       <div class="features">
@@ -287,7 +302,7 @@
         <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#mic"/></svg><h3>Stay in the conversation.</h3><p>Record a meeting without an extra bot joining. Get a local AI summary, pull out action items, and ask questions about what was discussed.</p></article>
         <article class="feature"><svg class="feature-icon" aria-hidden="true"><use href="#check"/></svg><h3>Keep every next step close.</h3><p>Slate finds tasks in your meetings and notes and brings them into one list you can work through.</p></article>
       </div>
-      <div class="app-bridge"><div><p class="kicker mono">New in Slate AI 2.0</p><h3>Bring your AI apps into the conversation.</h3><p>Share a Space with tools you already use, including Claude and Cursor. Their suggestions land in your Inbox, where you decide what to approve.</p></div><img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/89/9e/70/899e7039-1876-927f-3e93-78656fba66ae/slate-mac-4-ai-apps.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI showing connected AI apps and suggestions awaiting approval"></div>
+      <div class="app-bridge"><div><p class="kicker mono">New in Slate AI 2.0</p><h3>Bring your AI apps into the conversation.</h3><p>Share a Space with tools you already use, including Claude and Cursor. Their suggestions land in your Inbox, where you decide what to approve.</p></div><div class="bridge-visual"><img id="bridge-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/89/9e/70/899e7039-1876-927f-3e93-78656fba66ae/slate-mac-4-ai-apps.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI showing connected AI apps and suggestions awaiting approval"><button class="screen-expand" type="button" data-expand-image="bridge-image" aria-label="View AI apps screenshot larger">View larger ↗</button></div></div>
     </section>
 
     <section class="privacy" aria-labelledby="privacy-title"><div class="shell privacy-grid">
@@ -307,6 +322,7 @@
     </section>
 
     <section class="closing shell" aria-labelledby="download-title"><img class="app-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1b/67/2d/1b672ddf-50a7-06bf-9499-941b385779b1/AppIcon-0-0-85-220-0-5-0-2x.png/512x512bb.png" width="68" height="68" loading="lazy" alt=""><h2 id="download-title">Give your next idea<br>a clean Slate.</h2><p>A private workspace for everything you’re working on.<br>And everything you haven’t thought of yet.</p><a class="button" href="https://apps.apple.com/us/app/slate-ai/id6761958662?mt=12" target="_blank" rel="noopener noreferrer">Get Slate AI for Mac <svg aria-hidden="true"><use href="#arrow"/></svg></a><p class="availability">Free with two Spaces · Slate Plus free for now<br>macOS 14.0 or later</p></section>
+    <dialog class="screenshot-dialog" id="screenshot-dialog" aria-label="Expanded Slate screenshot"><div class="dialog-top"><p id="dialog-caption"></p><button class="dialog-close" type="button" aria-label="Close enlarged screenshot">×</button></div><div class="dialog-scroll"><img id="dialog-image" alt=""></div></dialog>
   </main>
   <footer><div class="footer-inner shell"><div><a class="logo" href="/">NEXTEON<sup>TM</sup></a><p class="footer-meta mono">Slate AI by NEXTEON · © 2026 NEXTEON LLC</p></div><div class="footer-links"><a href="/products/">All products</a><a href="/start-project/">Work with us</a><a href="https://www.notion.so/Privacy-Policy-for-Slate-AI-36719ae31dc58067a9b4d2904741a2fc">Privacy</a><a href="mailto:nxteon@gmail.com?subject=Slate%20AI">Get in touch ↗</a></div></div></footer>
   <script>
@@ -326,6 +342,20 @@
       caption.textContent = view.caption;
       controls.forEach(control => control.setAttribute('aria-pressed', String(control === button)));
     }));
+    const screenshotDialog = document.getElementById('screenshot-dialog');
+    const dialogImage = document.getElementById('dialog-image');
+    const dialogCaption = document.getElementById('dialog-caption');
+    const dialogScroll = screenshotDialog.querySelector('.dialog-scroll');
+    document.querySelectorAll('[data-expand-image]').forEach(button => button.addEventListener('click', () => {
+      const source = document.getElementById(button.dataset.expandImage);
+      dialogImage.src = source.src;
+      dialogImage.alt = source.alt;
+      dialogCaption.textContent = source.id === 'workspace-image' ? caption.textContent : 'Slate AI and your AI apps';
+      screenshotDialog.showModal();
+      dialogScroll.scrollLeft = (dialogScroll.scrollWidth - dialogScroll.clientWidth) / 2;
+    }));
+    screenshotDialog.querySelector('.dialog-close').addEventListener('click', () => screenshotDialog.close());
+    screenshotDialog.addEventListener('click', event => { if (event.target === screenshotDialog) screenshotDialog.close(); });
   </script>
 </body>
 </html>
