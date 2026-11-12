@@ -75,21 +75,21 @@
     h2 { font-size:clamp(2.5rem,4.4vw,4.2rem); font-weight:500; line-height:1.05; letter-spacing:-.065em; margin:0; }
     .section-intro { display:grid; grid-template-columns:1.1fr .9fr; gap:65px; align-items:end; margin-bottom:36px; }
     .section-intro p:not(.kicker) { color:var(--muted); font-size:1.08rem; line-height:1.65; margin:0; max-width:470px; }
-    #inside { padding-top:25px; }
-    #inside .section-intro { margin-bottom:27px; }
-    #inside .section-intro h2 { font-size:clamp(2.5rem,3.7vw,3.65rem); }
+    #inside { padding-top:10px; }
+    #inside .section-intro { display:block; margin-bottom:18px; }
+    #inside .section-intro .kicker { margin-bottom:13px; }
+    #inside .section-intro h2 { font-size:clamp(2.5rem,3.3vw,3.3rem); }
+    #inside .section-intro p:not(.kicker) { max-width:850px; margin-top:13px; font-size:1rem; line-height:1.5; }
     .workspace { display:grid; grid-template-columns:270px minmax(0,1fr); gap:13px; border:1px solid #dce2ef; border-radius:25px; padding:13px; background:#e9edf6; }
     .view-controls { display:flex; flex-direction:column; gap:7px; padding:8px 0 8px 5px; }
     .view-controls-heading { display:flex; align-items:center; justify-content:space-between; padding:5px 13px 12px; color:#67738c; }
-    .view-button { width:100%; display:grid; grid-template-columns:25px 1fr 16px; align-items:center; gap:10px; text-align:left; border:1px solid transparent; background:transparent; color:#566078; border-radius:15px; padding:15px 13px; cursor:pointer; transition:background .2s,color .2s,border-color .2s,transform .2s; }
+    .view-button { width:100%; display:grid; grid-template-columns:25px 1fr; align-items:center; gap:10px; text-align:left; border:1px solid transparent; background:transparent; color:#566078; border-radius:15px; padding:15px 13px; cursor:pointer; transition:background .2s,color .2s,border-color .2s; }
     .view-button .view-index { color:#8791a7; font-size:.55rem; }
     .view-button .view-copy { display:grid; gap:4px; }
     .view-button strong { font-size:.94rem; font-weight:500; line-height:1.2; }
     .view-button small { color:#788399; font-size:.73rem; line-height:1.25; }
-    .view-button .view-arrow { color:#98a3b8; font-size:1.05rem; transition:transform .25s var(--ease),color .25s; }
     .view-button[aria-pressed="true"] { background:#fff; color:var(--ink); border-color:#dce2ed; box-shadow:0 6px 16px #1e365a0d; }
-    .view-button[aria-pressed="true"] .view-index,.view-button[aria-pressed="true"] .view-arrow { color:var(--blue); }
-    .view-button[aria-pressed="true"] .view-arrow { transform:translate(2px,-2px); }
+    .view-button[aria-pressed="true"] .view-index { color:var(--blue); }
     .view-button:hover { color:var(--blue); background:#ffffffb8; }
     .preview-panel { min-width:0; display:flex; flex-direction:column; }
     .product-screen { position:relative; display:flex; align-items:center; justify-content:center; min-height:455px; border-radius:16px; overflow:hidden; background:radial-gradient(ellipse at 50% 50%,#222b42,#0e1018 75%); }
@@ -224,7 +224,7 @@
       .workspace { display:block; padding:7px; border-radius:18px; }
       .view-controls { flex-direction:row; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:none; -webkit-overflow-scrolling:touch; padding:5px 0 12px; gap:3px; }
       .view-controls::-webkit-scrollbar { display:none; }
-      .view-controls-heading,.view-button .view-index,.view-button small,.view-button .view-arrow { display:none; }
+      .view-controls-heading,.view-button .view-index,.view-button small { display:none; }
       .view-button { width:auto; display:block; flex:0 0 auto; min-height:42px; white-space:nowrap; padding:10px 13px; border-radius:100px; }
       .view-button strong { font-size:.77rem; }
       .product-screen { border-radius:11px; }
@@ -356,16 +356,16 @@
     </section>
 
     <section class="section shell" id="inside" aria-labelledby="inside-title">
-      <div class="section-intro"><div><p class="kicker mono">01 / Meet your workspace</p><h2 id="inside-title">Everything on your mind.<br>Finally, in one place.</h2></div><p>Give each part of your life its own Space. Keep projects, notes, recordings, links, and connected folders in context, then find your way back with local AI.</p></div>
+      <div class="section-intro"><div><p class="kicker mono">01 / Meet your workspace</p><h2 id="inside-title">Everything on your mind.<br>Finally, in one place.</h2></div><p>Spaces keep projects, notes, meetings, and links together. Local AI helps you find what matters.</p></div>
       <div class="workspace">
         <div class="view-controls" role="group" aria-label="Explore Slate screenshots">
           <div class="view-controls-heading mono"><span>Explore Slate</span><span id="view-count">01 / 04</span></div>
-          <button class="view-button" aria-pressed="true" data-view="0"><span class="view-index mono">01</span><span class="view-copy"><strong>Your Spaces</strong><small>Everything in its place</small></span><span class="view-arrow" aria-hidden="true">↗</span></button>
-          <button class="view-button" aria-pressed="false" data-view="1"><span class="view-index mono">02</span><span class="view-copy"><strong>Ask your Space</strong><small>Answers with sources</small></span><span class="view-arrow" aria-hidden="true">↗</span></button>
-          <button class="view-button" aria-pressed="false" data-view="2"><span class="view-index mono">03</span><span class="view-copy"><strong>Meeting notes</strong><small>From talk to next steps</small></span><span class="view-arrow" aria-hidden="true">↗</span></button>
-          <button class="view-button" aria-pressed="false" data-view="3"><span class="view-index mono">04</span><span class="view-copy"><strong>Your AI apps</strong><small>Work together, in context</small></span><span class="view-arrow" aria-hidden="true">↗</span></button>
+          <button class="view-button" aria-pressed="true" data-view="0"><span class="view-index mono">01</span><span class="view-copy"><strong>Your Spaces</strong><small>Everything in its place</small></span></button>
+          <button class="view-button" aria-pressed="false" data-view="1"><span class="view-index mono">02</span><span class="view-copy"><strong>Ask your Space</strong><small>Answers with sources</small></span></button>
+          <button class="view-button" aria-pressed="false" data-view="2"><span class="view-index mono">03</span><span class="view-copy"><strong>Meeting notes</strong><small>From talk to next steps</small></span></button>
+          <button class="view-button" aria-pressed="false" data-view="3"><span class="view-index mono">04</span><span class="view-copy"><strong>Your AI apps</strong><small>Work together, in context</small></span></button>
         </div>
-        <div class="preview-panel"><div class="product-screen"><img id="workspace-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c5/3b/c0/c53bc04b-cbee-85dd-aee7-e36be6df9420/slate-mac-1-all-your-work.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI 2.0 with Spaces and projects organized in one workspace"><button class="screen-expand" type="button" data-expand-image="workspace-image" aria-label="View current Slate screenshot larger">View larger ↗</button></div>
+        <div class="preview-panel"><div class="product-screen"><img id="workspace-image" src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/c5/3b/c0/c53bc04b-cbee-85dd-aee7-e36be6df9420/slate-mac-1-all-your-work.png/1600x1000bb.jpg" width="800" height="500" loading="lazy" alt="Slate AI 2.0 with Spaces and projects organized in one workspace"><button class="screen-expand" type="button" data-expand-image="workspace-image" aria-label="View current Slate screenshot larger">View larger</button></div>
         <div class="screen-caption"><span id="workspace-caption" aria-live="polite">A home for all the parts of your work.</span><span class="mono">Inside Slate / macOS</span></div></div>
       </div>
       <div class="features">
