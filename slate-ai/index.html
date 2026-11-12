@@ -233,6 +233,54 @@
       .closing { padding:50px 20px; border-radius:22px; margin-bottom:30px; }
       .footer-inner { align-items:start; flex-direction:column; }
     }
+    @media (max-width:500px) {
+      /* Keep the story and controls readable without making every section a full-screen panel on phones. */
+      .hero { padding:16px 0 20px; }
+      .product-line { padding-bottom:20px; }
+      .hero h1 { font-size:clamp(2.65rem,11vw,3.25rem); line-height:1; margin-bottom:16px; }
+      .hero-copy { font-size:.98rem; line-height:1.5; }
+      .actions { margin-top:18px; }
+      .actions .button { padding:13px 16px; }
+      .hero-visual { padding:18px 5px 8px; }
+      .thought { margin-left:15px; padding:11px 14px; }
+      .hero-foot { margin-top:18px; padding-top:14px; }
+      .section { padding-block:46px; }
+      .kicker { margin-bottom:13px; }
+      h2 { font-size:clamp(2rem,8vw,2.5rem); line-height:1.08; letter-spacing:-.055em; }
+      .section-intro { gap:14px; margin-bottom:20px; }
+      .section-intro p:not(.kicker) { font-size:.94rem; line-height:1.55; }
+      .features { padding-top:12px; }
+      .feature { padding:20px 0; }
+      .app-bridge { gap:14px; padding:18px; margin-top:20px; }
+      .app-bridge h3 { font-size:1.4rem; }
+      .app-bridge p:not(.kicker) { font-size:.92rem; line-height:1.5; }
+      .privacy { padding:42px 0 28px; }
+      .privacy-grid { gap:0; }
+      .privacy h2 { font-size:clamp(1.95rem,8vw,2.3rem); }
+      .privacy-copy { font-size:.96rem; line-height:1.55; margin-top:16px; }
+      .local-diagram { display:none; }
+      .impact-strip { margin-top:24px; padding:16px; gap:12px; }
+      .impact-strip h3 { font-size:1.3rem; }
+      .impact-strip .impact-copy { font-size:.82rem; }
+      .impact-sample { padding:12px; }
+      .manifesto { padding-block:44px; gap:8px; }
+      .manifesto h2 { font-size:clamp(1.95rem,7.5vw,2.3rem); }
+      .manifesto p:not(.kicker) { font-size:.94rem; line-height:1.55; margin-top:16px; }
+      .release-heading { gap:15px; margin-bottom:22px; }
+      .release { gap:14px; }
+      .release + .release { margin-top:30px; }
+      .release-date { padding-top:12px; }
+      .release-body { padding-top:16px; }
+      .release h3 { font-size:1.45rem; margin:17px 0 9px; }
+      .release-body>p { font-size:.94rem; line-height:1.55; }
+      .release ul { margin:16px 0; }
+      .release li { padding:6px 0; font-size:.85rem; }
+      .beta-note { padding:12px 14px; }
+      .closing { padding:34px 18px; margin-bottom:24px; }
+      .closing .app-icon { width:54px; height:54px; margin-bottom:15px; }
+      .closing h2 { font-size:clamp(2rem,8vw,2.5rem); }
+      .closing p { font-size:.94rem; line-height:1.5; margin:14px auto 18px; }
+    }
     @media (max-width:370px) { .nav-links { gap:10px; } .features { grid-template-columns:1fr; } .beta-label { letter-spacing:0; } }
     @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none!important; transition:none!important; } }
   </style>
