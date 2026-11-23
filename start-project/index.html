@@ -126,11 +126,12 @@
     .service-card h3 { position: relative; z-index: 1; font-size: clamp(2.25rem, 4vw, 4.65rem); line-height: .98; letter-spacing: -.065em; font-weight: 600; margin: 26px 0 14px; }
     .service-card p { position: relative; z-index: 1; max-width: 460px; font-size: 1.01rem; line-height: 1.52; opacity: .76; margin: 0; }
     .service-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 24px; position: relative; z-index: 1; }
-    .work-proof { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:34px; padding-top:22px; border-top:1px solid var(--line); color:#4e5058; font-size:1rem; line-height:1.5; }
+    .work-proof { margin-top:34px; padding-top:22px; border-top:1px solid var(--line); color:#414650; font-size:1rem; line-height:1.5; }
     .work-proof p { margin:0; }
+    .work-proof strong { color:var(--ink); font-weight:600; }
     .work-proof a { text-decoration-color:#8b97ad; text-underline-offset:4px; }
     .work-proof a:hover { color:var(--blue); text-decoration-color:var(--blue); }
-    .work-proof > a { flex-shrink:0; color:var(--ink); font-weight:600; }
+    .work-proof-all { color:var(--ink); font-weight:600; white-space:nowrap; }
     .service-tags span { border: 1px solid currentColor; border-radius: 999px; padding: 7px 11px; font-size: .58rem; opacity: .72; }
     .approach { border-block: 1px solid var(--line); padding: 62px 0 60px; background: rgba(255,255,255,.62); }
     .approach-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(35px, 8vw, 140px); }
@@ -174,6 +175,7 @@
       .contact-card::after { right: -5%; opacity: .48; }
     }
     @media (max-width: 640px) {
+      html { overflow-x:clip; }
       .nav, .shell { width: min(100% - 36px, 1380px); }
       .nav { min-height: 68px; }
       .logo { font-size: 1.27rem; }
@@ -187,18 +189,27 @@
       .hero-actions { gap: 19px; }
       .hero-art { max-width: 460px; }
       .float-label { font-size: .55rem; padding: 9px 10px; }
-      .ticker { margin-bottom: 48px; }
+      .ticker { margin-bottom: 38px; transform:none; }
       .ticker-track { padding: 13px 0; }
       .services { padding-bottom: 48px; }
       .service-grid { gap: 13px; }
       .service-card:nth-child(n) { grid-column: span 12; min-height: 320px; border-radius: 22px; }
       .service-card::after { font-size: 11rem; }
-      .work-proof { align-items:flex-start; flex-direction:column; gap:10px; margin-top:26px; }
-      .approach { padding: 52px 0 52px; }
-      .contact-section { padding: 48px 0 55px; }
-      .contact-card { min-height: 510px; border-radius: 23px; }
-      .contact-card::after { font-size: 18rem; top: 21%; right: -19%; opacity: .3; }
-      .contact-card .pill { padding: 18px 16px; font-size: 1.125rem; gap: 8px; }
+      .work-proof { margin-top:24px; padding-top:18px; font-size:.91rem; }
+      .approach { padding: 36px 0 34px; }
+      .approach-grid { gap:22px; }
+      .approach h2 { font-size:clamp(2.45rem,11vw,3rem); margin:14px 0; }
+      .approach-lede { font-size:.98rem; line-height:1.48; }
+      .step { display:block; padding:21px 0; }
+      .step-number { padding:0; margin-bottom:8px; }
+      .step h3 { font-size:1.4rem; line-height:1.12; }
+      .step p { font-size:.96rem; line-height:1.48; }
+      .contact-section { padding: 24px 0 38px; }
+      .contact-card { min-height:0; padding:38px 26px; border-radius:23px; }
+      .contact-card h2 { font-size:clamp(2.55rem,11vw,3.15rem); margin:17px 0; line-height:1; }
+      .contact-card p { font-size:1.02rem; line-height:1.48; margin-bottom:24px; }
+      .contact-card::after { font-size: 12rem; top: 29%; right: -17%; opacity: .2; }
+      .contact-card .pill { min-height:54px; padding:15px 18px; font-size:1rem; gap:8px; }
       .contact-email { font-size: .9rem; }
       .footer-inner { padding: 30px 0; align-items: flex-start; flex-direction: column; }
     }
@@ -221,7 +232,7 @@
         <a class="nex-desktop-link" href="/#about">About</a>
         <a href="/products/">Products</a>
         <a class="nex-desktop-link" aria-current="page" href="/start-project/">Work with us</a>
-        <a class="nex-download" href="/slate-ai/">Get Slate ↗</a>
+        <a class="nex-download" href="/slate-ai/">Get Slate</a>
     </div>
   </nav>
 </header>
@@ -281,7 +292,7 @@
           <div class="service-tags mono"><span>LOCAL AI</span><span>AI FEATURES</span><span>AUTOMATION</span><span>INTEGRATION</span></div>
         </article>
       </div>
-      <div class="work-proof reveal"><p>We ship our own products, too: <a href="/slate-ai/">Slate AI</a> for Mac and <a href="/keepsake/">Keepsake</a> for iPhone.</p><a href="/products/">See all products</a></div>
+      <div class="work-proof reveal"><p><strong>See what we've built:</strong> <a href="/keepsake/">Keepsake</a>, <a href="https://oneblvd.co/">oneblvd</a>, and <a href="/slate-ai/">Slate AI</a>. <a class="work-proof-all" href="/products/">See all products ↗</a></p></div>
     </section>
 
     <section class="approach" aria-labelledby="approach-title"><div class="shell approach-grid">
