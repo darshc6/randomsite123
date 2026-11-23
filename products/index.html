@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>NEXTEON | Products</title>
+  <meta name="description" content="Explore NEXTEON Labs Core utilities, everyday apps, and founder-built products used by thousands of people each day.">
 
   <!-- NEXTEON favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -1119,6 +1120,41 @@
       .hero h1 { font-size: clamp(2.65rem, 10.5vw, 4rem); max-width: 550px; }
       .hero-copy { margin-top: .9rem; font-size: .98rem; }
     }
+
+    /* Compact, distinct product collections */
+    .collection-head {
+      padding: 1.3rem 1.5rem 1.15rem;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .core-section .collection-head {
+      background: linear-gradient(105deg, #e9f0ff 0%, #f7faff 56%, rgba(255,255,255,.75) 100%);
+    }
+    .collection-kicker {
+      font: 600 .65rem/1.4 'Space Mono', monospace;
+      letter-spacing: .09em;
+      color: var(--accent);
+    }
+    .collection-title {
+      margin: .28rem 0 .2rem;
+      font-size: clamp(1.65rem, 2.6vw, 2.25rem);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+    .collection-title span { color: var(--accent); }
+    .collection-head p {
+      margin: 0;
+      font-size: .9rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .core-section .compact-row { grid-template-columns: 56px minmax(180px,.7fr) minmax(260px,1fr) 168px 30px; }
+    @media (max-width: 980px) {
+      .core-section .compact-row { grid-template-columns: 46px 1fr 24px; }
+    }
+    @media (max-width: 700px) {
+      .collection-head { padding: 1.15rem 1rem 1rem; }
+      .collection-title { font-size: 1.75rem; }
+    }
   </style>
 
   <link rel="stylesheet" href="/site-header.css">
@@ -1167,191 +1203,72 @@
 
 
 
-    <!-- ================================
-         NEXTEON LABS
-         ================================ -->
-
-    <section class="section" id="products-list">
-
-
-      <div class="section-head">
-
-        <div class="section-title">
-          NEXTEON Labs
-        </div>
-
-        <div class="section-label">
-          Products founded in house
-        </div>
-
+    <!-- NEXTEON Labs collections -->
+    <section class="section core-section" id="products-list" aria-labelledby="core-title">
+      <div class="collection-head">
+        <div class="collection-kicker">NEXTEON LABS / 01</div>
+        <h2 class="collection-title" id="core-title">Core<span>.</span></h2>
+        <p>Focused tools for the things you do every day.</p>
       </div>
-
-
-
       <div class="compact-list">
-
-
-        <!-- SLATE AI -->
-
-        <a
-          class="compact-row"
-          href="/slate-ai/"
-        >
-
-          <div class="index">
-            L01
-          </div>
-
-          <div class="compact-name">
-            Slate AI
-          </div>
-
-          <div class="compact-desc">
-            A private Mac workspace for Spaces, projects, notes, meetings, tasks, and local AI.
-          </div>
-
-          <div class="status live">
-            Slate AI 2.0
-          </div>
-
-          <div class="arrow">
-            ↗
-          </div>
-
+        <a class="compact-row" href="https://apps.apple.com/us/app/docvault-private-powerful/id6756907502" target="_blank" rel="noopener noreferrer">
+          <div class="index">C01</div>
+          <div class="compact-name">DocVault</div>
+          <div class="compact-desc">Scan, sign, organize, and search documents in one private place.</div>
+          <div class="status live">Get the app</div>
+          <div class="arrow" aria-hidden="true">↗</div>
         </a>
-
-
-
-        <!-- KEEPSAKE -->
-        <a class="compact-row" href="/keepsake/">
-          <div class="index">L02</div>
-          <div class="compact-name">Keepsake: Journal &amp; Scrapbook</div>
-          <div class="compact-desc">A private journal for photos, stickers, drawings, and everyday memories. With mood tracking, writing prompts, and optional iCloud sync.</div>
-          <div class="status live">New</div>
-          <div class="arrow">↗</div>
-        </a>
-
-
-        <!-- DAYONE -->
         <div class="compact-row">
-          <div class="index">L03</div>
+          <div class="index">C02</div>
+          <div class="compact-name">NEO Browser</div>
+          <div class="compact-desc">A local AI browser for iPhone. Reached #75 on the App Store.</div>
+          <div class="status">New version coming soon</div>
+        </div>
+        <a class="compact-row" href="https://apps.apple.com/us/app/rawcam-natural-dual-camera/id6796728446" target="_blank" rel="noopener noreferrer">
+          <div class="index">C03</div>
+          <div class="compact-name">RawCam</div>
+          <div class="compact-desc">Natural iPhone photos, dual portrait and landscape capture, and an on-device editor.</div>
+          <div class="status live">Get the app</div>
+          <div class="arrow" aria-hidden="true">↗</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section everyday-section" aria-labelledby="everyday-title">
+      <div class="collection-head">
+        <div class="collection-kicker">NEXTEON LABS / 02</div>
+        <h2 class="collection-title" id="everyday-title">Everyday<span>.</span></h2>
+        <p>Made for how you think, create, and remember.</p>
+      </div>
+      <div class="compact-list">
+        <a class="compact-row" href="/slate-ai/">
+          <div class="index">E01</div>
+          <div class="compact-name">Slate AI</div>
+          <div class="compact-desc">A private Mac workspace for Spaces, projects, notes, meetings, tasks, and local AI.</div>
+          <div class="status live">Slate AI 2.0</div>
+          <div class="arrow" aria-hidden="true">↗</div>
+        </a>
+        <a class="compact-row" href="/keepsake/">
+          <div class="index">E02</div>
+          <div class="compact-name">Keepsake: Journal &amp; Scrapbook</div>
+          <div class="compact-desc">A private journal for photos, stickers, drawings, and everyday memories.</div>
+          <div class="status live">New</div>
+          <div class="arrow" aria-hidden="true">↗</div>
+        </a>
+        <div class="compact-row">
+          <div class="index">E03</div>
           <div class="compact-name">DayOne</div>
           <div class="compact-desc">A goals and social utility product.</div>
           <div class="status">NEXTEON Labs</div>
         </div>
-
-
-        <!-- DOCVAULT -->
-
         <div class="compact-row">
-
-          <div class="index">
-            L04
-          </div>
-
-          <div class="compact-name">
-            DocVault
-          </div>
-
-          <div class="compact-desc">
-            Securely scan, organize, sign, and search documents
-            in one place.
-          </div>
-
-          <div class="status">
-            Available
-          </div>
-
+          <div class="index">E04</div>
+          <div class="compact-name">Aesthetic Clock</div>
+          <div class="compact-desc">A minimal focus clock with ambient soundscapes for deep work offline.</div>
+          <div class="status">Available</div>
         </div>
-
-
-
-        <!-- AESTHETIC CLOCK -->
-
-        <div class="compact-row">
-
-          <div class="index">
-            L05
-          </div>
-
-          <div class="compact-name">
-            Aesthetic Clock
-          </div>
-
-          <div class="compact-desc">
-            A minimal focus clock with ambient soundscapes
-            for deep work offline.
-          </div>
-
-          <div class="status">
-            Available
-          </div>
-
-        </div>
-
-
-
-        <!-- NEO BROWSER -->
-
-        <div class="compact-row">
-
-          <div class="index">
-            L06
-          </div>
-
-          <div class="compact-name">
-            NEO Browser
-          </div>
-
-          <div class="compact-desc">
-            Local AI browser for iOS.
-          </div>
-
-          <div class="status">
-            #75 on the App Store · Profitable · New version coming soon
-          </div>
-
-        </div>
-
-
-
-        <!-- MORE -->
-
-        <div class="compact-row">
-
-          <div class="index">
-            L07
-          </div>
-
-          <div class="compact-name">
-            And more
-          </div>
-
-          <div class="compact-desc">
-            A growing set of experiments, utilities,
-            and ideas currently in the lab.
-          </div>
-
-          <div class="status">
-            Ongoing
-          </div>
-
-          <div class="arrow">
-            +
-          </div>
-
-        </div>
-
-
       </div>
-
-
-
-
-
-
     </section>
-
 
     <!-- ================================
          FOUNDER BUILT
