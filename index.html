@@ -2066,8 +2066,27 @@
       .work-bottom { align-items: stretch; }
       .work-title { font-size: clamp(2.3rem,9vw,3rem); }
     }
+
+    /* A calmer, shorter Work with us section on smaller screens */
+    @media (max-width: 900px) {
+      .work-section { padding: 1.7rem .85rem 2.8rem; }
+      .work-services { grid-template-columns: 1fr; }
+      .work-service + .work-service { border-left: 0; border-top: 1px solid rgba(0,0,0,.08); }
+      .work-shell { border-radius: 20px; }
+      .work-top { padding: 1.35rem 1.2rem 1.25rem; }
+      .work-kicker { font-size: .63rem; margin-bottom: .6rem; }
+      .work-title { font-size: clamp(1.85rem, 7.2vw, 2.3rem); line-height: 1.04; max-width: 18ch; }
+      .work-intro { margin-top: .85rem; max-width: 46ch; font-size: .87rem; line-height: 1.48; }
+      .work-service, .work-service:hover { padding: 1rem 1.2rem; }
+      .work-service-index { font-size: .59rem; margin-bottom: .38rem; }
+      .work-service h3 { font-size: 1.16rem; margin-bottom: .35rem; }
+      .work-service p { font-size: .83rem; line-height: 1.45; }
+      .work-bottom { padding: 1rem 1.2rem; }
+      .work-bottom-note { font-size: .82rem; line-height: 1.35; }
+    }
   </style>
   <link rel="stylesheet" href="/site-header.css">
+  <link rel="stylesheet" href="/site-footer.css">
 </head>
 
 
@@ -2327,7 +2346,7 @@
         </div>
 
 
-        <p class="work-intro">NEXTEON Labs helps founders and teams design, build, and improve iOS apps, websites, and practical AI products. We bring product strategy, UI/UX design, and engineering together from first concept through launch.</p>
+        <p class="work-intro">NEXTEON Labs designs and builds iOS apps, websites, and practical AI products. Strategy, design, and engineering—from first idea to launch.</p>
 
       </div>
 
@@ -2346,10 +2365,7 @@
           </h3>
 
           <p>
-            End-to-end product development from concept and UX
-            through engineering, launch, and iteration.
-            Clearly scoped builds can be structured at a flat
-            project rate.
+            From concept and UX to engineering, launch, and iteration. Flat project rates available.
           </p>
 
         </div>
@@ -2366,9 +2382,7 @@
           </h3>
 
           <p>
-            Architecture, infrastructure, workflow, and tooling
-            audits designed to reduce unnecessary spend without
-            compromising quality or velocity.
+            Find unnecessary spend in your architecture, infrastructure, and workflow.
           </p>
 
         </div>
@@ -2385,9 +2399,7 @@
           </h3>
 
           <p>
-            Focused consulting across product strategy, design,
-            AI implementation, technical decisions, and the path
-            from idea to a product people can actually use.
+            Clear direction on product strategy, design, AI, and technical decisions.
           </p>
 
         </div>
@@ -2425,87 +2437,26 @@
 
   <!-- FOOTER -->
 
-  <footer class="footer">
-
-    <div class="footer-container">
-
-
-      <!-- INTERACTIVE NEXTEON MARK -->
-
-      <div class="footer-col">
-
-        <div
-          class="footer-logo-zone"
-          id="footerLogoZone"
-        >
-
-          <div
-            class="footer-logo-mark"
-            id="footerLogoMark"
-          >
-
-            <div class="footer-logo-dot"></div>
-
-          </div>
-
+  <footer class="nex-site-footer" id="site-footer">
+    <div class="nex-footer-grid">
+      <div class="nex-footer-brand">
+        <div class="nex-footer-logo-zone">
+          <a class="nex-footer-logo" href="/" aria-label="NEXTEON home">NEXTEON<sup>TM</sup></a>
         </div>
-
-
-        <p>
-          nxteon@gmail.com
-        </p>
-
+        <a class="nex-footer-email" href="mailto:nxteon@gmail.com">nxteon@gmail.com</a>
       </div>
-
-
-      <!-- LOCATIONS -->
-
-      <div class="footer-col">
-
-        <h4>
-          LOCATIONS
-        </h4>
-
-        <p>
-          New York, NY
-        </p>
-
-        <p>
-          Los Angeles, CA
-        </p>
-
+      <div class="nex-footer-col">
+        <h2>LOCATIONS</h2>
+        <p>New York, NY</p>
+        <p>Los Angeles, CA</p>
       </div>
-
-
-      <!-- LEGAL -->
-
-      <div class="footer-col">
-
-        <h4>
-          LEGAL
-        </h4>
-
-        <a href="#">
-          Accessibility Statement
-        </a>
-
-        <a href="#">
-          Privacy Policy
-        </a>
-
+      <div class="nex-footer-col">
+        <h2>LEGAL</h2>
+        <a href="#">Accessibility Statement</a>
+        <a href="#">Privacy Policy</a>
       </div>
-
     </div>
-
-
-    <div class="footer-bottom">
-
-      <span>
-        © 2025 by NEXTEON LLC.
-      </span>
-
-    </div>
-
+    <div class="nex-footer-bottom">© 2025 by NEXTEON LLC.</div>
   </footer>
 
 
@@ -3175,5 +3126,6 @@
 
   </script>
 
+  <script src="/site-footer.js" defer></script>
 </body>
 </html>

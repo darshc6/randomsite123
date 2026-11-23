@@ -1260,9 +1260,24 @@
     @media (prefers-reduced-motion:reduce) {
       .js .product-collection .collection-body, .mobile-symbol { transition:none; }
     }
+
+    /* Compact product collection labels */
+    .collection-head { padding: 1.1rem 1.4rem .95rem; }
+    .collection-title { margin: 0 0 .25rem; }
+    .collection-head p { font-size: .86rem; }
+    @media (max-width: 900px) {
+      .mobile-collection-head { grid-template-columns: minmax(0,1fr) 30px; align-items: center; column-gap: .7rem; padding: .88rem 1rem; }
+      .mobile-title { grid-column: 1; grid-row: 1; margin: 0 0 .16rem; font-size: 1.25rem; line-height: 1.07; letter-spacing: -.04em; }
+      .mobile-preview { grid-column: 1; grid-row: 2; font-size: .77rem; line-height: 1.32; }
+      .mobile-symbol { grid-column: 2; grid-row: 1 / 3; width: 30px; height: 30px; margin: 0; font-size: 1.1rem; }
+      .product-collection { margin-top: .55rem; border-radius: 18px; }
+      .hero h1 { font-size: clamp(2.2rem, 6vw, 2.8rem); }
+      .hero-copy { font-size: .91rem; line-height: 1.42; }
+    }
   </style>
 
   <link rel="stylesheet" href="/site-header.css">
+  <link rel="stylesheet" href="/site-footer.css">
 </head>
 
 
@@ -1311,13 +1326,11 @@
     <!-- NEXTEON Labs collections -->
     <section class="section core-section product-collection" id="products-list" aria-labelledby="core-title">
       <div class="collection-head">
-        <div class="collection-kicker">NEXTEON LABS / 01</div>
-        <h2 class="collection-title" id="core-title">Core<span>.</span></h2>
+        <h2 class="collection-title" id="core-title">Core</h2>
         <p>Focused tools for the things you do every day.</p>
       </div>
       <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="core-body">
-        <span class="mobile-kicker">NEXTEON LABS / 01 <span>03 PRODUCTS</span></span>
-        <span class="mobile-title">Core<span>.</span></span>
+        <span class="mobile-title">Core</span>
         <span class="mobile-preview">DocVault · NEO Browser · RawCam</span>
         <span class="mobile-symbol" aria-hidden="true">+</span>
       </button>
@@ -1347,13 +1360,11 @@
 
     <section class="section signature-section product-collection" aria-labelledby="signature-title">
       <div class="collection-head">
-        <div class="collection-kicker">NEXTEON LABS / 02</div>
-        <h2 class="collection-title" id="signature-title">Signature<span>.</span></h2>
+        <h2 class="collection-title" id="signature-title">Signature</h2>
         <p>Distinct products for the ways we think, create, and connect.</p>
       </div>
       <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="signature-body">
-        <span class="mobile-kicker">NEXTEON LABS / 02 <span>04 PRODUCTS</span></span>
-        <span class="mobile-title">Signature<span>.</span></span>
+        <span class="mobile-title">Signature</span>
         <span class="mobile-preview">Slate AI · Keepsake · DayOne · Aesthetic Clock</span>
         <span class="mobile-symbol" aria-hidden="true">+</span>
       </button>
@@ -1399,8 +1410,7 @@
       </div>
 
       <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="founder-body">
-        <span class="mobile-kicker">FOUNDER-BUILT <span>03 PRODUCTS</span></span>
-        <span class="mobile-title">Founder-built<span>.</span></span>
+        <span class="mobile-title">Founder-built</span>
         <span class="mobile-preview">oneblvd · BOLT Social · Wordzy!</span>
         <span class="mobile-symbol" aria-hidden="true">+</span>
       </button>
@@ -1446,16 +1456,26 @@
        FOOTER
        ================================ -->
 
-  <footer class="footer">
-
-    <div>
-      © 2025 by NEXTEON LLC.
+  <footer class="nex-site-footer" id="site-footer">
+    <div class="nex-footer-grid">
+      <div class="nex-footer-brand">
+        <div class="nex-footer-logo-zone">
+          <a class="nex-footer-logo" href="/" aria-label="NEXTEON home">NEXTEON<sup>TM</sup></a>
+        </div>
+        <a class="nex-footer-email" href="mailto:nxteon@gmail.com">nxteon@gmail.com</a>
+      </div>
+      <div class="nex-footer-col">
+        <h2>LOCATIONS</h2>
+        <p>New York, NY</p>
+        <p>Los Angeles, CA</p>
+      </div>
+      <div class="nex-footer-col">
+        <h2>LEGAL</h2>
+        <a href="#">Accessibility Statement</a>
+        <a href="#">Privacy Policy</a>
+      </div>
     </div>
-
-    <div>
-      New York, NY / Los Angeles, CA
-    </div>
-
+    <div class="nex-footer-bottom">© 2025 by NEXTEON LLC.</div>
   </footer>
 
 
@@ -1670,6 +1690,7 @@
     });
   </script>
 
+  <script src="/site-footer.js" defer></script>
 </body>
 
 </html>
