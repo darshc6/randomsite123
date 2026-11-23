@@ -1147,13 +1147,77 @@
       line-height: 1.45;
       color: var(--muted);
     }
-    .core-section .compact-row { grid-template-columns: 56px minmax(180px,.7fr) minmax(260px,1fr) 168px 30px; }
+    .core-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .7rem;
+      padding: .8rem;
+    }
+    .core-product {
+      display: flex;
+      flex-direction: column;
+      min-height: 195px;
+      padding: 1.25rem 1.25rem 1rem;
+      border: 1px solid var(--line-soft);
+      border-radius: 17px;
+      background: rgba(255,255,255,.72);
+      transition: border-color .25s ease, background .25s ease, transform .25s ease, box-shadow .25s ease;
+    }
+    a.core-product:hover, a.core-product:focus-visible {
+      background: #fff;
+      border-color: rgba(8,73,255,.32);
+      box-shadow: 0 12px 28px rgba(18,40,94,.07);
+      transform: translateY(-3px);
+    }
+    .core-product-kicker {
+      font: 600 .64rem/1.3 'Space Mono', monospace;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+    .core-product h3 {
+      margin: .95rem 0 .38rem;
+      font-size: clamp(1.45rem, 2vw, 1.8rem);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+    .core-product p {
+      margin: 0 0 1.2rem;
+      color: var(--muted);
+      font-size: .91rem;
+      line-height: 1.48;
+    }
+    .core-product-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem;
+      margin-top: auto;
+      padding-top: .7rem;
+      border-top: 1px solid var(--line-soft);
+      color: var(--muted);
+      font: 600 .64rem/1.3 'Space Mono', monospace;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .core-product-action.live { color: var(--accent); }
+    .core-product-action span { font-size: 1rem; line-height: 1; }
     @media (max-width: 980px) {
-      .core-section .compact-row { grid-template-columns: 46px 1fr 24px; }
+      .core-grid { grid-template-columns: 1fr; gap: .55rem; }
+      .core-product { min-height: 0; padding: 1.1rem; }
+      .core-product h3 { margin-top: .55rem; }
+      .core-product p { margin-bottom: .85rem; }
     }
     @media (max-width: 700px) {
-      .collection-head { padding: 1.15rem 1rem 1rem; }
-      .collection-title { font-size: 1.75rem; }
+      .collection-head { padding: 1.1rem 1rem .9rem; }
+      .collection-title { font-size: 1.7rem; }
+      .core-grid { padding: .55rem; }
+      .core-product { padding: 1rem; }
+      .core-product h3 { font-size: 1.4rem; }
+      .core-product p { font-size: .87rem; line-height: 1.42; }
+      .compact-name { font-size: 1.22rem; line-height: 1.18; }
+      .compact-desc { font-size: .88rem; line-height: 1.42; }
+      .product-name { font-size: 1.85rem; line-height: 1; }
+      .product-description { font-size: .92rem; line-height: 1.45; }
     }
   </style>
 
@@ -1210,26 +1274,24 @@
         <h2 class="collection-title" id="core-title">Core<span>.</span></h2>
         <p>Focused tools for the things you do every day.</p>
       </div>
-      <div class="compact-list">
-        <a class="compact-row" href="https://apps.apple.com/us/app/docvault-private-powerful/id6756907502" target="_blank" rel="noopener noreferrer">
-          <div class="index">C01</div>
-          <div class="compact-name">DocVault</div>
-          <div class="compact-desc">Scan, sign, organize, and search documents in one private place.</div>
-          <div class="status live">Get the app</div>
-          <div class="arrow" aria-hidden="true">↗</div>
+      <div class="core-grid">
+        <a class="core-product" href="https://apps.apple.com/us/app/docvault-private-powerful/id6756907502" target="_blank" rel="noopener noreferrer">
+          <div class="core-product-kicker">C01 / DOCUMENTS</div>
+          <h3>DocVault</h3>
+          <p>Scan, sign, organize, and search documents in one private place.</p>
+          <div class="core-product-action live">Get the app <span aria-hidden="true">↗</span></div>
         </a>
-        <div class="compact-row">
-          <div class="index">C02</div>
-          <div class="compact-name">NEO Browser</div>
-          <div class="compact-desc">A local AI browser for iPhone. Reached #75 on the App Store.</div>
-          <div class="status">New version coming soon</div>
+        <div class="core-product">
+          <div class="core-product-kicker">C02 / BROWSER</div>
+          <h3>NEO Browser</h3>
+          <p>A local AI browser for iPhone. Reached #75 on the App Store.</p>
+          <div class="core-product-action">New version coming soon</div>
         </div>
-        <a class="compact-row" href="https://apps.apple.com/us/app/rawcam-natural-dual-camera/id6796728446" target="_blank" rel="noopener noreferrer">
-          <div class="index">C03</div>
-          <div class="compact-name">RawCam</div>
-          <div class="compact-desc">Natural iPhone photos, dual portrait and landscape capture, and an on-device editor.</div>
-          <div class="status live">Get the app</div>
-          <div class="arrow" aria-hidden="true">↗</div>
+        <a class="core-product" href="https://apps.apple.com/us/app/rawcam-natural-dual-camera/id6796728446" target="_blank" rel="noopener noreferrer">
+          <div class="core-product-kicker">C03 / CAMERA</div>
+          <h3>RawCam</h3>
+          <p>Natural iPhone photos, dual portrait and landscape capture, and an on-device editor.</p>
+          <div class="core-product-action live">Get the app <span aria-hidden="true">↗</span></div>
         </a>
       </div>
     </section>
