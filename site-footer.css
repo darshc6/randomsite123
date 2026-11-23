@@ -10,7 +10,10 @@
 .nex-footer-logo-zone { display:flex; align-items:center; height:90px; margin-bottom:.5rem; }
 .nex-footer-logo { display:inline-block; width:max-content; color:#111; font-family:'Outfit',sans-serif; font-weight:800; font-size:clamp(2.25rem,3.5vw,3.5rem); line-height:1; letter-spacing:-.085em; text-decoration:none; transform:translate3d(var(--footer-logo-x,0px),var(--footer-logo-y,0px),0) rotate(var(--footer-logo-r,0deg)); transition:transform .28s cubic-bezier(.16,1,.3,1),color .2s; will-change:transform; }
 .nex-footer-logo sup { vertical-align:top; margin-left:.2rem; font:500 .58rem/1 'Outfit',sans-serif; letter-spacing:0; }
-.nex-footer-logo:hover { color:#0047ff; }
+/* The blue follows nearby cursor position across the letters. */
+.nex-footer-wordmark { position:relative; display:inline-block; }
+.nex-footer-wordmark::after { content:attr(data-wordmark); position:absolute; inset:0; color:#0047ff; pointer-events:none; clip-path:circle(var(--footer-spot-radius,0px) at var(--footer-spot-x,50%) var(--footer-spot-y,50%)); }
+
 .nex-footer-email { display:inline-block; color:#6f6f6a; font-size:1rem; text-decoration:none; }
 .nex-footer-email:hover { color:#0047ff; }
 .nex-footer-col h2 { margin:0 0 1.5rem; color:#6f6f6a; font:700 .9rem/1.4 'Space Mono',monospace; }

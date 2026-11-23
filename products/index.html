@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet"
   />
 
@@ -1129,11 +1129,6 @@
     .core-section .collection-head {
       background: linear-gradient(105deg, #e9f0ff 0%, #f7faff 56%, rgba(255,255,255,.75) 100%);
     }
-    .collection-kicker {
-      font: 600 .65rem/1.4 'Space Mono', monospace;
-      letter-spacing: .09em;
-      color: var(--accent);
-    }
     .collection-title {
       margin: .28rem 0 .2rem;
       font-size: clamp(1.65rem, 2.6vw, 2.25rem);
@@ -1274,9 +1269,33 @@
       .hero h1 { font-size: clamp(2.2rem, 6vw, 2.8rem); }
       .hero-copy { font-size: .91rem; line-height: 1.42; }
     }
+
+    /* Clearer, lighter-weight product navigation */
+    .signature-section .collection-title { font-family:'DM Serif Display',Georgia,serif; font-weight:400; font-size:2.15rem; letter-spacing:-.025em; }
+    .signature-section .compact-row { grid-template-columns:minmax(200px,.72fr) minmax(260px,1fr) 120px 26px; }
+    .signature-section .compact-name { font-size:1.27rem; line-height:1.12; }
+    .signature-section .compact-desc { color:#50545e; font-weight:450; line-height:1.44; }
+    .core-product p { color:#50545e; }
+    @media (max-width:980px) {
+      .signature-section .compact-row { grid-template-columns:minmax(0,1fr) 24px; gap:.55rem .6rem; }
+      .signature-section .compact-name { grid-column:1; grid-row:1; }
+      .signature-section .compact-desc { grid-column:1 / -1; }
+      .signature-section .status { grid-column:1; }
+      .signature-section .arrow { grid-column:2; grid-row:1; }
+    }
+    @media (max-width:900px) {
+      .mobile-preview { display:block; width:100%; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:#565b66; font-weight:500; font-size:.79rem; }
+      .mobile-title span { color:var(--accent); }
+      .signature-section .mobile-title { font-family:'DM Serif Display',Georgia,serif; font-size:1.48rem; font-weight:400; letter-spacing:-.025em; }
+      .core-section .mobile-symbol,.signature-section .mobile-symbol { color:var(--accent); border-color:rgba(0,71,255,.22); background:#f8faff; }
+      .signature-section .compact-row { padding:.95rem .85rem; }
+      .signature-section .compact-name { font-size:1.18rem; }
+      .signature-section .compact-desc { font-size:.85rem; line-height:1.42; }
+    }
   </style>
 
   <link rel="stylesheet" href="/site-header.css">
+  <script src="/site-header.js" defer></script>
   <link rel="stylesheet" href="/site-footer.css">
 </head>
 
@@ -1326,30 +1345,30 @@
     <!-- NEXTEON Labs collections -->
     <section class="section core-section product-collection" id="products-list" aria-labelledby="core-title">
       <div class="collection-head">
-        <h2 class="collection-title" id="core-title">Core</h2>
+        <h2 class="collection-title" id="core-title">Core<span>.</span></h2>
         <p>Focused tools for the things you do every day.</p>
       </div>
       <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="core-body">
-        <span class="mobile-title">Core</span>
+        <span class="mobile-title">Core<span>.</span></span>
         <span class="mobile-preview">DocVault · NEO Browser · RawCam</span>
         <span class="mobile-symbol" aria-hidden="true">+</span>
       </button>
       <div class="collection-body" id="core-body"><div class="collection-inner">
       <div class="core-grid">
         <a class="core-product" href="https://apps.apple.com/us/app/docvault-private-powerful/id6756907502" target="_blank" rel="noopener noreferrer">
-          <div class="core-product-kicker">C01 / DOCUMENTS</div>
+          <div class="core-product-kicker">DOCUMENTS</div>
           <div class="core-product-head"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/37/a5/4f/37a54fe8-f57b-bf53-dbbc-61f920f5263d/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><h3>DocVault</h3></div>
           <p>Scan, sign, organize, and search documents in one private place.</p>
           <div class="core-product-action live">Get the app <span aria-hidden="true">↗</span></div>
         </a>
         <div class="core-product">
-          <div class="core-product-kicker">C02 / BROWSER</div>
+          <div class="core-product-kicker">BROWSER</div>
           <div class="core-product-head"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/de/46/cf/de46cf5b-21fb-9c54-a4de-fec3b8495f64/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><h3>NEO Browser</h3></div>
           <p>A local AI browser for iPhone. Reached #75 on the App Store.</p>
           <div class="core-product-action">New version coming soon</div>
         </div>
         <a class="core-product" href="https://apps.apple.com/us/app/rawcam-natural-dual-camera/id6796728446" target="_blank" rel="noopener noreferrer">
-          <div class="core-product-kicker">C03 / CAMERA</div>
+          <div class="core-product-kicker">CAMERA</div>
           <div class="core-product-head"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/97/18/ec/9718ecbb-0c78-b03d-0886-f7947a272a7a/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><h3>RawCam</h3></div>
           <p>Natural iPhone photos, dual portrait and landscape capture, and an on-device editor.</p>
           <div class="core-product-action live">Get the app <span aria-hidden="true">↗</span></div>
@@ -1360,38 +1379,34 @@
 
     <section class="section signature-section product-collection" aria-labelledby="signature-title">
       <div class="collection-head">
-        <h2 class="collection-title" id="signature-title">Signature</h2>
+        <h2 class="collection-title" id="signature-title">Signature<span>.</span></h2>
         <p>Distinct products for the ways we think, create, and connect.</p>
       </div>
       <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="signature-body">
-        <span class="mobile-title">Signature</span>
+        <span class="mobile-title">Signature<span>.</span></span>
         <span class="mobile-preview">Slate AI · Keepsake · DayOne · Aesthetic Clock</span>
         <span class="mobile-symbol" aria-hidden="true">+</span>
       </button>
       <div class="collection-body" id="signature-body"><div class="collection-inner">
       <div class="compact-list">
         <a class="compact-row" href="/slate-ai/">
-          <div class="index">E01</div>
           <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1b/67/2d/1b672ddf-50a7-06bf-9499-941b385779b1/AppIcon-0-0-85-220-0-5-0-2x.png/256x256bb.png" alt="" loading="lazy" width="48" height="48"><span>Slate AI</span></div>
           <div class="compact-desc">A private Mac workspace for Spaces, projects, notes, meetings, tasks, and local AI.</div>
           <div class="status live">Slate AI 2.0</div>
           <div class="arrow" aria-hidden="true">↗</div>
         </a>
         <a class="compact-row" href="/keepsake/">
-          <div class="index">E02</div>
-          <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ea/d7/d8/ead7d8a6-2347-e32b-9d48-af0ee0c78202/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><span>Keepsake: Journal &amp; Scrapbook</span></div>
-          <div class="compact-desc">A private journal for photos, stickers, drawings, and everyday memories.</div>
+          <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ea/d7/d8/ead7d8a6-2347-e32b-9d48-af0ee0c78202/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><span>Keepsake</span></div>
+          <div class="compact-desc">A private journal and scrapbook for photos, stickers, drawings, and everyday memories.</div>
           <div class="status live">New</div>
           <div class="arrow" aria-hidden="true">↗</div>
         </a>
         <div class="compact-row">
-          <div class="index">E03</div>
           <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/61/e7/a6/61e7a674-5942-f0e1-a3b2-8046f3de2515/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><span>DayOne</span></div>
           <div class="compact-desc">A goals and social utility product.</div>
           <div class="status">NEXTEON Labs</div>
         </div>
         <div class="compact-row">
-          <div class="index">E04</div>
           <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ed/50/70/ed5070b1-24c7-c334-8ed4-44c8bc3e4f5c/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><span>Aesthetic Clock</span></div>
           <div class="compact-desc">A minimal focus clock with ambient soundscapes for deep work offline.</div>
           <div class="status">Available</div>
@@ -1460,7 +1475,7 @@
     <div class="nex-footer-grid">
       <div class="nex-footer-brand">
         <div class="nex-footer-logo-zone">
-          <a class="nex-footer-logo" href="/" aria-label="NEXTEON home">NEXTEON<sup>TM</sup></a>
+          <a class="nex-footer-logo" href="/" aria-label="NEXTEON home"><span class="nex-footer-wordmark" data-wordmark="NEXTEON">NEXTEON</span><sup>TM</sup></a>
         </div>
         <a class="nex-footer-email" href="mailto:nxteon@gmail.com">nxteon@gmail.com</a>
       </div>

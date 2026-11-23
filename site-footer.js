@@ -3,7 +3,8 @@
   const footer = document.querySelector('.nex-site-footer');
   const zone = footer?.querySelector('.nex-footer-logo-zone');
   const logo = zone?.querySelector('.nex-footer-logo');
-  if (!footer || !zone || !logo) return;
+  const wordmark = logo?.querySelector('.nex-footer-wordmark');
+  if (!footer || !zone || !logo || !wordmark) return;
   const motion = window.matchMedia('(pointer:fine) and (prefers-reduced-motion:no-preference)');
   let pointer = null;
   let frame = 0;
@@ -11,6 +12,7 @@
     logo.style.setProperty('--footer-logo-x','0px');
     logo.style.setProperty('--footer-logo-y','0px');
     logo.style.setProperty('--footer-logo-r','0deg');
+    wordmark.style.setProperty('--footer-spot-radius','0px');
   };
   const update = () => {
     frame = 0;
@@ -25,6 +27,10 @@
     logo.style.setProperty('--footer-logo-x',`${clamp(dx*.055*strength,16).toFixed(1)}px`);
     logo.style.setProperty('--footer-logo-y',`${clamp(dy*.055*strength,11).toFixed(1)}px`);
     logo.style.setProperty('--footer-logo-r',`${clamp(dx*.008*strength,2).toFixed(2)}deg`);
+    const letters = wordmark.getBoundingClientRect();
+    wordmark.style.setProperty('--footer-spot-x',`${clamp(pointer.x-letters.left,letters.width).toFixed(1)}px`);
+    wordmark.style.setProperty('--footer-spot-y',`${clamp(pointer.y-letters.top,letters.height).toFixed(1)}px`);
+    wordmark.style.setProperty('--footer-spot-radius',`${(10+86*strength).toFixed(1)}px`);
   };
   document.addEventListener('pointermove',event => {
     if (event.pointerType === 'touch') return;
