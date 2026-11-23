@@ -4,9 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>document.documentElement.classList.add('js')</script>
 
   <title>NEXTEON | Products</title>
-  <meta name="description" content="Explore NEXTEON Labs Core utilities, everyday apps, and founder-built products used by thousands of people each day.">
+  <meta name="description" content="Explore NEXTEON Labs Core utilities, Signature apps, and founder-built products used by thousands of people each day.">
 
   <!-- NEXTEON favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -23,7 +24,6 @@
     rel="stylesheet"
   />
 
-  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
 
@@ -1219,6 +1219,47 @@
       .product-name { font-size: 1.85rem; line-height: 1; }
       .product-description { font-size: .92rem; line-height: 1.45; }
     }
+
+    /* Product identity and collection controls */
+    .core-product-head { display:flex; align-items:center; gap:.85rem; margin:.85rem 0 .5rem; }
+    .core-product-head h3 { margin:0; }
+    .product-icon { width:48px; height:48px; flex:0 0 48px; object-fit:cover; border-radius:12px; border:1px solid rgba(17,17,17,.08); box-shadow:0 5px 14px rgba(17,17,17,.09); background:#fff; }
+    .compact-name { display:flex; align-items:center; gap:.78rem; }
+    .compact-name .product-icon { width:38px; height:38px; flex-basis:38px; border-radius:10px; }
+    .product-name.with-icon { display:flex; align-items:center; gap:.85rem; }
+    .product-name.with-icon .product-icon { width:44px; height:44px; flex-basis:44px; border-radius:11px; }
+    .core-section { background:linear-gradient(135deg, rgba(232,239,255,.86), rgba(255,255,255,.6) 65%); }
+    .core-section .collection-head { background:transparent; }
+    .core-product { background:rgba(255,255,255,.83); }
+    .core-product:hover .product-icon { box-shadow:0 7px 18px rgba(17,17,17,.14); }
+    .signature-section .collection-head { background:linear-gradient(110deg, #f8f9ff, #fff 72%); }
+    .mobile-collection-head { display:none; }
+    @media (max-width:900px) {
+      .page { padding-bottom:2.5rem; }
+      .product-collection { margin-top:.65rem; border-radius:20px; }
+      .product-collection > .collection-head, .product-collection > .section-head { display:none; }
+      .mobile-collection-head { display:grid; grid-template-columns:1fr auto; width:100%; padding:1.05rem 1.1rem; border:0; background:rgba(255,255,255,.86); color:var(--text); text-align:left; cursor:pointer; }
+      .core-section .mobile-collection-head { background:linear-gradient(110deg,#eaf0ff,#f9fbff); }
+      .mobile-kicker { grid-column:1 / 3; display:flex; justify-content:space-between; gap:.5rem; color:var(--accent); font:600 .61rem/1.3 'Space Mono',monospace; letter-spacing:.07em; }
+      .mobile-kicker span { color:var(--muted); }
+      .mobile-title { grid-column:1; margin:.42rem 0 .18rem; font-size:1.55rem; font-weight:700; line-height:1.02; letter-spacing:-.055em; }
+      .mobile-title span { color:var(--accent); }
+      .mobile-preview { grid-column:1; color:var(--muted); font-size:.82rem; line-height:1.35; }
+      .mobile-symbol { grid-column:2; grid-row:2 / 4; align-self:center; display:grid; place-items:center; width:34px; height:34px; margin-left:.8rem; border:1px solid var(--line); border-radius:50%; font:400 1.3rem/1 'Outfit',sans-serif; transition:transform .3s var(--transition), background .3s ease; }
+      .product-collection.is-open .mobile-symbol { transform:rotate(45deg); background:#edf2ff; }
+      .product-collection.is-open .mobile-collection-head { border-bottom:1px solid var(--line-soft); }
+      .js .product-collection .collection-body { display:grid; grid-template-rows:0fr; transition:grid-template-rows .36s var(--transition); }
+      .js .product-collection.is-open .collection-body { grid-template-rows:1fr; }
+      .js .collection-body > .collection-inner { overflow:hidden; min-height:0; }
+      .core-product-head { margin:.5rem 0 .4rem; }
+      .product-icon { width:42px; height:42px; flex-basis:42px; border-radius:11px; }
+      .compact-name .product-icon { width:34px; height:34px; flex-basis:34px; }
+      .product-name.with-icon .product-icon { width:38px; height:38px; flex-basis:38px; }
+      .compact-name { gap:.55rem; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .js .product-collection .collection-body, .mobile-symbol { transition:none; }
+    }
   </style>
 
   <link rel="stylesheet" href="/site-header.css">
@@ -1268,83 +1309,106 @@
 
 
     <!-- NEXTEON Labs collections -->
-    <section class="section core-section" id="products-list" aria-labelledby="core-title">
+    <section class="section core-section product-collection" id="products-list" aria-labelledby="core-title">
       <div class="collection-head">
         <div class="collection-kicker">NEXTEON LABS / 01</div>
         <h2 class="collection-title" id="core-title">Core<span>.</span></h2>
         <p>Focused tools for the things you do every day.</p>
       </div>
+      <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="core-body">
+        <span class="mobile-kicker">NEXTEON LABS / 01 <span>03 PRODUCTS</span></span>
+        <span class="mobile-title">Core<span>.</span></span>
+        <span class="mobile-preview">DocVault · NEO Browser · RawCam</span>
+        <span class="mobile-symbol" aria-hidden="true">+</span>
+      </button>
+      <div class="collection-body" id="core-body"><div class="collection-inner">
       <div class="core-grid">
         <a class="core-product" href="https://apps.apple.com/us/app/docvault-private-powerful/id6756907502" target="_blank" rel="noopener noreferrer">
           <div class="core-product-kicker">C01 / DOCUMENTS</div>
-          <h3>DocVault</h3>
+          <div class="core-product-head"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/37/a5/4f/37a54fe8-f57b-bf53-dbbc-61f920f5263d/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><h3>DocVault</h3></div>
           <p>Scan, sign, organize, and search documents in one private place.</p>
           <div class="core-product-action live">Get the app <span aria-hidden="true">↗</span></div>
         </a>
         <div class="core-product">
           <div class="core-product-kicker">C02 / BROWSER</div>
-          <h3>NEO Browser</h3>
+          <div class="core-product-head"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/de/46/cf/de46cf5b-21fb-9c54-a4de-fec3b8495f64/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><h3>NEO Browser</h3></div>
           <p>A local AI browser for iPhone. Reached #75 on the App Store.</p>
           <div class="core-product-action">New version coming soon</div>
         </div>
         <a class="core-product" href="https://apps.apple.com/us/app/rawcam-natural-dual-camera/id6796728446" target="_blank" rel="noopener noreferrer">
           <div class="core-product-kicker">C03 / CAMERA</div>
-          <h3>RawCam</h3>
+          <div class="core-product-head"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/97/18/ec/9718ecbb-0c78-b03d-0886-f7947a272a7a/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><h3>RawCam</h3></div>
           <p>Natural iPhone photos, dual portrait and landscape capture, and an on-device editor.</p>
           <div class="core-product-action live">Get the app <span aria-hidden="true">↗</span></div>
         </a>
       </div>
+      </div></div>
     </section>
 
-    <section class="section everyday-section" aria-labelledby="everyday-title">
+    <section class="section signature-section product-collection" aria-labelledby="signature-title">
       <div class="collection-head">
         <div class="collection-kicker">NEXTEON LABS / 02</div>
-        <h2 class="collection-title" id="everyday-title">Everyday<span>.</span></h2>
-        <p>Made for how you think, create, and remember.</p>
+        <h2 class="collection-title" id="signature-title">Signature<span>.</span></h2>
+        <p>Distinct products for the ways we think, create, and connect.</p>
       </div>
+      <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="signature-body">
+        <span class="mobile-kicker">NEXTEON LABS / 02 <span>04 PRODUCTS</span></span>
+        <span class="mobile-title">Signature<span>.</span></span>
+        <span class="mobile-preview">Slate AI · Keepsake · DayOne · Aesthetic Clock</span>
+        <span class="mobile-symbol" aria-hidden="true">+</span>
+      </button>
+      <div class="collection-body" id="signature-body"><div class="collection-inner">
       <div class="compact-list">
         <a class="compact-row" href="/slate-ai/">
           <div class="index">E01</div>
-          <div class="compact-name">Slate AI</div>
+          <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1b/67/2d/1b672ddf-50a7-06bf-9499-941b385779b1/AppIcon-0-0-85-220-0-5-0-2x.png/256x256bb.png" alt="" loading="lazy" width="48" height="48"><span>Slate AI</span></div>
           <div class="compact-desc">A private Mac workspace for Spaces, projects, notes, meetings, tasks, and local AI.</div>
           <div class="status live">Slate AI 2.0</div>
           <div class="arrow" aria-hidden="true">↗</div>
         </a>
         <a class="compact-row" href="/keepsake/">
           <div class="index">E02</div>
-          <div class="compact-name">Keepsake: Journal &amp; Scrapbook</div>
+          <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ea/d7/d8/ead7d8a6-2347-e32b-9d48-af0ee0c78202/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><span>Keepsake: Journal &amp; Scrapbook</span></div>
           <div class="compact-desc">A private journal for photos, stickers, drawings, and everyday memories.</div>
           <div class="status live">New</div>
           <div class="arrow" aria-hidden="true">↗</div>
         </a>
         <div class="compact-row">
           <div class="index">E03</div>
-          <div class="compact-name">DayOne</div>
+          <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/61/e7/a6/61e7a674-5942-f0e1-a3b2-8046f3de2515/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><span>DayOne</span></div>
           <div class="compact-desc">A goals and social utility product.</div>
           <div class="status">NEXTEON Labs</div>
         </div>
         <div class="compact-row">
           <div class="index">E04</div>
-          <div class="compact-name">Aesthetic Clock</div>
+          <div class="compact-name"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ed/50/70/ed5070b1-24c7-c334-8ed4-44c8bc3e4f5c/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><span>Aesthetic Clock</span></div>
           <div class="compact-desc">A minimal focus clock with ambient soundscapes for deep work offline.</div>
           <div class="status">Available</div>
         </div>
       </div>
+      </div></div>
     </section>
 
     <!-- ================================
          FOUNDER BUILT
          ================================ -->
-    <section class="section">
+    <section class="section product-collection founder-section">
       <div class="section-head">
         <div class="section-title">Founder-built</div>
         <div class="section-label">Independent products</div>
       </div>
 
+      <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="founder-body">
+        <span class="mobile-kicker">FOUNDER-BUILT <span>03 PRODUCTS</span></span>
+        <span class="mobile-title">Founder-built<span>.</span></span>
+        <span class="mobile-preview">oneblvd · BOLT Social · Wordzy!</span>
+        <span class="mobile-symbol" aria-hidden="true">+</span>
+      </button>
+      <div class="collection-body" id="founder-body"><div class="collection-inner">
       <div class="featured-list">
         <!-- ONEBLVD -->
         <a class="featured-item" href="https://oneblvd.co" target="_blank" rel="noopener">
-          <div class="product-name">oneblvd</div>
+          <div class="product-name with-icon"><img class="product-icon" src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/31/89/01/3189012b-adff-4b25-c4a3-5a3a12243f83/AppIcon-0-0-1x_U007ephone-0-1-sRGB-85-220.png/256x256bb.jpg" alt="" loading="lazy" width="48" height="48"><span>oneblvd</span></div>
           <div class="product-meta"><div class="product-type">Consumer social</div></div>
           <div class="product-proof"><strong>Thousands of users</strong><br>Millions of interactions <span class="arrow">↗</span></div>
         </a>
@@ -1370,6 +1434,7 @@
         </div>
 
       </div>
+      </div></div>
     </section>
 
 
@@ -1569,26 +1634,6 @@
 
 
 
-        /* ============================
-           ICONS
-           ============================ */
-
-        try {
-
-          if (window.lucide) {
-
-            lucide.createIcons();
-
-          }
-
-        } catch (e) {
-
-          console.warn(
-            'Icons failed',
-            e
-          );
-
-        }
 
 
       }
@@ -1596,6 +1641,34 @@
 
   </script>
 
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobile = window.matchMedia('(max-width: 900px)');
+      const sections = [...document.querySelectorAll('.product-collection')];
+      const sync = () => sections.forEach(section => {
+        const button = section.querySelector('.mobile-collection-head');
+        const body = section.querySelector('.collection-body');
+        const open = mobile.matches && section.classList.contains('is-open');
+        button.setAttribute('aria-expanded', String(open));
+        button.tabIndex = mobile.matches ? 0 : -1;
+        body.inert = mobile.matches && !open;
+      });
+      sections.forEach(section => {
+        const button = section.querySelector('.mobile-collection-head');
+        button.addEventListener('click', () => {
+          if (!mobile.matches) return;
+          const willOpen = !section.classList.contains('is-open');
+          sections.forEach(other => other.classList.remove('is-open'));
+          if (willOpen) section.classList.add('is-open');
+          sync();
+        });
+      });
+      mobile.addEventListener('change', sync);
+      sync();
+    });
+  </script>
 
 </body>
 
