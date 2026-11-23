@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet"
   />
 
@@ -1292,6 +1292,37 @@
       .signature-section .compact-name { font-size:1.18rem; }
       .signature-section .compact-desc { font-size:.85rem; line-height:1.42; }
     }
+
+    /* Refined product typography: dark ink, clear hierarchy, restrained Signature accent */
+    .hero-copy { color:#363d49; font-family:'Manrope','Outfit',sans-serif; font-size:1rem; font-weight:500; }
+    .hero-copy strong { color:#202634; font-weight:700; }
+    .collection-head p { color:#444c59; font-family:'Manrope','Outfit',sans-serif; font-size:.83rem; font-weight:500; line-height:1.44; }
+    .core-product p,.signature-section .compact-desc,.product-description { color:#424a57; font-family:'Manrope','Outfit',sans-serif; font-size:.86rem; font-weight:400; line-height:1.5; }
+    .core-product-kicker,.product-type { color:#565f6b; }
+    .signature-section .collection-title { display:inline-block; width:max-content; max-width:100%; padding-bottom:.17rem; border-bottom:2px solid rgba(0,71,255,.65); font-family:'Manrope','Outfit',sans-serif; font-size:2.05rem; font-weight:700; line-height:1.08; letter-spacing:-.075em; }
+    .signature-section .collection-head { background:linear-gradient(110deg,#f5f7ff,#fff 67%); }
+    @media (max-width:900px) {
+      .mobile-preview { color:#434b58; font-family:'Manrope','Outfit',sans-serif; font-size:.75rem; font-weight:500; }
+      .signature-section .mobile-title { display:inline-block; width:max-content; max-width:100%; padding-bottom:.13rem; border-bottom:1px solid rgba(0,71,255,.62); font-family:'Manrope','Outfit',sans-serif; font-size:1.3rem; font-weight:700; letter-spacing:-.06em; }
+      .signature-section .compact-desc { font-size:.81rem; line-height:1.44; }
+      .core-product p { font-size:.83rem; }
+      .hero-copy { font-size:.88rem; line-height:1.48; }
+    }
+
+    /* Core stays discoverable but compact on desktop until opened. */
+    @media (min-width:901px) {
+      .core-section > .collection-head { display:none; }
+      .core-section .mobile-collection-head { display:grid; grid-template-columns:minmax(0,1fr) 38px; align-items:center; column-gap:1rem; width:100%; padding:1.15rem 1.4rem; border:0; background:linear-gradient(105deg,#e9f0ff,#f9fbff 64%,#fff); color:var(--text); text-align:left; cursor:pointer; }
+      .core-section .mobile-title { grid-column:1; grid-row:1; margin:0 0 .18rem; font-size:1.7rem; font-weight:700; line-height:1; letter-spacing:-.055em; }
+      .core-section .mobile-preview { grid-column:1; grid-row:2; color:#434b58; font-family:'Manrope','Outfit',sans-serif; font-size:.8rem; font-weight:500; }
+      .core-section .mobile-symbol { grid-column:2; grid-row:1 / 3; display:grid; place-items:center; width:38px; height:38px; margin:0; border:1px solid rgba(0,71,255,.22); border-radius:50%; color:var(--accent); background:#fff; font:400 1.3rem/1 'Outfit',sans-serif; transition:transform .34s var(--transition),background .34s ease; }
+      .core-section.is-open .mobile-symbol { transform:rotate(45deg); background:#edf2ff; }
+      .core-section.is-open .mobile-collection-head { border-bottom:1px solid var(--line-soft); }
+      .js .core-section .collection-body { display:grid; grid-template-rows:0fr; transition:grid-template-rows .36s var(--transition); }
+      .js .core-section.is-open .collection-body { grid-template-rows:1fr; }
+      .js .core-section .collection-inner { overflow:hidden; min-height:0; }
+    }
+    @media (prefers-reduced-motion:reduce) { .js .core-section .collection-body { transition:none; } }
   </style>
 
   <link rel="stylesheet" href="/site-header.css">
@@ -1345,11 +1376,11 @@
     <!-- NEXTEON Labs collections -->
     <section class="section core-section product-collection" id="products-list" aria-labelledby="core-title">
       <div class="collection-head">
-        <h2 class="collection-title" id="core-title">Core<span>.</span></h2>
+        <h2 class="collection-title" id="core-title">Core</h2>
         <p>Focused tools for the things you do every day.</p>
       </div>
       <button class="mobile-collection-head" type="button" aria-expanded="false" aria-controls="core-body">
-        <span class="mobile-title">Core<span>.</span></span>
+        <span class="mobile-title">Core</span>
         <span class="mobile-preview">DocVault · NEO Browser · RawCam</span>
         <span class="mobile-symbol" aria-hidden="true">+</span>
       </button>
@@ -1685,15 +1716,16 @@
       const sync = () => sections.forEach(section => {
         const button = section.querySelector('.mobile-collection-head');
         const body = section.querySelector('.collection-body');
-        const open = mobile.matches && section.classList.contains('is-open');
+        const collapsible = mobile.matches || section.classList.contains('core-section');
+        const open = collapsible && section.classList.contains('is-open');
         button.setAttribute('aria-expanded', String(open));
-        button.tabIndex = mobile.matches ? 0 : -1;
-        body.inert = mobile.matches && !open;
+        button.tabIndex = collapsible ? 0 : -1;
+        body.inert = collapsible && !open;
       });
       sections.forEach(section => {
         const button = section.querySelector('.mobile-collection-head');
         button.addEventListener('click', () => {
-          if (!mobile.matches) return;
+          if (!mobile.matches && !section.classList.contains('core-section')) return;
           const willOpen = !section.classList.contains('is-open');
           sections.forEach(other => other.classList.remove('is-open'));
           if (willOpen) section.classList.add('is-open');
